@@ -15,14 +15,15 @@ header {
     padding: 15px;
 }
 
+/* 🔹 Logo Resizing */
 .logo-container img {
-    height: 50px;
+    height: 40px;
     margin-right: 10px;
 }
 
 /* 🔹 Social Media Icons */
 .social-links img {
-    width: 30px;
+    width: 25px;
     margin: 0 5px;
     transition: 0.3s ease;
 }
@@ -53,4 +54,18 @@ header {
 
 #jazzybakes h1 {
     color: #9b7ceb;
+}
+
+/* 🔹 Buttons */
+.cta-btn {
+    background: #1f6c64;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.cta-btn:hover {
+    background: #989898;
 }
