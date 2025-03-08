@@ -1,9 +1,19 @@
 /* 🔹 General Styles */
 body {
-    background: linear-gradient(135deg, #1b1b1c, #3a3a3a);
-    color: #1f6c64;
+    background: #222;
+    color: #ddd;
     font-family: 'Arial', sans-serif;
     text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* 🔹 Sticky Header */
+.sticky-header {
+    position: sticky;
+    top: 0;
+    background: #1b1b1c;
+    z-index: 100;
 }
 
 /* 🔹 Header */
@@ -15,15 +25,9 @@ header {
     padding: 15px;
 }
 
-/* 🔹 Logo Resizing */
-.logo-container img {
-    height: 40px;
-    margin-right: 10px;
-}
-
 /* 🔹 Social Media Icons */
 .social-links img {
-    width: 25px;
+    width: 30px;
     margin: 0 5px;
     transition: 0.3s ease;
 }
@@ -32,28 +36,30 @@ header {
     transform: scale(1.1);
 }
 
-/* 🔹 Kryptoxotis Section */
-#kryptoxotis {
-    background: linear-gradient(135deg, #1b1b1c, #989898);
-    color: #1f6c64;
-    padding: 100px 20px;
-}
-
 /* 🔹 Portfolio */
 .portfolio-grid {
     display: flex;
     justify-content: center;
     gap: 20px;
+    flex-wrap: wrap;
 }
 
-/* 🔸 Jazzy Bakes Section */
-#jazzybakes {
-    background: #b28660;
-    color: #62452e;
+/* 🔹 Back to Top Button */
+#back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #1f6c64;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    display: none;
 }
 
-#jazzybakes h1 {
-    color: #9b7ceb;
+#back-to-top.show {
+    display: block;
 }
 
 /* 🔹 Buttons */
