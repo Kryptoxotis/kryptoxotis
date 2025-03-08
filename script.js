@@ -7,20 +7,8 @@ document.querySelectorAll('nav a').forEach(anchor => {
     });
 });
 
-// Back to Top Button Logic
-const backToTopBtn = document.getElementById('back-to-top');
-
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
-        backToTopBtn.classList.add('show');
-    } else {
-        backToTopBtn.classList.remove('show');
-    }
-});
-
-backToTopBtn.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
+// Product Image Resizing
+document.querySelectorAll('.portfolio-item img').forEach(img => {
+    img.style.width = '100%';
+    img.style.maxWidth = '250px';
 });
