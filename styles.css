@@ -6,11 +6,43 @@ body {
     text-align: center;
 }
 
+/* 🔹 Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #1b1b1c;
+    padding: 15px;
+}
+
+.logo-container img {
+    height: 50px;
+    margin-right: 10px;
+}
+
+/* 🔹 Social Media Icons */
+.social-links img {
+    width: 30px;
+    margin: 0 5px;
+    transition: 0.3s ease;
+}
+
+.social-links img:hover {
+    transform: scale(1.1);
+}
+
 /* 🔹 Kryptoxotis Section */
 #kryptoxotis {
-    background: url("images/Kryptoxotis.png"), linear-gradient(135deg, #1b1b1c, #989898);
-    background-size: cover;
+    background: linear-gradient(135deg, #1b1b1c, #989898);
     color: #1f6c64;
+    padding: 100px 20px;
+}
+
+/* 🔹 Portfolio */
+.portfolio-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 
 /* 🔸 Jazzy Bakes Section */
@@ -21,17 +53,4 @@ body {
 
 #jazzybakes h1 {
     color: #9b7ceb;
-}
-
-/* 🔹 Social Media Icons */
-.social-links img {
-    width: 30px;
-    margin: 0 10px;
-}
-
-/* 🔹 Portfolio */
-.portfolio-grid {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
 }
