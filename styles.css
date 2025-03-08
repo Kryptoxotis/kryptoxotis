@@ -1,6 +1,9 @@
 /* 🔹 General Styles */
 body {
-    background: #222;
+    background: #000;
+    background-image: url('images/circuit-background.png'); /* Add circuit design */
+    background-size: cover;
+    background-attachment: fixed;
     color: #ddd;
     font-family: 'Arial', sans-serif;
     text-align: center;
@@ -9,69 +12,86 @@ body {
 }
 
 /* 🔹 Sticky Header */
-.sticky-header {
+header {
     position: sticky;
     top: 0;
-    background: #1b1b1c;
+    background: rgba(0, 0, 0, 0.9);
+    border-bottom: 2px solid teal;
+    padding: 15px 0;
     z-index: 100;
 }
 
-/* 🔹 Header */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #1b1b1c;
-    padding: 15px;
-}
-
-/* 🔹 Social Media Icons */
-.social-links img {
-    width: 30px;
-    margin: 0 5px;
-    transition: 0.3s ease;
-}
-
-.social-links img:hover {
-    transform: scale(1.1);
-}
-
-/* 🔹 Portfolio */
-.portfolio-grid {
+nav ul {
     display: flex;
     justify-content: center;
     gap: 20px;
+    list-style: none;
+}
+
+nav a {
+    color: teal;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+nav a:hover {
+    color: #fff;
+}
+
+/* 🔹 Kryptoxotis Section */
+#kryptoxotis,
+#jazzybakes,
+#services,
+#portfolio {
+    padding: 60px 20px;
+}
+
+/* 🔹 Services Grid */
+.services-grid {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
     flex-wrap: wrap;
 }
 
-/* 🔹 Back to Top Button */
-#back-to-top {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #1f6c64;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    display: none;
+.service-item {
+    background: rgba(0, 255, 255, 0.1);
+    border: 1px solid teal;
+    padding: 15px 20px;
+    border-radius: 8px;
+    width: 200px;
 }
 
-#back-to-top.show {
-    display: block;
+/* 🔹 Portfolio Images */
+.portfolio-item img {
+    width: 100%;
+    max-width: 250px;
+    border-radius: 10px;
+    border: 2px solid teal;
+    box-shadow: 0 4px 15px rgba(0, 255, 255, 0.3);
 }
 
 /* 🔹 Buttons */
 .cta-btn {
-    background: #1f6c64;
-    color: white;
-    padding: 12px 25px;
+    background: teal;
+    color: black;
+    padding: 12px 30px;
     border: none;
     cursor: pointer;
+    border-radius: 5px;
     transition: 0.3s ease;
 }
 
 .cta-btn:hover {
-    background: #989898;
+    background: rgba(0, 255, 255, 0.7);
+    transform: scale(1.05);
+}
+
+/* 🔹 Footer */
+footer {
+    background: #000;
+    color: teal;
+    padding: 20px;
 }
