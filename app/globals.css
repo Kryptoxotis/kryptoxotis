@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 180 70% 50%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 180 70% 50%;
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom styles for the teal buttons */
+.teal-button {
+  @apply bg-[#2dd4bf] text-[#050505] hover:bg-[#14b8a6] transition-colors;
+}
+
+.teal-button-outline {
+  @apply border-2 border-[#2dd4bf] text-[#2dd4bf] hover:bg-[#2dd4bf] hover:text-[#050505] transition-colors;
+}
+
+/* Social icon styling */
+.social-icon-link {
+  @apply flex h-8 w-8 items-center justify-center rounded-full bg-[#080808] border border-[#2dd4bf] hover:bg-[#2dd4bf] transition-colors;
+}
+
+.social-icon {
+  @apply h-4 w-4 opacity-80;
+}
+
+/* Metallic background class */
+.metallic-bg {
+  @apply bg-[#050505];
+}
+
+/* Enhanced circuit glow effect */
+.circuit-glow {
+  filter: drop-shadow(0 0 12px rgba(45, 212, 191, 0.7));
+}
+
+/* Ensure the canvas covers the entire viewport */
+canvas.circuit-glow {
+  width: 100vw !important;
+  height: 100vh !important;
+}
+
