@@ -2,8 +2,9 @@ import { NextResponse } from "next/server"
 import { z } from "zod"
 import { checkRateLimit, getClientIP, getRateLimitHeaders } from "@/lib/rate-limit"
 import { VALIDATION_LIMITS } from "@/lib/constants"
+import { supabase } from "@/lib/supabase"
 
-export const runtime = "nodejs" // Force Node.js runtime
+export const runtime = "nodejs"
 
 const contactSchema = z.object({
   name: z.string().min(1, "Name is required").max(VALIDATION_LIMITS.NAME_MAX_LENGTH, "Name too long"),
@@ -56,77 +57,17 @@ export async function POST(request: Request) {
     }, { status: 400 })
   }
 
-  // Check if we are in a development environment or if API keys are missing
-  if (!process.env.NOTION_API_KEY || !process.env.NOTION_CONTACT_DATABASE_ID) {
-    console.warn('[DEV MODE] Contact form submission not saved to Notion:', data.email)
-    return NextResponse.json({
-      success: true,
-      message: "Thank you for your message. We will get back to you soon! (Development mode)",
-      dev: true
-    })
-  }
-
   try {
+    const { error } = await supabase
+      .from("contact_submissions")
+      .insert({
+        name: data.name,
+        email: data.email,
+        subject: data.subject,
+        message: data.message,
+      })
 
-    // Use fetch directly to create a page in Notion
-    const response = await fetch("https://api.notion.com/v1/pages", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${process.env.NOTION_API_KEY}`,
-        "Notion-Version": "2022-06-28",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        parent: {
-          database_id: process.env.NOTION_CONTACT_DATABASE_ID,
-        },
-        properties: {
-          Name: {
-            title: [
-              {
-                text: {
-                  content: data.name,
-                },
-              },
-            ],
-          },
-          Email: {
-            email: data.email,
-          },
-          Subject: {
-            select: {
-              name: data.subject,
-            },
-          },
-          Message: {
-            rich_text: [
-              {
-                text: {
-                  content: data.message,
-                },
-              },
-            ],
-          },
-          "Date Submitted": {
-            date: {
-              start: new Date().toISOString(),
-            },
-          },
-          Status: {
-            select: {
-              name: "New",
-            },
-          },
-        },
-      }),
-    })
-
-    if (!response.ok) {
-      const errorData = await response.json()
-      console.error("API: Error creating Notion page:", errorData)
-      throw new Error(`Notion API error: ${errorData.message || "Unknown error"}`)
-    }
-
+    if (error) throw error
 
     return NextResponse.json({
       success: true,

@@ -1,4 +1,6 @@
-// Type definitions for our data structures
+// Types and client-side fetch functions
+// These functions call our API routes (which use Supabase under the hood)
+
 export interface FAQ {
   id: string
   question: string
@@ -33,7 +35,6 @@ export interface Project {
   status?: string
 }
 
-// Update the Material interface to use price instead of priceRange
 export interface Material {
   id: string
   name: string
@@ -47,7 +48,7 @@ export interface BlogPost {
   id: string
   title: string
   excerpt: string
-  content: string // Full HTML content from Notion
+  content: string
   category: string
   tags: string[]
   publishDate: string
@@ -58,7 +59,6 @@ export interface BlogPost {
   featured: boolean
   author: string
   url?: string
-  notionUrl?: string
 }
 
 export interface ContactSubmission {
@@ -68,189 +68,76 @@ export interface ContactSubmission {
   message: string
 }
 
-// Function to fetch Testimonials
 export async function getTestimonials(): Promise<Testimonial[]> {
-
   try {
-    // Add a timestamp to prevent caching
-    const response = await fetch(`/api/testimonials`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Cache-Control": "no-cache, no-store, must-revalidate",
-        Pragma: "no-cache",
-        Expires: "0",
-      },
+    const response = await fetch("/api/testimonials", {
       cache: "no-store",
     })
-
-    if (!response.ok) {
-      const errorText = await response.text()
-      console.error(`Client: HTTP error! status: ${response.status}, body:`, errorText)
-      throw new Error(`HTTP error! status: ${response.status}`)
-    }
-
-    const testimonials = await response.json()
-    return testimonials
-  } catch (error) {
-    console.error("Client: Error fetching testimonials:", error)
-    throw error
-  }
-}
-
-// Function to fetch FAQs
-export async function getFAQs(): Promise<FAQ[]> {
-
-  try {
-    // Add a timestamp to prevent caching
-    const response = await fetch(`/api/faqs`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Cache-Control": "no-cache, no-store, must-revalidate",
-        Pragma: "no-cache",
-        Expires: "0",
-      },
-      cache: "no-store",
-    })
-
-    if (!response.ok) {
-      const errorText = await response.text()
-      console.error(`Client: HTTP error! status: ${response.status}, body:`, errorText)
-      throw new Error(`HTTP error! status: ${response.status}`)
-    }
-
-    const faqs = await response.json()
-    return faqs
-  } catch (error) {
-    console.error("Client: Error fetching FAQs:", error)
-    throw error
-  }
-}
-
-// Function to fetch Projects based on category
-export async function getProjects(category?: string): Promise<Project[]> {
-
-  // If no category is specified, return an empty array
-  if (!category) {
+    if (!response.ok) return []
+    return await response.json()
+  } catch {
     return []
   }
+}
 
+export async function getFAQs(): Promise<FAQ[]> {
   try {
-    // Add a timestamp to prevent caching
-    const response = await fetch(`/api/projects/${category}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Cache-Control": "no-cache, no-store, must-revalidate",
-        Pragma: "no-cache",
-        Expires: "0",
-      },
+    const response = await fetch("/api/faqs", {
       cache: "no-store",
     })
-
-    if (!response.ok) {
-      const errorText = await response.text()
-      console.error(`Client: HTTP error! status: ${response.status}, body:`, errorText)
-      throw new Error(`HTTP error! status: ${response.status}`)
-    }
-
-    const projects = await response.json()
-    return projects
-  } catch (error) {
-    console.error(`Client: Error fetching ${category} projects:`, error)
-    throw error
+    if (!response.ok) return []
+    return await response.json()
+  } catch {
+    return []
   }
 }
 
-// Function to fetch Blog Posts
+export async function getProjects(category?: string): Promise<Project[]> {
+  try {
+    const url = category ? `/api/projects/${category}` : "/api/projects/database"
+    const response = await fetch(url, {
+      cache: "no-store",
+    })
+    if (!response.ok) return []
+    return await response.json()
+  } catch {
+    return []
+  }
+}
+
 export async function getBlogPosts(): Promise<BlogPost[]> {
-
   try {
-    // Add a timestamp to prevent caching
-    const response = await fetch(`/api/blog`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Cache-Control": "no-cache, no-store, must-revalidate",
-        Pragma: "no-cache",
-        Expires: "0",
-      },
+    const response = await fetch("/api/blog", {
       cache: "no-store",
     })
-
-    if (!response.ok) {
-      const errorText = await response.text()
-      console.error(`Client: HTTP error! status: ${response.status}, body:`, errorText)
-      throw new Error(`HTTP error! status: ${response.status}`)
-    }
-
-    const blogPosts = await response.json()
-    return blogPosts
-  } catch (error) {
-    console.error("Client: Error fetching blog posts:", error)
-    throw error
+    if (!response.ok) return []
+    return await response.json()
+  } catch {
+    return []
   }
 }
 
-// Function to fetch 3D Printing Materials
 export async function getMaterials(): Promise<Material[]> {
-
   try {
-    // Add a timestamp to prevent caching
-    const response = await fetch(`/api/materials`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Cache-Control": "no-cache, no-store, must-revalidate",
-        Pragma: "no-cache",
-        Expires: "0",
-      },
+    const response = await fetch("/api/materials", {
       cache: "no-store",
     })
-
-    if (!response.ok) {
-      const errorText = await response.text()
-      console.error(`Client: HTTP error! status: ${response.status}, body:`, errorText)
-      throw new Error(`HTTP error! status: ${response.status}`)
-    }
-
-    const materials = await response.json()
-    return materials
-  } catch (error) {
-    console.error("Client: Error fetching materials:", error)
-    throw error
+    if (!response.ok) return []
+    return await response.json()
+  } catch {
+    return []
   }
 }
 
-// Function to submit contact form data
 export async function submitContactForm(data: ContactSubmission): Promise<{ success: boolean; message: string }> {
-
   try {
     const response = await fetch("/api/contact", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Cache-Control": "no-cache, no-store, must-revalidate",
-        Pragma: "no-cache",
-        Expires: "0",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     })
-
-    if (!response.ok) {
-      const errorText = await response.text()
-      console.error(`Client: HTTP error! status: ${response.status}, body:`, errorText)
-      throw new Error(`HTTP error! status: ${response.status}`)
-    }
-
-    const result = await response.json()
-    return result
-  } catch (error) {
-    console.error("Client: Error submitting contact form:", error)
-    return {
-      success: false,
-      message: "There was an error submitting your message. Please try again later.",
-    }
+    return await response.json()
+  } catch {
+    return { success: false, message: "Network error. Please try again." }
   }
 }

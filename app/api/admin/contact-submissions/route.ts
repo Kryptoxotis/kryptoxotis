@@ -1,0 +1,11 @@
+import { NextResponse } from "next/server";
+import { supabaseAdmin } from "@/lib/supabase";
+import { requireAdmin } from "@/lib/admin-helpers";
+
+export async function GET() {
+  const denied = await requireAdmin();
+  if (denied) return denied;
+  const { data, error } = await supabaseAdmin.from("contact_submissions").select("*").order("created_at", { ascending: false });
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  return NextResponse.json(data);
+}
