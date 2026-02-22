@@ -2,8 +2,8 @@ import { NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/supabase";
 import { requireAdmin } from "@/lib/admin-helpers";
 
-export async function GET() {
-  const denied = await requireAdmin();
+export async function GET(request: Request) {
+  const denied = await requireAdmin(request);
   if (denied) return denied;
   const { data, error } = await supabaseAdmin.from("faq").select("*").order("sort_order");
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
@@ -11,7 +11,7 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-  const denied = await requireAdmin();
+  const denied = await requireAdmin(request);
   if (denied) return denied;
   const body = await request.json();
   const { data, error } = await supabaseAdmin.from("faq").insert(body).select().single();
