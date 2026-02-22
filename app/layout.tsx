@@ -6,6 +6,7 @@ import Footer from "@/components/footer"
 import "./globals.css"
 import { Analytics } from "@vercel/analytics/react"
 import { Suspense } from "react"
+import { getNavItems } from "@/lib/cms"
 
 const inter = Inter({ subsets: ["latin"] })
 const playfair = Playfair_Display({
@@ -23,11 +24,13 @@ export const metadata = {
 export const dynamic = "force-dynamic"
 export const revalidate = 0
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const navItems = await getNavItems().catch(() => null)
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -54,7 +57,7 @@ export default function RootLayout({
       <body className={`bg-black min-h-screen flex flex-col font-sans-forgetica ${playfair.variable}`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
           <Suspense fallback={<div className="h-20 bg-black border-b border-zinc-800"></div>}>
-            <Header />
+            <Header navItems={navItems ?? undefined} />
           </Suspense>
           <main className="flex-grow">{children}</main>
           <Suspense fallback={<div className="h-40 bg-black border-t border-zinc-800"></div>}>

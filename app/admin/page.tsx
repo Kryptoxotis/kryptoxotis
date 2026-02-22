@@ -10,6 +10,12 @@ const tables = [
   { name: "printing_materials_3d", label: "3D Printing Materials", href: "/admin/printing-materials-3d" },
   { name: "blog_posts", label: "Blog Posts", href: "/admin/blog-posts" },
   { name: "contact_submissions", label: "Contact Submissions", href: "/admin/contact-submissions" },
+  { name: "site_sections", label: "Site Sections", href: "/admin/site-sections" },
+  { name: "services", label: "Services", href: "/admin/services" },
+  { name: "values", label: "Core Values", href: "/admin/values" },
+  { name: "portfolio_items", label: "Portfolio Items", href: "/admin/portfolio-items" },
+  { name: "navigation", label: "Navigation", href: "/admin/navigation" },
+  { name: "site_settings", label: "Site Settings", href: "/admin/site-settings" },
 ]
 
 async function getCount(table: string): Promise<number> {

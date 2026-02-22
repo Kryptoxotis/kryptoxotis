@@ -3,10 +3,22 @@ import Image from "next/image"
 import { SectionTitle } from "@/components/ui/section-title"
 import { CyberButton } from "@/components/ui/cyber-button"
 import { Check, ArrowRight, Database, BarChart, Shield, Cog } from "lucide-react"
-// Import the ProjectsSection component at the top of the file
 import { ProjectsSection } from "@/components/projects-section"
+import { getSection } from "@/lib/cms"
 
-export default function DatabaseServicePage() {
+export default async function DatabaseServicePage() {
+  const [hero, cta] = await Promise.all([
+    getSection("service-database", "hero").catch(() => null),
+    getSection("service-database", "cta").catch(() => null),
+  ])
+
+  const heroHeading = hero?.heading ?? "Business Database Management & Automation"
+  const heroSub = hero?.subheading ?? "Transform Your Operations – Streamline, Scale, Succeed."
+  const ctaHeading = cta?.heading ?? "Ready to Transform Your Database Operations?"
+  const ctaBody = cta?.body ?? "Efficient database management is critical to business success. Automate workflows, eliminate inefficiencies, and ensure data integrity with a tailored solution. Speak with our experts today to build a scalable, high-performance database system that meets your exact requirements."
+  const ctaButton = cta?.button_text ?? "Request a Consultation"
+  const ctaButtonLink = cta?.button_link ?? "/contact"
+
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
@@ -14,9 +26,9 @@ export default function DatabaseServicePage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="metallic-text text-4xl md:text-5xl font-bold mb-6">
-              Business Database Management & Automation
+              {heroHeading}
             </h1>
-            <h2 className="text-white text-xl">Transform Your Operations – Streamline, Scale, Succeed.</h2>
+            <h2 className="text-white text-xl">{heroSub}</h2>
           </div>
         </div>
       </section>
@@ -282,16 +294,12 @@ export default function DatabaseServicePage() {
           <div className="max-w-4xl mx-auto">
             <div className="bg-black p-8 rounded-sm cyber-border">
               <h2 className="metallic-text text-3xl md:text-4xl font-bold mb-4 text-center">
-                Ready to Transform Your Database Operations?
+                {ctaHeading}
               </h2>
-              <p className="text-white text-center mb-8">
-                Efficient database management is critical to business success. Automate workflows, eliminate
-                inefficiencies, and ensure data integrity with a tailored solution. Speak with our experts today to
-                build a scalable, high-performance database system that meets your exact requirements.
-              </p>
+              <p className="text-white text-center mb-8">{ctaBody}</p>
               <div className="flex justify-center">
-                <Link href="/contact">
-                  <CyberButton size="lg">Request a Consultation</CyberButton>
+                <Link href={ctaButtonLink}>
+                  <CyberButton size="lg">{ctaButton}</CyberButton>
                 </Link>
               </div>
             </div>

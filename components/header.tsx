@@ -6,7 +6,7 @@ import Image from "next/image"
 import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-const navItems = [
+const defaultNavItems = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
   { name: "Services", href: "/services" },
@@ -14,8 +14,12 @@ const navItems = [
   { name: "Contact Us", href: "/contact" },
 ]
 
-export default function Header() {
+export default function Header({ navItems }: { navItems?: { label: string; href: string }[] }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+  const items = navItems
+    ? navItems.map((n) => ({ name: n.label, href: n.href }))
+    : defaultNavItems
 
   return (
     <header className="relative z-50 border-b border-zinc-800 bg-black/80 backdrop-blur-sm">
@@ -41,7 +45,7 @@ export default function Header() {
 
           {/* Desktop navigation */}
           <nav className="hidden md:flex md:space-x-8">
-            {navItems.map((item) => (
+            {items.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
@@ -80,7 +84,7 @@ export default function Header() {
       >
         <div className="bg-zinc-900 border-b border-zinc-800 py-2">
           <div className="space-y-1 px-4 pb-3 pt-2">
-            {navItems.map((item) => (
+            {items.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}

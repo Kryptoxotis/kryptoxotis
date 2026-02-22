@@ -3,15 +3,35 @@ import Image from "next/image"
 import { TestimonialsSection } from "@/components/testimonials-section"
 import { FAQsSection } from "@/components/faqs-section"
 import { Lightbulb, Handshake, Shield } from "lucide-react"
+import { getSection, getValues } from "@/lib/cms"
 
-export default function AboutPage() {
+const iconMap: Record<string, any> = { Lightbulb, Handshake, Shield }
+
+export default async function AboutPage() {
+  const [hero, mission, values] = await Promise.all([
+    getSection("about", "hero").catch(() => null),
+    getSection("about", "mission").catch(() => null),
+    getValues().catch(() => []),
+  ])
+
+  const heroHeading = hero?.heading ?? "Who We Are: The Kryptoxotis Story"
+  const missionTitle = mission?.heading ?? "Empowering Businesses with Smart Technology & Innovation"
+  const missionBody = mission?.body ?? "At Kryptoxotis, we don't just build solutions—we create revolutions. Our mission is to transform bold ideas into reality with precision 3D printing, intuitive web design, and intelligent automation. Through innovation and efficiency, we help businesses streamline operations, enhance their digital footprint, and scale effortlessly. Integrity, creativity, and excellence drive us as we shape the future—one breakthrough at a time."
+
+  const defaultValues = [
+    { english_name: "Innovation", icon: "Lightbulb", long_description: "We turn ambitious ideas into reality through creative problem-solving and cutting-edge technology." },
+    { english_name: "Loyalty", icon: "Handshake", long_description: "Your success is our success. We build long-term relationships based on trust and mutual respect." },
+    { english_name: "Integrity", icon: "Shield", long_description: "We do what we say, and we say what we do—transparency and honesty in every step." },
+  ]
+  const valList = values.length > 0 ? values : defaultValues
+
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
       <section className="py-20 bg-zinc-900/50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="metallic-text text-4xl md:text-5xl font-bold mb-6">Who We Are: The Kryptoxotis Story</h1>
+            <h1 className="metallic-text text-4xl md:text-5xl font-bold mb-6">{heroHeading}</h1>
           </div>
         </div>
       </section>
@@ -21,14 +41,8 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <SectionTitle title="Empowering Businesses with Smart Technology & Innovation" />
-              <p className="text-white mb-6">
-                At Kryptoxotis, we don't just build solutions—we create revolutions. Our mission is to transform bold
-                ideas into reality with precision 3D printing, intuitive web design, and intelligent automation. Through
-                innovation and efficiency, we help businesses streamline operations, enhance their digital footprint,
-                and scale effortlessly. Integrity, creativity, and excellence drive us as we shape the future—one
-                breakthrough at a time.
-              </p>
+              <SectionTitle title={missionTitle} />
+              <p className="text-white mb-6">{missionBody}</p>
             </div>
             <div className="relative">
               <div className="cyber-border rounded-sm p-1 bg-black overflow-hidden">
@@ -59,35 +73,18 @@ export default function AboutPage() {
           <SectionTitle title="Our Core Values" centered />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-            <div className="text-center p-6 bg-zinc-900 rounded-sm cyber-border group hover:bg-zinc-800 transition-all duration-300 hover:translate-y-[-5px]">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-sm bg-black mb-4 cyber-border group-hover:shadow-[0_0_15px_rgba(27,77,62,0.5)] transition-all duration-300">
-                <Lightbulb className="h-8 w-8 text-emerald-500 group-hover:animate-pulse" />
-              </div>
-              <h3 className="metallic-text text-xl font-bold mb-3">Innovation</h3>
-              <p className="text-white">
-                We turn ambitious ideas into reality through creative problem-solving and cutting-edge technology.
-              </p>
-            </div>
-
-            <div className="text-center p-6 bg-zinc-900 rounded-sm cyber-border group hover:bg-zinc-800 transition-all duration-300 hover:translate-y-[-5px]">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-sm bg-black mb-4 cyber-border group-hover:shadow-[0_0_15px_rgba(27,77,62,0.5)] transition-all duration-300">
-                <Handshake className="h-8 w-8 text-emerald-500 group-hover:animate-pulse" />
-              </div>
-              <h3 className="metallic-text text-xl font-bold mb-3">Loyalty</h3>
-              <p className="text-white">
-                Your success is our success. We build long-term relationships based on trust and mutual respect.
-              </p>
-            </div>
-
-            <div className="text-center p-6 bg-zinc-900 rounded-sm cyber-border group hover:bg-zinc-800 transition-all duration-300 hover:translate-y-[-5px]">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-sm bg-black mb-4 cyber-border group-hover:shadow-[0_0_15px_rgba(27,77,62,0.5)] transition-all duration-300">
-                <Shield className="h-8 w-8 text-emerald-500 group-hover:animate-pulse" />
-              </div>
-              <h3 className="metallic-text text-xl font-bold mb-3">Integrity</h3>
-              <p className="text-white">
-                We do what we say, and we say what we do—transparency and honesty in every step.
-              </p>
-            </div>
+            {valList.map((val: any) => {
+              const IconComp = iconMap[val.icon] || Lightbulb
+              return (
+                <div key={val.english_name} className="text-center p-6 bg-zinc-900 rounded-sm cyber-border group hover:bg-zinc-800 transition-all duration-300 hover:translate-y-[-5px]">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-sm bg-black mb-4 cyber-border group-hover:shadow-[0_0_15px_rgba(27,77,62,0.5)] transition-all duration-300">
+                    <IconComp className="h-8 w-8 text-emerald-500 group-hover:animate-pulse" />
+                  </div>
+                  <h3 className="metallic-text text-xl font-bold mb-3">{val.english_name}</h3>
+                  <p className="text-white">{val.long_description}</p>
+                </div>
+              )
+            })}
           </div>
         </div>
       </section>

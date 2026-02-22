@@ -4,16 +4,29 @@ import { SectionTitle } from "@/components/ui/section-title"
 import { CyberButton } from "@/components/ui/cyber-button"
 import { Check, ArrowRight, Globe, Smartphone, ShoppingCart } from "lucide-react"
 import { WebPortfolioSection } from "@/components/web-portfolio-section"
+import { getSection } from "@/lib/cms"
 
-export default function WebDesignServicePage() {
+export default async function WebDesignServicePage() {
+  const [hero, cta] = await Promise.all([
+    getSection("service-web", "hero").catch(() => null),
+    getSection("service-web", "cta").catch(() => null),
+  ])
+
+  const heroHeading = hero?.heading ?? "Web Design & Development"
+  const heroSub = hero?.subheading ?? "Don't Just Build a Website – Build a Brand That Converts."
+  const ctaHeading = cta?.heading ?? "Ready to Transform Your Digital Presence?"
+  const ctaBody = cta?.body ?? "Your website should be more than just a digital presence—it should be a high-converting platform that drives engagement and business growth. Let's create a solution tailored to your needs. Contact us today to start building a website that delivers results."
+  const ctaButton = cta?.button_text ?? "Schedule a Strategy Session"
+  const ctaButtonLink = cta?.button_link ?? "/contact"
+
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
       <section className="py-20 bg-zinc-900/50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="metallic-text text-4xl md:text-5xl font-bold mb-6">Web Design & Development</h1>
-            <h2 className="text-white text-xl">Don't Just Build a Website – Build a Brand That Converts.</h2>
+            <h1 className="metallic-text text-4xl md:text-5xl font-bold mb-6">{heroHeading}</h1>
+            <h2 className="text-white text-xl">{heroSub}</h2>
           </div>
         </div>
       </section>
@@ -234,16 +247,12 @@ export default function WebDesignServicePage() {
           <div className="max-w-4xl mx-auto">
             <div className="bg-black p-8 rounded-sm cyber-border">
               <h2 className="metallic-text text-3xl md:text-4xl font-bold mb-4 text-center">
-                Ready to Transform Your Digital Presence?
+                {ctaHeading}
               </h2>
-              <p className="text-white text-center mb-8">
-                Your website should be more than just a digital presence—it should be a high-converting platform that
-                drives engagement and business growth. Let's create a solution tailored to your needs. Contact us today
-                to start building a website that delivers results.
-              </p>
+              <p className="text-white text-center mb-8">{ctaBody}</p>
               <div className="flex justify-center">
-                <Link href="/contact">
-                  <CyberButton size="lg">Schedule a Strategy Session</CyberButton>
+                <Link href={ctaButtonLink}>
+                  <CyberButton size="lg">{ctaButton}</CyberButton>
                 </Link>
               </div>
             </div>

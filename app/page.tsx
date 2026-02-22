@@ -4,8 +4,41 @@ import { CyberButton } from "@/components/ui/cyber-button"
 import { SectionTitle } from "@/components/ui/section-title"
 import { ServiceCard } from "@/components/ui/service-card"
 import { Database, Globe, PrinterIcon as Printer3d } from "lucide-react"
+import { getSection, getServices, getValues } from "@/lib/cms"
 
-export default function Home() {
+const iconMap: Record<string, any> = { Database, Globe, Printer: Printer3d }
+
+export default async function Home() {
+  const [hero, cta, services, values] = await Promise.all([
+    getSection("home", "hero").catch(() => null),
+    getSection("home", "cta").catch(() => null),
+    getServices().catch(() => []),
+    getValues().catch(() => []),
+  ])
+
+  const heroHeading = hero?.heading ?? "Stay Ahead or Get Left Behind – Future-Proof Your Business Now"
+  const heroSubheading = hero?.subheading ?? "INNOVATIVE SOLUTIONS"
+  const heroButton = hero?.button_text ?? "See How We Can Help You"
+  const heroButtonLink = hero?.button_link ?? "/services"
+
+  const ctaHeading = cta?.heading ?? "Your Future Starts Now – Let's Build Something Extraordinary"
+  const ctaButton = cta?.button_text ?? "Let's Build the Future Together"
+  const ctaButtonLink = cta?.button_link ?? "/contact"
+
+  const defaultServices = [
+    { title: "Database Management", short_description: "Seamlessly manage and optimize your data for faster, smarter decisions.", icon: "Database", button_text: "See It in Action", button_link: "/services/database" },
+    { title: "Web Design", short_description: "Stunning, high-performance websites that convert visitors into customers.", icon: "Globe", button_text: "Discover How It Works", button_link: "/services/web-design" },
+    { title: "3D Printing", short_description: "From prototyping to production – bring your ideas to life with precision.", icon: "Printer", button_text: "See It in Action", button_link: "/services/3d-printing" },
+  ]
+  const svcList = services.length > 0 ? services : defaultServices
+
+  const defaultValues = [
+    { letter: "I", english_name: "Innovation", short_description: "We push boundaries, turning the impossible into reality through creative tech solutions." },
+    { letter: "L", english_name: "Loyalty", short_description: "Your success is our success – we forge lasting partnerships built on trust and collaboration." },
+    { letter: "I", english_name: "Integrity", short_description: "Honesty and transparency drive everything we do, ensuring you get results you can trust." },
+  ]
+  const valList = values.length > 0 ? values : defaultValues
+
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
@@ -14,14 +47,14 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <div className="inline-block rounded-sm bg-zinc-900 px-3 py-1 text-sm metallic-red-text border border-emerald-500/30 glow-teal">
-                INNOVATIVE SOLUTIONS
+                {heroSubheading}
               </div>
               <h1 className="metallic-text text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
-                Stay Ahead or Get Left Behind – Future-Proof Your Business Now
+                {heroHeading}
               </h1>
               <div className="flex flex-wrap gap-4">
-                <Link href="/services">
-                  <CyberButton size="lg">See How We Can Help You</CyberButton>
+                <Link href={heroButtonLink}>
+                  <CyberButton size="lg">{heroButton}</CyberButton>
                 </Link>
                 <Link href="/contact">
                   <CyberButton variant="outline" size="lg">
@@ -57,33 +90,21 @@ export default function Home() {
           <SectionTitle title="Our Services" centered />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <ServiceCard
-              title="Database Management"
-              description="Seamlessly manage and optimize your data for faster, smarter decisions."
-              icon={
-                <Database className="h-8 w-8 text-emerald-500 transition-transform group-hover:scale-110 duration-300" />
-              }
-              href="/services/database"
-              buttonText="See It in Action"
-            />
-            <ServiceCard
-              title="Web Design"
-              description="Stunning, high-performance websites that convert visitors into customers."
-              icon={
-                <Globe className="h-8 w-8 text-emerald-500 transition-transform group-hover:scale-110 duration-300" />
-              }
-              href="/services/web-design"
-              buttonText="Discover How It Works"
-            />
-            <ServiceCard
-              title="3D Printing"
-              description="From prototyping to production – bring your ideas to life with precision."
-              icon={
-                <Printer3d className="h-8 w-8 text-emerald-500 transition-transform group-hover:scale-110 duration-300" />
-              }
-              href="/services/3d-printing"
-              buttonText="See It in Action"
-            />
+            {svcList.map((svc: any) => {
+              const IconComp = iconMap[svc.icon] || Database
+              return (
+                <ServiceCard
+                  key={svc.title}
+                  title={svc.title}
+                  description={svc.short_description}
+                  icon={
+                    <IconComp className="h-8 w-8 text-emerald-500 transition-transform group-hover:scale-110 duration-300" />
+                  }
+                  href={svc.button_link}
+                  buttonText={svc.button_text}
+                />
+              )
+            })}
           </div>
         </div>
       </section>
@@ -94,35 +115,15 @@ export default function Home() {
           <SectionTitle title="Our Core Values" centered />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-            <div className="text-center p-6 bg-zinc-900 rounded-sm cyber-border group hover:bg-zinc-800 transition-all duration-300">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-sm bg-black mb-4 cyber-border group-hover:shadow-[0_0_15px_rgba(27,77,62,0.5)] transition-all duration-300">
-                <span className="text-2xl text-emerald-500 group-hover:animate-pulse">I</span>
+            {valList.map((val: any) => (
+              <div key={val.english_name} className="text-center p-6 bg-zinc-900 rounded-sm cyber-border group hover:bg-zinc-800 transition-all duration-300">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-sm bg-black mb-4 cyber-border group-hover:shadow-[0_0_15px_rgba(27,77,62,0.5)] transition-all duration-300">
+                  <span className="text-2xl text-emerald-500 group-hover:animate-pulse">{val.letter}</span>
+                </div>
+                <h3 className="metallic-text text-xl font-bold mb-3">{val.english_name}</h3>
+                <p className="text-white">{val.short_description}</p>
               </div>
-              <h3 className="metallic-text text-xl font-bold mb-3">Innovation</h3>
-              <p className="text-white">
-                We push boundaries, turning the impossible into reality through creative tech solutions.
-              </p>
-            </div>
-
-            <div className="text-center p-6 bg-zinc-900 rounded-sm cyber-border group hover:bg-zinc-800 transition-all duration-300">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-sm bg-black mb-4 cyber-border group-hover:shadow-[0_0_15px_rgba(27,77,62,0.5)] transition-all duration-300">
-                <span className="text-2xl text-emerald-500 group-hover:animate-pulse">L</span>
-              </div>
-              <h3 className="metallic-text text-xl font-bold mb-3">Loyalty</h3>
-              <p className="text-white">
-                Your success is our success – we forge lasting partnerships built on trust and collaboration.
-              </p>
-            </div>
-
-            <div className="text-center p-6 bg-zinc-900 rounded-sm cyber-border group hover:bg-zinc-800 transition-all duration-300">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-sm bg-black mb-4 cyber-border group-hover:shadow-[0_0_15px_rgba(27,77,62,0.5)] transition-all duration-300">
-                <span className="text-2xl text-emerald-500 group-hover:animate-pulse">I</span>
-              </div>
-              <h3 className="metallic-text text-xl font-bold mb-3">Integrity</h3>
-              <p className="text-white">
-                Honesty and transparency drive everything we do, ensuring you get results you can trust.
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -132,10 +133,10 @@ export default function Home() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="metallic-text text-3xl md:text-4xl font-bold mb-6">
-              Your Future Starts Now – Let's Build Something Extraordinary
+              {ctaHeading}
             </h2>
-            <Link href="/contact">
-              <CyberButton size="lg">Let's Build the Future Together</CyberButton>
+            <Link href={ctaButtonLink}>
+              <CyberButton size="lg">{ctaButton}</CyberButton>
             </Link>
           </div>
         </div>

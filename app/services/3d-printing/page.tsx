@@ -5,16 +5,29 @@ import { CyberButton } from "@/components/ui/cyber-button"
 import { Check, ArrowRight, Printer, Layers, Cog } from "lucide-react"
 import { MaterialsSection } from "@/components/materials-section"
 import { ThreeDModelGallery } from "@/components/three-d-model-gallery"
+import { getSection } from "@/lib/cms"
 
-export default function ThreeDPrintingServicePage() {
+export default async function ThreeDPrintingServicePage() {
+  const [hero, cta] = await Promise.all([
+    getSection("service-3d", "hero").catch(() => null),
+    getSection("service-3d", "cta").catch(() => null),
+  ])
+
+  const heroHeading = hero?.heading ?? "3D Printing Services"
+  const heroSub = hero?.subheading ?? "See Your Vision Come to Life – Get Your Custom Prototype Today."
+  const ctaHeading = cta?.heading ?? "Ready to Bring Your Ideas to Life?"
+  const ctaBody = cta?.body ?? "Whether you need high-quality prototypes or precision manufacturing, our 3D printing solutions provide accuracy, speed, and innovation. Let's bring your designs to life with the best materials and expert guidance. Request a quote today to get started."
+  const ctaButton = cta?.button_text ?? "Get a Custom Quote"
+  const ctaButtonLink = cta?.button_link ?? "/contact"
+
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
       <section className="py-20 bg-zinc-900/50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="metallic-text text-4xl md:text-5xl font-bold mb-6">3D Printing Services</h1>
-            <h2 className="text-white text-xl">See Your Vision Come to Life – Get Your Custom Prototype Today.</h2>
+            <h1 className="metallic-text text-4xl md:text-5xl font-bold mb-6">{heroHeading}</h1>
+            <h2 className="text-white text-xl">{heroSub}</h2>
           </div>
         </div>
       </section>
@@ -240,16 +253,12 @@ export default function ThreeDPrintingServicePage() {
           <div className="max-w-4xl mx-auto">
             <div className="bg-black p-8 rounded-sm cyber-border">
               <h2 className="metallic-text text-3xl md:text-4xl font-bold mb-4 text-center">
-                Ready to Bring Your Ideas to Life?
+                {ctaHeading}
               </h2>
-              <p className="text-white text-center mb-8">
-                Whether you need high-quality prototypes or precision manufacturing, our 3D printing solutions provide
-                accuracy, speed, and innovation. Let's bring your designs to life with the best materials and expert
-                guidance. Request a quote today to get started.
-              </p>
+              <p className="text-white text-center mb-8">{ctaBody}</p>
               <div className="flex justify-center">
-                <Link href="/contact">
-                  <CyberButton size="lg">Get a Custom Quote</CyberButton>
+                <Link href={ctaButtonLink}>
+                  <CyberButton size="lg">{ctaButton}</CyberButton>
                 </Link>
               </div>
             </div>

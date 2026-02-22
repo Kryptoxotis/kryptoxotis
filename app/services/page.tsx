@@ -3,8 +3,21 @@ import Image from "next/image"
 import { SectionTitle } from "@/components/ui/section-title"
 import { CyberButton } from "@/components/ui/cyber-button"
 import { Check } from "lucide-react"
+import { getSection, getServices } from "@/lib/cms"
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const [hero, cta, services] = await Promise.all([
+    getSection("services", "hero").catch(() => null),
+    getSection("services", "cta").catch(() => null),
+    getServices().catch(() => []),
+  ])
+
+  const heroHeading = hero?.heading ?? "Our Services – Powering Your Business with Innovation"
+  const heroSub = hero?.subheading ?? "Tailored Solutions to Automate, Elevate & Accelerate Growth"
+  const ctaHeading = cta?.heading ?? "Ready to Transform Your Business? Let's make it happen."
+  const ctaButton = cta?.button_text ?? "Get in Touch"
+  const ctaButtonLink = cta?.button_link ?? "/contact"
+
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
@@ -12,9 +25,9 @@ export default function ServicesPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="metallic-text text-4xl md:text-5xl font-bold mb-6">
-              Our Services – Powering Your Business with Innovation
+              {heroHeading}
             </h1>
-            <p className="text-white text-xl">Tailored Solutions to Automate, Elevate & Accelerate Growth</p>
+            <p className="text-white text-xl">{heroSub}</p>
           </div>
         </div>
       </section>
@@ -262,10 +275,10 @@ export default function ServicesPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="metallic-text text-3xl md:text-4xl font-bold mb-6">
-              Ready to Transform Your Business? Let's make it happen.
+              {ctaHeading}
             </h2>
-            <Link href="/contact">
-              <CyberButton size="lg">Get in Touch</CyberButton>
+            <Link href={ctaButtonLink}>
+              <CyberButton size="lg">{ctaButton}</CyberButton>
             </Link>
           </div>
         </div>

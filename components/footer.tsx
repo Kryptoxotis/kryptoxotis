@@ -1,8 +1,28 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Instagram, Youtube, Twitter, Phone, Mail, MapPin } from "lucide-react"
+import { getNavItems, getSetting } from "@/lib/cms"
 
-export default function Footer() {
+export default async function Footer() {
+  const [nav, tagline, phone, email, address, instagramUrl, youtubeUrl, twitterUrl] = await Promise.all([
+    getNavItems().catch(() => null),
+    getSetting("tagline").catch(() => null),
+    getSetting("phone").catch(() => null),
+    getSetting("email").catch(() => null),
+    getSetting("address").catch(() => null),
+    getSetting("instagram_url").catch(() => null),
+    getSetting("youtube_url").catch(() => null),
+    getSetting("twitter_url").catch(() => null),
+  ])
+
+  const navItems = nav ?? [
+    { label: "Home", href: "/" },
+    { label: "About", href: "/about" },
+    { label: "Services", href: "/services" },
+    { label: "Blog", href: "/blog" },
+    { label: "Contact Us", href: "/contact" },
+  ]
+
   return (
     <footer className="border-t border-zinc-800 bg-black/80 backdrop-blur-sm">
       <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
@@ -21,25 +41,25 @@ export default function Footer() {
               <h3 className="metallic-text text-xl font-bold">KRYPTOXOTIS</h3>
             </div>
             <p className="text-white mb-4">
-              Empowering businesses with innovative technology solutions - innovation, loyalty, integrity.
+              {tagline ?? "Empowering businesses with innovative technology solutions - innovation, loyalty, integrity."}
             </p>
             <div className="flex space-x-4">
               <Link
-                href="https://instagram.com/Kryptoxotis"
+                href={instagramUrl ?? "https://instagram.com/Kryptoxotis"}
                 className="group transition-all duration-300"
                 aria-label="Instagram"
               >
                 <Instagram className="h-5 w-5 text-zinc-300 group-hover:text-red-500" />
               </Link>
               <Link
-                href="https://youtube.com/Kryptoxotis"
+                href={youtubeUrl ?? "https://youtube.com/Kryptoxotis"}
                 className="group transition-all duration-300"
                 aria-label="YouTube"
               >
                 <Youtube className="h-5 w-5 text-zinc-300 group-hover:text-red-500" />
               </Link>
               <Link
-                href="https://twitter.com/Kryptoxotis"
+                href={twitterUrl ?? "https://twitter.com/Kryptoxotis"}
                 className="group transition-all duration-300"
                 aria-label="X (Twitter)"
               >
@@ -51,40 +71,13 @@ export default function Footer() {
           <div>
             <h3 className="metallic-text text-xl font-bold mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              <li>
-                <Link href="/" className="metallic-silver-text transition-all duration-300 hover:metallic-red-text">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/about"
-                  className="metallic-silver-text transition-all duration-300 hover:metallic-red-text"
-                >
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services"
-                  className="metallic-silver-text transition-all duration-300 hover:metallic-red-text"
-                >
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link href="/blog" className="metallic-silver-text transition-all duration-300 hover:metallic-red-text">
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className="metallic-silver-text transition-all duration-300 hover:metallic-red-text"
-                >
-                  Contact Us
-                </Link>
-              </li>
+              {navItems.map((item: any) => (
+                <li key={item.href}>
+                  <Link href={item.href} className="metallic-silver-text transition-all duration-300 hover:metallic-red-text">
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -93,20 +86,20 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-center">
                 <Phone className="h-5 w-5 mr-2 text-emerald-500" />
-                <span className="text-white">915 373 3640</span>
+                <span className="text-white">{phone ?? "915 373 3640"}</span>
               </li>
               <li className="flex items-center">
                 <Mail className="h-5 w-5 mr-2 text-emerald-500" />
                 <a
-                  href="mailto:aidan@kryptoxotis.io"
+                  href={`mailto:${email ?? "aidan@kryptoxotis.io"}`}
                   className="metallic-silver-text transition-all duration-300 hover:metallic-red-text"
                 >
-                  aidan@kryptoxotis.io
+                  {email ?? "aidan@kryptoxotis.io"}
                 </a>
               </li>
               <li className="flex items-start">
                 <MapPin className="h-5 w-5 mr-2 mt-1 text-emerald-500" />
-                <span className="text-white">El Paso, Texas</span>
+                <span className="text-white">{address ?? "El Paso, Texas"}</span>
               </li>
             </ul>
           </div>
