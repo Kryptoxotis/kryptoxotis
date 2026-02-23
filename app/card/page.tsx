@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect } from "react"
 import Image from "next/image"
-import { Phone, Mail, Globe, Instagram, Youtube, Twitter, Download, MapPin } from "lucide-react"
+import { Phone, Mail, Globe, Instagram, Youtube, Twitter, Download, MapPin, DollarSign, Banknote } from "lucide-react"
 
 const contacts = [
   { icon: Phone, label: "(915) 373-3640", href: "tel:+19153733640", color: "from-emerald-400 to-emerald-600" },
@@ -182,8 +182,28 @@ export default function CardPage() {
               ))}
             </div>
 
+            {/* Payment links */}
+            <div className={`flex justify-center gap-3 mb-8 transition-all duration-700 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`} style={{ transitionDelay: "1.0s" }}>
+              <a
+                href="https://cash.app/$aidangaystardo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:border-green-500/30 hover:bg-green-500/[0.05] transition-all duration-300 group"
+              >
+                <DollarSign className="h-5 w-5 text-green-400 group-hover:scale-110 transition-transform" />
+                <span className="text-zinc-300 group-hover:text-white text-sm font-medium">Cash App</span>
+              </a>
+              <a
+                href="tel:+19153733640"
+                className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:border-purple-500/30 hover:bg-purple-500/[0.05] transition-all duration-300 group"
+              >
+                <Banknote className="h-5 w-5 text-purple-400 group-hover:scale-110 transition-transform" />
+                <span className="text-zinc-300 group-hover:text-white text-sm font-medium">Zelle</span>
+              </a>
+            </div>
+
             {/* Save Contact button */}
-            <div className={`transition-all duration-700 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`} style={{ transitionDelay: "1.1s" }}>
+            <div className={`transition-all duration-700 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`} style={{ transitionDelay: "1.2s" }}>
               <button
                 onClick={saveContact}
                 className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-black font-semibold transition-all duration-300 hover:shadow-[0_0_30px_rgba(16,185,129,0.3)] hover:scale-[1.02] active:scale-[0.98]"
