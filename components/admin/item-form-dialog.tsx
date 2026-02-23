@@ -51,28 +51,24 @@ function ImageUploadField({
 
   return (
     <div>
-      <div
-        onDragOver={(e) => { e.preventDefault(); setDragOver(true) }}
-        onDragLeave={() => setDragOver(false)}
-        onDrop={handleDrop}
-        onClick={() => inputRef.current?.click()}
-        className={`border-2 border-dashed rounded p-4 text-center cursor-pointer transition-colors ${
-          dragOver ? "border-emerald-400 bg-emerald-500/10" : "border-emerald-500/30 hover:border-emerald-500/60"
-        }`}
-      >
-        {uploading ? (
-          <p className="text-emerald-400 text-sm">Uploading...</p>
-        ) : (
-          <p className="text-zinc-400 text-sm">Drop an image here or click to browse</p>
-        )}
-        <input
-          ref={inputRef}
-          type="file"
-          accept="image/*"
-          className="hidden"
-          onChange={(e) => { const f = e.target.files?.[0]; if (f) upload(f) }}
-        />
+      <div className="flex items-center gap-2">
+        <button
+          type="button"
+          onClick={() => inputRef.current?.click()}
+          disabled={uploading}
+          className="px-3 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm rounded disabled:opacity-50"
+        >
+          {uploading ? "Uploading..." : "Choose Image"}
+        </button>
+        {uploading && <span className="text-emerald-400 text-sm">Uploading...</span>}
       </div>
+      <input
+        ref={inputRef}
+        type="file"
+        accept="image/*"
+        className="hidden"
+        onChange={(e) => { const f = e.target.files?.[0]; if (f) { upload(f); e.target.value = "" } }}
+      />
       {value && (
         <div className="mt-2 relative inline-block">
           <img src={value} alt="Preview" className="h-20 rounded border border-emerald-500/30 object-cover" />
@@ -133,29 +129,25 @@ function MultiImageUploadField({
 
   return (
     <div>
-      <div
-        onDragOver={(e) => { e.preventDefault(); setDragOver(true) }}
-        onDragLeave={() => setDragOver(false)}
-        onDrop={handleDrop}
-        onClick={() => inputRef.current?.click()}
-        className={`border-2 border-dashed rounded p-4 text-center cursor-pointer transition-colors ${
-          dragOver ? "border-emerald-400 bg-emerald-500/10" : "border-emerald-500/30 hover:border-emerald-500/60"
-        }`}
-      >
-        {uploading ? (
-          <p className="text-emerald-400 text-sm">Uploading...</p>
-        ) : (
-          <p className="text-zinc-400 text-sm">Drop images here or click to browse (multiple allowed)</p>
-        )}
-        <input
-          ref={inputRef}
-          type="file"
-          accept="image/*"
-          multiple
-          className="hidden"
-          onChange={(e) => { if (e.target.files?.length) upload(e.target.files) }}
-        />
+      <div className="flex items-center gap-2">
+        <button
+          type="button"
+          onClick={() => inputRef.current?.click()}
+          disabled={uploading}
+          className="px-3 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm rounded disabled:opacity-50"
+        >
+          {uploading ? "Uploading..." : "Add Images"}
+        </button>
+        {uploading && <span className="text-emerald-400 text-sm">Uploading...</span>}
       </div>
+      <input
+        ref={inputRef}
+        type="file"
+        accept="image/*"
+        multiple
+        className="hidden"
+        onChange={(e) => { if (e.target.files?.length) { upload(e.target.files); e.target.value = "" } }}
+      />
       {urls.length > 0 && (
         <div className="mt-2 flex flex-wrap gap-2">
           {urls.map((url, i) => (
