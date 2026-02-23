@@ -1,5 +1,4 @@
 // Types and client-side fetch functions
-// These functions call our API routes (which use Supabase under the hood)
 
 export interface FAQ {
   id: string
@@ -7,41 +6,6 @@ export interface FAQ {
   answer: string
   category?: string
   order?: number
-}
-
-export interface Testimonial {
-  id: string
-  quote: string
-  author: string
-  role: string
-  avatar?: string
-}
-
-export interface Project {
-  id: string
-  title: string
-  description: string
-  client?: string
-  image: string
-  technologies?: string[]
-  completionDate?: string
-  url?: string
-  materials?: string[]
-  application?: string
-  featured?: boolean
-  order?: number
-  stlFile?: string
-  printTime?: number
-  status?: string
-}
-
-export interface Material {
-  id: string
-  name: string
-  materialType: string
-  bestUses: string[]
-  properties: string[]
-  price: number | null
 }
 
 export interface BlogPost {
@@ -68,58 +32,9 @@ export interface ContactSubmission {
   message: string
 }
 
-export async function getTestimonials(): Promise<Testimonial[]> {
-  try {
-    const response = await fetch("/api/testimonials", {
-      cache: "no-store",
-    })
-    if (!response.ok) return []
-    return await response.json()
-  } catch {
-    return []
-  }
-}
-
-export async function getFAQs(): Promise<FAQ[]> {
-  try {
-    const response = await fetch("/api/faqs", {
-      cache: "no-store",
-    })
-    if (!response.ok) return []
-    return await response.json()
-  } catch {
-    return []
-  }
-}
-
-export async function getProjects(category?: string): Promise<Project[]> {
-  try {
-    const url = category ? `/api/projects/${category}` : "/api/projects/database"
-    const response = await fetch(url, {
-      cache: "no-store",
-    })
-    if (!response.ok) return []
-    return await response.json()
-  } catch {
-    return []
-  }
-}
-
 export async function getBlogPosts(): Promise<BlogPost[]> {
   try {
     const response = await fetch("/api/blog", {
-      cache: "no-store",
-    })
-    if (!response.ok) return []
-    return await response.json()
-  } catch {
-    return []
-  }
-}
-
-export async function getMaterials(): Promise<Material[]> {
-  try {
-    const response = await fetch("/api/materials", {
       cache: "no-store",
     })
     if (!response.ok) return []
