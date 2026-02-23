@@ -2,21 +2,21 @@ import Link from "next/link"
 import Image from "next/image"
 import { SectionTitle } from "@/components/ui/section-title"
 import { CyberButton } from "@/components/ui/cyber-button"
-import { Check, ArrowRight, Globe, Smartphone, ShoppingCart } from "lucide-react"
-import { WebPortfolioSection } from "@/components/web-portfolio-section"
+import { Check, ArrowRight, Cog, Zap, RefreshCw } from "lucide-react"
+import { ProjectsSection } from "@/components/projects-section"
 import { getSection } from "@/lib/cms"
 
-export default async function WebDesignServicePage() {
+export default async function AutomationServicePage() {
   const [hero, cta] = await Promise.all([
-    getSection("service-web", "hero").catch(() => null),
-    getSection("service-web", "cta").catch(() => null),
+    getSection("service-automation", "hero").catch(() => null),
+    getSection("service-automation", "cta").catch(() => null),
   ])
 
-  const heroHeading = hero?.heading ?? "Web Design & Development"
-  const heroSub = hero?.subheading ?? "Don't Just Build a Website – Build a Brand That Converts."
-  const ctaHeading = cta?.heading ?? "Ready to Transform Your Digital Presence?"
-  const ctaBody = cta?.body ?? "Your website should be more than just a digital presence—it should be a high-converting platform that drives engagement and business growth. Let's create a solution tailored to your needs. Contact us today to start building a website that delivers results."
-  const ctaButton = cta?.button_text ?? "Schedule a Strategy Session"
+  const heroHeading = hero?.heading ?? "Business Automation & Workflow Optimization"
+  const heroSub = hero?.subheading ?? "Eliminate Repetitive Tasks. Scale What Matters."
+  const ctaHeading = cta?.heading ?? "Ready to Automate Your Business?"
+  const ctaBody = cta?.body ?? "Stop wasting time on manual processes. Let us build automation systems that work around the clock so your team can focus on growth. Contact us today to get started."
+  const ctaButton = cta?.button_text ?? "Request a Consultation"
   const ctaButtonLink = cta?.button_link ?? "/contact"
 
   return (
@@ -39,7 +39,7 @@ export default async function WebDesignServicePage() {
               <div className="cyber-border rounded-sm p-1 bg-black">
                 <Image
                   src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/DALL%C2%B7E%202025-03-12%2014.42.51%20-%20A%20futuristic%20web%20design%20and%20development%20workspace%20showcasing%20the%20benefits%20of%20professional%20web%20services.%20The%20scene%20features%20high-tech%20monitors%20displayi-grDFZw49mvnPTxl95L93eGWttINvDU.webp"
-                  alt="Web Design and Development"
+                  alt="Business Automation Solutions"
                   width={600}
                   height={600}
                   className="rounded-sm w-full aspect-square object-cover"
@@ -50,9 +50,9 @@ export default async function WebDesignServicePage() {
             <div className="order-1 lg:order-2">
               <SectionTitle title="Overview" />
               <p className="text-white mb-6">
-                A website is more than a digital presence—it is the foundation of your brand's credibility and a
-                powerful tool for business growth. Our web design and development services focus on building
-                aesthetically compelling, highly functional, and conversion-optimized websites tailored to your goals.
+                Manual processes drain time, introduce errors, and prevent your business from scaling. Our automation
+                solutions connect your tools, streamline workflows, and eliminate repetitive tasks — so your team can
+                focus on high-value work that drives growth.
               </p>
 
               <div className="relative mt-8 mb-8">
@@ -61,40 +61,28 @@ export default async function WebDesignServicePage() {
                   <h3 className="metallic-text text-xl font-bold mb-4">Key Services:</h3>
                   <ul className="space-y-3">
                     <li className="flex items-start">
-                      <span className="text-emerald-500 mr-2 mt-1">
-                        <Check size={16} />
-                      </span>
-                      <span className="text-white">Custom website design and development</span>
+                      <span className="text-emerald-500 mr-2 mt-1"><Check size={16} /></span>
+                      <span className="text-white">Workflow automation design and implementation</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="text-emerald-500 mr-2 mt-1">
-                        <Check size={16} />
-                      </span>
-                      <span className="text-white">UI/UX strategy and wireframing</span>
+                      <span className="text-emerald-500 mr-2 mt-1"><Check size={16} /></span>
+                      <span className="text-white">System integration and API orchestration</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="text-emerald-500 mr-2 mt-1">
-                        <Check size={16} />
-                      </span>
-                      <span className="text-white">eCommerce platform development and optimization</span>
+                      <span className="text-emerald-500 mr-2 mt-1"><Check size={16} /></span>
+                      <span className="text-white">Automated data processing and ETL pipelines</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="text-emerald-500 mr-2 mt-1">
-                        <Check size={16} />
-                      </span>
-                      <span className="text-white">SEO-driven architecture and performance optimization</span>
+                      <span className="text-emerald-500 mr-2 mt-1"><Check size={16} /></span>
+                      <span className="text-white">Email, notification, and communication automation</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="text-emerald-500 mr-2 mt-1">
-                        <Check size={16} />
-                      </span>
-                      <span className="text-white">Security, accessibility, and compliance solutions</span>
+                      <span className="text-emerald-500 mr-2 mt-1"><Check size={16} /></span>
+                      <span className="text-white">Custom triggers, scheduling, and event-driven logic</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="text-emerald-500 mr-2 mt-1">
-                        <Check size={16} />
-                      </span>
-                      <span className="text-white">Continuous website management and technical support</span>
+                      <span className="text-emerald-500 mr-2 mt-1"><Check size={16} /></span>
+                      <span className="text-white">Monitoring, error handling, and ongoing optimization</span>
                     </li>
                   </ul>
                 </div>
@@ -115,20 +103,20 @@ export default async function WebDesignServicePage() {
                 <div className="flex-shrink-0 w-16 h-16 bg-black flex items-center justify-center rounded-sm cyber-border mr-4">
                   <span className="text-3xl font-bold text-emerald-500">1</span>
                 </div>
-                <h3 className="metallic-text text-xl font-bold pt-2">Discovery & Strategy Development</h3>
+                <h3 className="metallic-text text-xl font-bold pt-2">Process Audit</h3>
               </div>
               <ul className="space-y-3 pl-20">
                 <li className="flex items-start text-white">
                   <ArrowRight className="h-4 w-4 text-emerald-500 mr-2 mt-1 flex-shrink-0" />
-                  <span>Conduct in-depth market research and competitor analysis.</span>
+                  <span>Map out current workflows and identify manual bottlenecks.</span>
                 </li>
                 <li className="flex items-start text-white">
                   <ArrowRight className="h-4 w-4 text-emerald-500 mr-2 mt-1 flex-shrink-0" />
-                  <span>Identify core business objectives, target audience, and conversion goals.</span>
+                  <span>Evaluate existing tools and integration opportunities.</span>
                 </li>
                 <li className="flex items-start text-white">
                   <ArrowRight className="h-4 w-4 text-emerald-500 mr-2 mt-1 flex-shrink-0" />
-                  <span>Establish key design elements, branding consistency, and feature sets.</span>
+                  <span>Prioritize automation opportunities by impact and complexity.</span>
                 </li>
               </ul>
             </div>
@@ -138,20 +126,20 @@ export default async function WebDesignServicePage() {
                 <div className="flex-shrink-0 w-16 h-16 bg-black flex items-center justify-center rounded-sm cyber-border mr-4">
                   <span className="text-3xl font-bold text-emerald-500">2</span>
                 </div>
-                <h3 className="metallic-text text-xl font-bold pt-2">Design & Prototyping</h3>
+                <h3 className="metallic-text text-xl font-bold pt-2">Solution Design</h3>
               </div>
               <ul className="space-y-3 pl-20">
                 <li className="flex items-start text-white">
                   <ArrowRight className="h-4 w-4 text-emerald-500 mr-2 mt-1 flex-shrink-0" />
-                  <span>Develop wireframes and interactive prototypes for user experience validation.</span>
+                  <span>Architect automation flows with clear triggers, actions, and conditions.</span>
                 </li>
                 <li className="flex items-start text-white">
                   <ArrowRight className="h-4 w-4 text-emerald-500 mr-2 mt-1 flex-shrink-0" />
-                  <span>Refine user interface elements to maximize engagement and navigation efficiency.</span>
+                  <span>Select the right platforms and tools for each automation.</span>
                 </li>
                 <li className="flex items-start text-white">
                   <ArrowRight className="h-4 w-4 text-emerald-500 mr-2 mt-1 flex-shrink-0" />
-                  <span>Implement responsive design principles to ensure seamless cross-device compatibility.</span>
+                  <span>Plan error handling, fallbacks, and monitoring strategies.</span>
                 </li>
               </ul>
             </div>
@@ -161,20 +149,20 @@ export default async function WebDesignServicePage() {
                 <div className="flex-shrink-0 w-16 h-16 bg-black flex items-center justify-center rounded-sm cyber-border mr-4">
                   <span className="text-3xl font-bold text-emerald-500">3</span>
                 </div>
-                <h3 className="metallic-text text-xl font-bold pt-2">Development & Functionality Implementation</h3>
+                <h3 className="metallic-text text-xl font-bold pt-2">Build & Test</h3>
               </div>
               <ul className="space-y-3 pl-20">
                 <li className="flex items-start text-white">
                   <ArrowRight className="h-4 w-4 text-emerald-500 mr-2 mt-1 flex-shrink-0" />
-                  <span>Build a high-performance website using modern web technologies.</span>
+                  <span>Implement automations with thorough testing at each stage.</span>
                 </li>
                 <li className="flex items-start text-white">
                   <ArrowRight className="h-4 w-4 text-emerald-500 mr-2 mt-1 flex-shrink-0" />
-                  <span>Integrate essential features such as eCommerce, booking systems, or interactive elements.</span>
+                  <span>Connect systems and validate data flows end-to-end.</span>
                 </li>
                 <li className="flex items-start text-white">
                   <ArrowRight className="h-4 w-4 text-emerald-500 mr-2 mt-1 flex-shrink-0" />
-                  <span>Implement SEO best practices, security protocols, and speed optimizations.</span>
+                  <span>Run parallel testing to ensure accuracy before going live.</span>
                 </li>
               </ul>
             </div>
@@ -184,20 +172,20 @@ export default async function WebDesignServicePage() {
                 <div className="flex-shrink-0 w-16 h-16 bg-black flex items-center justify-center rounded-sm cyber-border mr-4">
                   <span className="text-3xl font-bold text-emerald-500">4</span>
                 </div>
-                <h3 className="metallic-text text-xl font-bold pt-2">Launch, Maintenance & Growth</h3>
+                <h3 className="metallic-text text-xl font-bold pt-2">Deploy & Scale</h3>
               </div>
               <ul className="space-y-3 pl-20">
                 <li className="flex items-start text-white">
                   <ArrowRight className="h-4 w-4 text-emerald-500 mr-2 mt-1 flex-shrink-0" />
-                  <span>Conduct extensive testing to ensure optimal functionality and performance.</span>
+                  <span>Launch automations and monitor performance in real time.</span>
                 </li>
                 <li className="flex items-start text-white">
                   <ArrowRight className="h-4 w-4 text-emerald-500 mr-2 mt-1 flex-shrink-0" />
-                  <span>Deploy the website with structured SEO indexing and analytics tracking.</span>
+                  <span>Iterate based on results and expand automation coverage.</span>
                 </li>
                 <li className="flex items-start text-white">
                   <ArrowRight className="h-4 w-4 text-emerald-500 mr-2 mt-1 flex-shrink-0" />
-                  <span>Provide continuous updates, performance enhancements, and security patches.</span>
+                  <span>Provide ongoing support and adapt to changing business needs.</span>
                 </li>
               </ul>
             </div>
@@ -208,30 +196,30 @@ export default async function WebDesignServicePage() {
       {/* Visual Elements Section */}
       <section className="py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionTitle title="Web Design That Drives Results" centered />
+          <SectionTitle title="Automation That Drives Results" centered />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
             <div className="bg-zinc-900 p-6 rounded-sm cyber-border text-center">
-              <Globe className="h-16 w-16 mx-auto text-emerald-500 mb-4" />
-              <h3 className="metallic-text text-xl font-bold mb-3">Brand-Focused Design</h3>
+              <Zap className="h-16 w-16 mx-auto text-emerald-500 mb-4" />
+              <h3 className="metallic-text text-xl font-bold mb-3">Instant Execution</h3>
               <p className="text-white">
-                Create a memorable digital presence that reflects your unique brand identity and values.
+                Tasks that once took hours happen in seconds — triggered automatically, every time.
               </p>
             </div>
 
             <div className="bg-zinc-900 p-6 rounded-sm cyber-border text-center">
-              <Smartphone className="h-16 w-16 mx-auto text-emerald-500 mb-4" />
-              <h3 className="metallic-text text-xl font-bold mb-3">Responsive Experience</h3>
+              <RefreshCw className="h-16 w-16 mx-auto text-emerald-500 mb-4" />
+              <h3 className="metallic-text text-xl font-bold mb-3">Seamless Integration</h3>
               <p className="text-white">
-                Deliver a seamless experience across all devices with mobile-first, responsive design.
+                Connect your existing tools and platforms into one unified, automated workflow.
               </p>
             </div>
 
             <div className="bg-zinc-900 p-6 rounded-sm cyber-border text-center">
-              <ShoppingCart className="h-16 w-16 mx-auto text-emerald-500 mb-4" />
-              <h3 className="metallic-text text-xl font-bold mb-3">Conversion-Optimized</h3>
+              <Cog className="h-16 w-16 mx-auto text-emerald-500 mb-4" />
+              <h3 className="metallic-text text-xl font-bold mb-3">Zero Human Error</h3>
               <p className="text-white">
-                Transform visitors into customers with strategic CTAs and user-friendly navigation.
+                Automated processes run consistently and accurately, eliminating costly manual mistakes.
               </p>
             </div>
           </div>
@@ -239,7 +227,7 @@ export default async function WebDesignServicePage() {
       </section>
 
       {/* Portfolio Section */}
-      <WebPortfolioSection title="Our Web Design Portfolio" />
+      <ProjectsSection category="automation" title="Automation Projects" />
 
       {/* CTA Section */}
       <section className="py-20 bg-zinc-900/50">

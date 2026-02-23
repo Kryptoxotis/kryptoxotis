@@ -56,6 +56,29 @@
 
 ---
 
+## Phase 9: Frontend Updates — New Services & TEK Values
+
+### Service Route Renames
+- [x] Create `app/services/dashboards/page.tsx` — fetches from `service-dashboards` CMS keys
+- [x] Create `app/services/automation/page.tsx` — fetches from `service-automation` CMS keys
+- [x] Create `app/services/web-apps/page.tsx` — fetches from `service-web-apps` CMS keys
+- [x] Delete old routes: `app/services/database/`, `app/services/web-design/`, `app/services/3d-printing/`
+- [x] Update `app/services/[service]/page.tsx` — new service data (dashboards, automation, web-apps)
+
+### Page Updates
+- [x] `app/page.tsx` — new icons (BarChart, Cog, Globe), new default services + TEK values
+- [x] `app/about/page.tsx` — full rewrite with vision, TEK framework overview, value breakdowns (honor/discipline/innovation), telos section
+- [x] `app/services/page.tsx` — reframed as one offering with three delivery methods, dynamic service rendering from CMS
+
+### Cleanup
+- [x] Delete unused 3D components: `materials-section.tsx`, `three-d-model-gallery.tsx`, `stl-model-viewer.tsx`
+- [x] Update `app/sitemap.ts` — new service URLs (dashboards, automation, web-apps)
+
+### Verification
+- [x] `npm run build` passes
+
+---
+
 ## Review
 
 ### Summary of Changes

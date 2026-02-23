@@ -12,59 +12,59 @@ interface ServicePageProps {
 }
 
 const serviceData = {
-  database: {
-    title: "Business Database Management & Automation",
-    description: "Streamline your operations with custom database solutions",
+  dashboards: {
+    title: "Custom Dashboards & Data Visualization",
+    description: "Transform raw data into actionable intelligence",
     content:
-      "Our database management services help businesses organize, store, and process their data efficiently. We create custom solutions that automate repetitive tasks, improve data accuracy, and provide valuable insights.",
+      "Our custom dashboard solutions transform complex datasets into clear, interactive visualizations that empower teams to make faster, smarter decisions. From executive KPI panels to operational monitoring systems, we build dashboards that fit your workflow.",
     features: [
-      "Custom database design and implementation",
-      "Process automation and workflow optimization",
-      "Data migration and integration",
-      "Reporting and analytics solutions",
-      "Database maintenance and support",
-      "Security and compliance",
+      "Custom dashboard design and development",
+      "Real-time data integration and API connections",
+      "Interactive charts, graphs, and data tables",
+      "KPI tracking and automated reporting",
+      "Role-based access and team collaboration",
+      "Ongoing maintenance and optimization",
     ],
-    category: "database",
+    category: "dashboards",
     image:
       "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/DALL%C2%B7E%202025-03-12%2014.41.01%20-%20A%20futuristic%20business%20overview%20scene%20showcasing%20the%20benefits%20of%20database%20management%20and%20automation.%20The%20image%20features%20a%20sleek%2C%20high-tech%20control%20cent-6XtMI7JofXoVkc2JffC6qs09HiFDpW.webp",
-    cta: "Transform Your Operations – Streamline, Scale, Succeed.",
+    cta: "Transform Your Data into Actionable Insights.",
   },
-  "web-design": {
-    title: "Web Design",
-    description: "Create a stunning online presence for your business",
+  automation: {
+    title: "Business Automation & Workflow Optimization",
+    description: "Eliminate repetitive tasks and scale what matters",
     content:
-      "Our web design services focus on creating visually appealing, user-friendly websites that effectively communicate your brand message and convert visitors into customers. We combine aesthetics with functionality to deliver exceptional results.",
+      "Manual processes drain time, introduce errors, and prevent your business from scaling. Our automation solutions connect your tools, streamline workflows, and eliminate repetitive tasks — so your team can focus on high-value work that drives growth.",
     features: [
-      "Responsive website design and development",
-      "E-commerce solutions",
-      "Content management systems",
-      "Website maintenance and support",
-      "SEO optimization",
-      "Performance optimization",
+      "Workflow automation design and implementation",
+      "System integration and API orchestration",
+      "Automated data processing and ETL pipelines",
+      "Event-driven triggers and scheduling",
+      "Error handling and monitoring",
+      "Ongoing optimization and scaling",
     ],
-    category: "web",
+    category: "automation",
     image:
       "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/DALL%C2%B7E%202025-03-12%2014.42.51%20-%20A%20futuristic%20web%20design%20and%20development%20workspace%20showcasing%20the%20benefits%20of%20professional%20web%20services.%20The%20scene%20features%20high-tech%20monitors%20displayi-grDFZw49mvnPTxl95L93eGWttINvDU.webp",
-    cta: "Don't Just Build a Website – Build a Brand That Converts.",
+    cta: "Stop Wasting Time on Manual Tasks – Automate Now.",
   },
-  "3d-printing": {
-    title: "3D Printing",
-    description: "Bring your ideas to life with advanced 3D printing technology",
+  "web-apps": {
+    title: "Web Application Development",
+    description: "Custom web apps built to solve real business problems",
     content:
-      "Our 3D printing services enable you to create physical prototypes, models, and custom parts with precision and efficiency. Whether you need a single prototype or a small production run, we have the expertise and equipment to deliver high-quality results.",
+      "Off-the-shelf software rarely fits your exact needs. We build custom web applications — from internal tools and client portals to full-featured platforms — that are tailored to your workflows, scale with your growth, and deliver a seamless user experience.",
     features: [
-      "Rapid prototyping",
-      "Custom part production",
-      "3D modeling and design",
-      "Material selection consultation",
-      "Finishing and post-processing",
-      "Small batch production",
+      "Custom web application design and development",
+      "User authentication, roles, and permissions",
+      "Database architecture and API development",
+      "Responsive, mobile-first UI/UX design",
+      "Third-party integrations and payment processing",
+      "Hosting, deployment, and ongoing maintenance",
     ],
-    category: "3d",
+    category: "web-apps",
     image:
-      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/DALL%C2%B7E%202025-03-12%2014.44.14%20-%20A%20futuristic%203D%20printing%20lab%20showcasing%20the%20benefits%20of%20advanced%203D%20printing%20services.%20The%20scene%20features%20high-tech%203D%20printers%20producing%20detailed%20pro-P4tc3bdpEvhEGuSiCIDNkC5ZeQAHzi.webp",
-    cta: "See Your Vision Come to Life – Get Your Custom Prototype Today.",
+      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/DALL%C2%B7E%202025-03-12%2014.42.51%20-%20A%20futuristic%20web%20design%20and%20development%20workspace%20showcasing%20the%20benefits%20of%20professional%20web%20services.%20The%20scene%20features%20high-tech%20monitors%20displayi-grDFZw49mvnPTxl95L93eGWttINvDU.webp",
+    cta: "Let's Build Your Custom Web Application.",
   },
 }
 

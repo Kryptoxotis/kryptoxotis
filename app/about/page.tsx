@@ -2,26 +2,47 @@ import { SectionTitle } from "@/components/ui/section-title"
 import Image from "next/image"
 import { TestimonialsSection } from "@/components/testimonials-section"
 import { FAQsSection } from "@/components/faqs-section"
-import { Lightbulb, Handshake, Shield } from "lucide-react"
 import { getSection, getValues } from "@/lib/cms"
 
-const iconMap: Record<string, any> = { Lightbulb, Handshake, Shield }
-
 export default async function AboutPage() {
-  const [hero, mission, values] = await Promise.all([
+  const [hero, mission, vision, valuesOverview, valueHonor, valueDiscipline, valueInnovation, valueTelos, values] = await Promise.all([
     getSection("about", "hero").catch(() => null),
     getSection("about", "mission").catch(() => null),
+    getSection("about", "vision").catch(() => null),
+    getSection("about", "values").catch(() => null),
+    getSection("about", "value-honor").catch(() => null),
+    getSection("about", "value-discipline").catch(() => null),
+    getSection("about", "value-innovation").catch(() => null),
+    getSection("about", "value-telos").catch(() => null),
     getValues().catch(() => []),
   ])
 
   const heroHeading = hero?.heading ?? "Who We Are: The Kryptoxotis Story"
   const missionTitle = mission?.heading ?? "Empowering Businesses with Smart Technology & Innovation"
-  const missionBody = mission?.body ?? "At Kryptoxotis, we don't just build solutions—we create revolutions. Our mission is to transform bold ideas into reality with precision 3D printing, intuitive web design, and intelligent automation. Through innovation and efficiency, we help businesses streamline operations, enhance their digital footprint, and scale effortlessly. Integrity, creativity, and excellence drive us as we shape the future—one breakthrough at a time."
+  const missionBody = mission?.body ?? "At Kryptoxotis, we don't just build solutions — we create revolutions. Our mission is to transform bold ideas into reality with custom dashboards, intelligent automation, and powerful web applications. Through innovation and efficiency, we help businesses streamline operations, enhance their digital footprint, and scale effortlessly."
+
+  const visionTitle = vision?.heading ?? "Our Vision"
+  const visionBody = vision?.body ?? "To be the engineering partner that businesses trust to turn complexity into clarity — building systems that are as disciplined and precise as the values we stand on."
+
+  const valuesOverviewTitle = valuesOverview?.heading ?? "The TEK Framework"
+  const valuesOverviewBody = valuesOverview?.body ?? "Our name comes from the Greek word Τεχνίτης (Technitís) — meaning craftsman or artisan. The letters T, E, and K don't just spell our identity — they define how we operate."
+
+  const honorTitle = valueHonor?.heading ?? "T — Timí (Τιμή) — Honor"
+  const honorBody = valueHonor?.body ?? "We hold ourselves to the highest standard — in our work, our word, and our relationships. Honor means delivering what we promise, treating every client's business as if it were our own, and never cutting corners."
+
+  const disciplineTitle = valueDiscipline?.heading ?? "E — Epanorthosis (Επανόρθωση) — Discipline"
+  const disciplineBody = valueDiscipline?.body ?? "Great results don't come from shortcuts. Discipline means structured execution, consistent effort, and a relentless focus on getting things right — from the first line of code to the final deployment."
+
+  const innovationTitle = valueInnovation?.heading ?? "K — Kainotomía (Καινοτομία) — Innovation"
+  const innovationBody = valueInnovation?.body ?? "Technology moves fast — and so do we. Innovation means constantly exploring better tools, smarter approaches, and creative solutions that keep our clients ahead of the curve."
+
+  const telosTitle = valueTelos?.heading ?? "The Telos"
+  const telosBody = valueTelos?.body ?? "Together, these values form our telos (τέλος) — our ultimate purpose: to build technology that is honorable in its intent, disciplined in its execution, and innovative in its impact."
 
   const defaultValues = [
-    { english_name: "Innovation", icon: "Lightbulb", long_description: "We turn ambitious ideas into reality through creative problem-solving and cutting-edge technology." },
-    { english_name: "Loyalty", icon: "Handshake", long_description: "Your success is our success. We build long-term relationships based on trust and mutual respect." },
-    { english_name: "Integrity", icon: "Shield", long_description: "We do what we say, and we say what we do—transparency and honesty in every step." },
+    { letter: "T", english_name: "Honor", greek_name: "Timí", greek_script: "Τιμή", pronunciation: "tee-MEE", short_description: "We hold ourselves to the highest standard — in our work, our word, and our relationships." },
+    { letter: "E", english_name: "Discipline", greek_name: "Epanorthosis", greek_script: "Επανόρθωση", pronunciation: "eh-pah-NOR-tho-see", short_description: "Consistent effort, structured execution, and relentless focus on getting things right." },
+    { letter: "K", english_name: "Innovation", greek_name: "Kainotomía", greek_script: "Καινοτομία", pronunciation: "keh-no-to-MEE-ah", short_description: "We push boundaries, turning the impossible into reality through creative tech solutions." },
   ]
   const valList = values.length > 0 ? values : defaultValues
 
@@ -67,24 +88,69 @@ export default async function AboutPage() {
         </div>
       </section>
 
-      {/* Core Values Section */}
+      {/* Vision Section */}
       <section className="py-20 bg-zinc-900/50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionTitle title="Our Core Values" centered />
+          <div className="max-w-3xl mx-auto text-center">
+            <SectionTitle title={visionTitle} centered />
+            <p className="text-white text-lg">{visionBody}</p>
+          </div>
+        </div>
+      </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-            {valList.map((val: any) => {
-              const IconComp = iconMap[val.icon] || Lightbulb
-              return (
-                <div key={val.english_name} className="text-center p-6 bg-zinc-900 rounded-sm cyber-border group hover:bg-zinc-800 transition-all duration-300 hover:translate-y-[-5px]">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-sm bg-black mb-4 cyber-border group-hover:shadow-[0_0_15px_rgba(27,77,62,0.5)] transition-all duration-300">
-                    <IconComp className="h-8 w-8 text-emerald-500 group-hover:animate-pulse" />
-                  </div>
-                  <h3 className="metallic-text text-xl font-bold mb-3">{val.english_name}</h3>
-                  <p className="text-white">{val.long_description}</p>
+      {/* TEK Values Overview */}
+      <section className="py-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionTitle title={valuesOverviewTitle} centered />
+          <p className="text-white text-center max-w-2xl mx-auto mb-12">{valuesOverviewBody}</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {valList.map((val: any) => (
+              <div key={val.english_name} className="text-center p-6 bg-zinc-900 rounded-sm cyber-border group hover:bg-zinc-800 transition-all duration-300 hover:translate-y-[-5px]">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-sm bg-black mb-4 cyber-border group-hover:shadow-[0_0_15px_rgba(27,77,62,0.5)] transition-all duration-300">
+                  <span className="text-2xl text-emerald-500 font-bold group-hover:animate-pulse">{val.letter}</span>
                 </div>
-              )
-            })}
+                <h3 className="metallic-text text-xl font-bold mb-1">{val.english_name}</h3>
+                {val.greek_name && (
+                  <p className="text-emerald-400/70 text-sm mb-1">
+                    {val.greek_name} ({val.greek_script})
+                  </p>
+                )}
+                {val.pronunciation && (
+                  <p className="text-zinc-500 text-xs italic mb-3">{val.pronunciation}</p>
+                )}
+                <p className="text-white">{val.short_description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Value Breakdown Sections */}
+      <section className="py-20 bg-zinc-900/50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+          {/* Honor */}
+          <div className="max-w-3xl mx-auto">
+            <h3 className="metallic-text text-2xl font-bold mb-4">{honorTitle}</h3>
+            <p className="text-white">{honorBody}</p>
+          </div>
+
+          {/* Discipline */}
+          <div className="max-w-3xl mx-auto">
+            <h3 className="metallic-text text-2xl font-bold mb-4">{disciplineTitle}</h3>
+            <p className="text-white">{disciplineBody}</p>
+          </div>
+
+          {/* Innovation */}
+          <div className="max-w-3xl mx-auto">
+            <h3 className="metallic-text text-2xl font-bold mb-4">{innovationTitle}</h3>
+            <p className="text-white">{innovationBody}</p>
+          </div>
+
+          {/* Telos */}
+          <div className="max-w-3xl mx-auto text-center pt-8 border-t border-emerald-500/20">
+            <h3 className="metallic-text text-2xl font-bold mb-4">{telosTitle}</h3>
+            <p className="text-white text-lg">{telosBody}</p>
           </div>
         </div>
       </section>

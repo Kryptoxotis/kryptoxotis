@@ -2,20 +2,20 @@ import Link from "next/link"
 import Image from "next/image"
 import { SectionTitle } from "@/components/ui/section-title"
 import { CyberButton } from "@/components/ui/cyber-button"
-import { Check, ArrowRight, Database, BarChart, Shield, Cog } from "lucide-react"
+import { Check, ArrowRight, BarChart, Database, Shield, Cog } from "lucide-react"
 import { ProjectsSection } from "@/components/projects-section"
 import { getSection } from "@/lib/cms"
 
-export default async function DatabaseServicePage() {
+export default async function DashboardsServicePage() {
   const [hero, cta] = await Promise.all([
-    getSection("service-database", "hero").catch(() => null),
-    getSection("service-database", "cta").catch(() => null),
+    getSection("service-dashboards", "hero").catch(() => null),
+    getSection("service-dashboards", "cta").catch(() => null),
   ])
 
-  const heroHeading = hero?.heading ?? "Business Database Management & Automation"
-  const heroSub = hero?.subheading ?? "Transform Your Operations – Streamline, Scale, Succeed."
-  const ctaHeading = cta?.heading ?? "Ready to Transform Your Database Operations?"
-  const ctaBody = cta?.body ?? "Efficient database management is critical to business success. Automate workflows, eliminate inefficiencies, and ensure data integrity with a tailored solution. Speak with our experts today to build a scalable, high-performance database system that meets your exact requirements."
+  const heroHeading = hero?.heading ?? "Custom Dashboards & Data Visualization"
+  const heroSub = hero?.subheading ?? "Transform Raw Data into Actionable Intelligence."
+  const ctaHeading = cta?.heading ?? "Ready to See Your Data Clearly?"
+  const ctaBody = cta?.body ?? "Custom dashboards give you the power to monitor, analyze, and act on your business data in real time. Let us build a dashboard solution tailored to your exact needs. Contact us today to get started."
   const ctaButton = cta?.button_text ?? "Request a Consultation"
   const ctaButtonLink = cta?.button_link ?? "/contact"
 
@@ -40,9 +40,9 @@ export default async function DatabaseServicePage() {
             <div>
               <SectionTitle title="Overview" />
               <p className="text-white mb-6">
-                Data is the backbone of modern businesses, and efficient database management can significantly impact
-                operational efficiency and decision-making. Our database solutions are designed to streamline data
-                handling, automate key processes, and ensure security while improving accessibility and reliability.
+                Data without visibility is wasted potential. Our custom dashboard solutions transform complex datasets
+                into clear, interactive visualizations that empower teams to make faster, smarter decisions. From
+                executive KPI panels to operational monitoring systems, we build dashboards that fit your workflow.
               </p>
 
               <div className="relative mt-8 mb-8">
@@ -51,40 +51,28 @@ export default async function DatabaseServicePage() {
                   <h3 className="metallic-text text-xl font-bold mb-4">Key Services:</h3>
                   <ul className="space-y-3">
                     <li className="flex items-start">
-                      <span className="text-emerald-500 mr-2 mt-1">
-                        <Check size={16} />
-                      </span>
-                      <span className="text-white">Custom database architecture and development</span>
+                      <span className="text-emerald-500 mr-2 mt-1"><Check size={16} /></span>
+                      <span className="text-white">Custom dashboard design and development</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="text-emerald-500 mr-2 mt-1">
-                        <Check size={16} />
-                      </span>
-                      <span className="text-white">Process automation and workflow optimization</span>
+                      <span className="text-emerald-500 mr-2 mt-1"><Check size={16} /></span>
+                      <span className="text-white">Real-time data integration and API connections</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="text-emerald-500 mr-2 mt-1">
-                        <Check size={16} />
-                      </span>
-                      <span className="text-white">Data migration and system integration</span>
+                      <span className="text-emerald-500 mr-2 mt-1"><Check size={16} /></span>
+                      <span className="text-white">Interactive charts, graphs, and data tables</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="text-emerald-500 mr-2 mt-1">
-                        <Check size={16} />
-                      </span>
-                      <span className="text-white">Advanced analytics and reporting solutions</span>
+                      <span className="text-emerald-500 mr-2 mt-1"><Check size={16} /></span>
+                      <span className="text-white">KPI tracking and automated reporting</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="text-emerald-500 mr-2 mt-1">
-                        <Check size={16} />
-                      </span>
-                      <span className="text-white">Continuous maintenance, scaling, and optimization</span>
+                      <span className="text-emerald-500 mr-2 mt-1"><Check size={16} /></span>
+                      <span className="text-white">Role-based access and team collaboration features</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="text-emerald-500 mr-2 mt-1">
-                        <Check size={16} />
-                      </span>
-                      <span className="text-white">Security, compliance, and data protection</span>
+                      <span className="text-emerald-500 mr-2 mt-1"><Check size={16} /></span>
+                      <span className="text-white">Ongoing maintenance, scaling, and optimization</span>
                     </li>
                   </ul>
                 </div>
@@ -94,7 +82,7 @@ export default async function DatabaseServicePage() {
               <div className="cyber-border rounded-sm p-1 bg-black">
                 <Image
                   src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/DALL%C2%B7E%202025-03-12%2014.41.01%20-%20A%20futuristic%20business%20overview%20scene%20showcasing%20the%20benefits%20of%20database%20management%20and%20automation.%20The%20image%20features%20a%20sleek%2C%20high-tech%20control%20cent-6XtMI7JofXoVkc2JffC6qs09HiFDpW.webp"
-                  alt="Database Management Overview"
+                  alt="Custom Dashboard Development"
                   width={600}
                   height={600}
                   className="rounded-sm w-full aspect-square object-cover"
@@ -117,20 +105,20 @@ export default async function DatabaseServicePage() {
                 <div className="flex-shrink-0 w-16 h-16 bg-black flex items-center justify-center rounded-sm cyber-border mr-4">
                   <span className="text-3xl font-bold text-emerald-500">1</span>
                 </div>
-                <h3 className="metallic-text text-xl font-bold pt-2">Strategic Assessment</h3>
+                <h3 className="metallic-text text-xl font-bold pt-2">Data Discovery</h3>
               </div>
               <ul className="space-y-3 pl-20">
                 <li className="flex items-start text-white">
                   <ArrowRight className="h-4 w-4 text-emerald-500 mr-2 mt-1 flex-shrink-0" />
-                  <span>Conduct a comprehensive evaluation of existing database infrastructure and workflow.</span>
+                  <span>Map your data sources, databases, and existing reporting workflows.</span>
                 </li>
                 <li className="flex items-start text-white">
                   <ArrowRight className="h-4 w-4 text-emerald-500 mr-2 mt-1 flex-shrink-0" />
-                  <span>Identify bottlenecks, inefficiencies, and opportunities for automation.</span>
+                  <span>Identify the KPIs and metrics that matter most to your team.</span>
                 </li>
                 <li className="flex items-start text-white">
                   <ArrowRight className="h-4 w-4 text-emerald-500 mr-2 mt-1 flex-shrink-0" />
-                  <span>Define objectives based on business needs and regulatory compliance.</span>
+                  <span>Define user roles and access requirements for each dashboard view.</span>
                 </li>
               </ul>
             </div>
@@ -140,22 +128,20 @@ export default async function DatabaseServicePage() {
                 <div className="flex-shrink-0 w-16 h-16 bg-black flex items-center justify-center rounded-sm cyber-border mr-4">
                   <span className="text-3xl font-bold text-emerald-500">2</span>
                 </div>
-                <h3 className="metallic-text text-xl font-bold pt-2">Solution Architecture & Planning</h3>
+                <h3 className="metallic-text text-xl font-bold pt-2">Design & Prototype</h3>
               </div>
               <ul className="space-y-3 pl-20">
                 <li className="flex items-start text-white">
                   <ArrowRight className="h-4 w-4 text-emerald-500 mr-2 mt-1 flex-shrink-0" />
-                  <span>
-                    Design a tailored database solution that aligns with the business model and operational goals.
-                  </span>
+                  <span>Create wireframes and interactive mockups for each dashboard view.</span>
                 </li>
                 <li className="flex items-start text-white">
                   <ArrowRight className="h-4 w-4 text-emerald-500 mr-2 mt-1 flex-shrink-0" />
-                  <span>Establish automation protocols for data entry, processing, and reporting.</span>
+                  <span>Choose the right visualization types for each data point.</span>
                 </li>
                 <li className="flex items-start text-white">
                   <ArrowRight className="h-4 w-4 text-emerald-500 mr-2 mt-1 flex-shrink-0" />
-                  <span>Develop an integration plan for seamless connectivity with existing software.</span>
+                  <span>Validate the layout and flow with stakeholders before development.</span>
                 </li>
               </ul>
             </div>
@@ -165,20 +151,20 @@ export default async function DatabaseServicePage() {
                 <div className="flex-shrink-0 w-16 h-16 bg-black flex items-center justify-center rounded-sm cyber-border mr-4">
                   <span className="text-3xl font-bold text-emerald-500">3</span>
                 </div>
-                <h3 className="metallic-text text-xl font-bold pt-2">Implementation & Deployment</h3>
+                <h3 className="metallic-text text-xl font-bold pt-2">Build & Integrate</h3>
               </div>
               <ul className="space-y-3 pl-20">
                 <li className="flex items-start text-white">
                   <ArrowRight className="h-4 w-4 text-emerald-500 mr-2 mt-1 flex-shrink-0" />
-                  <span>Build and configure the database system with robust automation features.</span>
+                  <span>Develop the dashboard with live data connections and real-time updates.</span>
                 </li>
                 <li className="flex items-start text-white">
                   <ArrowRight className="h-4 w-4 text-emerald-500 mr-2 mt-1 flex-shrink-0" />
-                  <span>Ensure seamless data migration while maintaining integrity and security.</span>
+                  <span>Integrate with your existing tools, APIs, and databases.</span>
                 </li>
                 <li className="flex items-start text-white">
                   <ArrowRight className="h-4 w-4 text-emerald-500 mr-2 mt-1 flex-shrink-0" />
-                  <span>Implement user-friendly dashboards and reporting tools.</span>
+                  <span>Implement filtering, drill-downs, and export functionality.</span>
                 </li>
               </ul>
             </div>
@@ -188,20 +174,20 @@ export default async function DatabaseServicePage() {
                 <div className="flex-shrink-0 w-16 h-16 bg-black flex items-center justify-center rounded-sm cyber-border mr-4">
                   <span className="text-3xl font-bold text-emerald-500">4</span>
                 </div>
-                <h3 className="metallic-text text-xl font-bold pt-2">Optimization, Security, & Support</h3>
+                <h3 className="metallic-text text-xl font-bold pt-2">Launch & Optimize</h3>
               </div>
               <ul className="space-y-3 pl-20">
                 <li className="flex items-start text-white">
                   <ArrowRight className="h-4 w-4 text-emerald-500 mr-2 mt-1 flex-shrink-0" />
-                  <span>Monitor performance and optimize for efficiency and scalability.</span>
+                  <span>Deploy dashboards and train your team on usage and best practices.</span>
                 </li>
                 <li className="flex items-start text-white">
                   <ArrowRight className="h-4 w-4 text-emerald-500 mr-2 mt-1 flex-shrink-0" />
-                  <span>Implement multi-layered security measures to protect sensitive information.</span>
+                  <span>Monitor performance and iterate based on user feedback.</span>
                 </li>
                 <li className="flex items-start text-white">
                   <ArrowRight className="h-4 w-4 text-emerald-500 mr-2 mt-1 flex-shrink-0" />
-                  <span>Provide ongoing support, maintenance, and updates to adapt to evolving business needs.</span>
+                  <span>Provide ongoing support, updates, and new feature development.</span>
                 </li>
               </ul>
             </div>
@@ -212,30 +198,30 @@ export default async function DatabaseServicePage() {
       {/* Visual Elements Section */}
       <section className="py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionTitle title="How Database Management Transforms Your Business" centered />
+          <SectionTitle title="How Dashboards Transform Your Business" centered />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
             <div className="bg-zinc-900 p-6 rounded-sm cyber-border text-center">
               <Database className="h-16 w-16 mx-auto text-emerald-500 mb-4" />
-              <h3 className="metallic-text text-xl font-bold mb-3">Centralized Data Management</h3>
+              <h3 className="metallic-text text-xl font-bold mb-3">Centralized Visibility</h3>
               <p className="text-white">
-                Eliminate data silos and create a single source of truth for your entire organization.
+                See all your critical data in one place — no more digging through spreadsheets or switching between tools.
               </p>
             </div>
 
             <div className="bg-zinc-900 p-6 rounded-sm cyber-border text-center">
               <Cog className="h-16 w-16 mx-auto text-emerald-500 mb-4" />
-              <h3 className="metallic-text text-xl font-bold mb-3">Automated Workflows</h3>
+              <h3 className="metallic-text text-xl font-bold mb-3">Automated Reporting</h3>
               <p className="text-white">
-                Reduce manual tasks by up to 80% with intelligent automation of repetitive processes.
+                Eliminate manual report generation with dashboards that update automatically as data flows in.
               </p>
             </div>
 
             <div className="bg-zinc-900 p-6 rounded-sm cyber-border text-center">
               <BarChart className="h-16 w-16 mx-auto text-emerald-500 mb-4" />
-              <h3 className="metallic-text text-xl font-bold mb-3">Real-time Analytics</h3>
+              <h3 className="metallic-text text-xl font-bold mb-3">Real-time Insights</h3>
               <p className="text-white">
-                Make data-driven decisions with instant access to critical business insights.
+                Make data-driven decisions with instant access to live metrics and trend analysis.
               </p>
             </div>
           </div>
@@ -248,25 +234,25 @@ export default async function DatabaseServicePage() {
                   <div className="flex items-center">
                     <div className="w-24 text-red-500 font-bold">Before:</div>
                     <div className="flex-1 bg-zinc-800 p-3 rounded-sm text-white">
-                      4+ hours daily spent on manual data entry and reporting
+                      Hours spent compiling reports from scattered data sources
                     </div>
                   </div>
                   <div className="flex items-center">
                     <div className="w-24 text-emerald-500 font-bold">After:</div>
                     <div className="flex-1 bg-zinc-800 p-3 rounded-sm text-white">
-                      Automated processes reduce manual work by 90%
+                      Real-time dashboards deliver instant insights, zero manual effort
                     </div>
                   </div>
                   <div className="flex items-center">
                     <div className="w-24 text-red-500 font-bold">Before:</div>
                     <div className="flex-1 bg-zinc-800 p-3 rounded-sm text-white">
-                      Data inconsistencies leading to costly business errors
+                      Decisions delayed by outdated or inconsistent data
                     </div>
                   </div>
                   <div className="flex items-center">
                     <div className="w-24 text-emerald-500 font-bold">After:</div>
                     <div className="flex-1 bg-zinc-800 p-3 rounded-sm text-white">
-                      99.9% data accuracy with validation controls
+                      Live data feeds ensure decisions are based on current reality
                     </div>
                   </div>
                 </div>
@@ -275,8 +261,8 @@ export default async function DatabaseServicePage() {
                 <Shield className="h-48 w-48 mx-auto text-emerald-500 opacity-20" />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center">
-                    <div className="text-5xl font-bold metallic-text mb-2">70%</div>
-                    <p className="text-white">Average efficiency improvement</p>
+                    <div className="text-5xl font-bold metallic-text mb-2">10x</div>
+                    <p className="text-white">Faster decision-making</p>
                   </div>
                 </div>
               </div>
@@ -286,7 +272,7 @@ export default async function DatabaseServicePage() {
       </section>
 
       {/* Portfolio Section */}
-      <ProjectsSection category="database" title="Our Database Projects" />
+      <ProjectsSection category="dashboards" title="Dashboard Projects" />
 
       {/* CTA Section */}
       <section className="py-20 bg-zinc-900/50">

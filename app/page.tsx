@@ -3,10 +3,10 @@ import Image from "next/image"
 import { CyberButton } from "@/components/ui/cyber-button"
 import { SectionTitle } from "@/components/ui/section-title"
 import { ServiceCard } from "@/components/ui/service-card"
-import { Database, Globe, PrinterIcon as Printer3d } from "lucide-react"
+import { BarChart, Cog, Globe } from "lucide-react"
 import { getSection, getServices, getValues } from "@/lib/cms"
 
-const iconMap: Record<string, any> = { Database, Globe, Printer: Printer3d }
+const iconMap: Record<string, any> = { BarChart, Cog, Globe }
 
 export default async function Home() {
   const [hero, cta, services, values] = await Promise.all([
@@ -26,16 +26,16 @@ export default async function Home() {
   const ctaButtonLink = cta?.button_link ?? "/contact"
 
   const defaultServices = [
-    { title: "Database Management", short_description: "Seamlessly manage and optimize your data for faster, smarter decisions.", icon: "Database", button_text: "See It in Action", button_link: "/services/database" },
-    { title: "Web Design", short_description: "Stunning, high-performance websites that convert visitors into customers.", icon: "Globe", button_text: "Discover How It Works", button_link: "/services/web-design" },
-    { title: "3D Printing", short_description: "From prototyping to production – bring your ideas to life with precision.", icon: "Printer", button_text: "See It in Action", button_link: "/services/3d-printing" },
+    { title: "Custom Dashboards", short_description: "Transform raw data into clear, actionable insights with tailored dashboard solutions.", icon: "BarChart", button_text: "See It in Action", button_link: "/services/dashboards" },
+    { title: "Business Automation", short_description: "Eliminate repetitive tasks and streamline operations with intelligent automation.", icon: "Cog", button_text: "Discover How It Works", button_link: "/services/automation" },
+    { title: "Web Applications", short_description: "Custom-built web apps designed to solve real problems and scale with your business.", icon: "Globe", button_text: "See It in Action", button_link: "/services/web-apps" },
   ]
   const svcList = services.length > 0 ? services : defaultServices
 
   const defaultValues = [
-    { letter: "I", english_name: "Innovation", short_description: "We push boundaries, turning the impossible into reality through creative tech solutions." },
-    { letter: "L", english_name: "Loyalty", short_description: "Your success is our success – we forge lasting partnerships built on trust and collaboration." },
-    { letter: "I", english_name: "Integrity", short_description: "Honesty and transparency drive everything we do, ensuring you get results you can trust." },
+    { letter: "T", english_name: "Honor", short_description: "We hold ourselves to the highest standard — in our work, our word, and our relationships." },
+    { letter: "E", english_name: "Discipline", short_description: "Consistent effort, structured execution, and relentless focus on getting things right." },
+    { letter: "K", english_name: "Innovation", short_description: "We push boundaries, turning the impossible into reality through creative tech solutions." },
   ]
   const valList = values.length > 0 ? values : defaultValues
 
@@ -91,7 +91,7 @@ export default async function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {svcList.map((svc: any) => {
-              const IconComp = iconMap[svc.icon] || Database
+              const IconComp = iconMap[svc.icon] || BarChart
               return (
                 <ServiceCard
                   key={svc.title}
