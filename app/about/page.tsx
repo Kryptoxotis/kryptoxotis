@@ -40,9 +40,9 @@ export default async function AboutPage() {
   const telosBody = valueTelos?.body ?? "Together, these values form our telos (τέλος) — our ultimate purpose: to build technology that is honorable in its intent, disciplined in its execution, and innovative in its impact."
 
   const defaultValues = [
-    { letter: "T", english_name: "Honor", greek_name: "Timí", greek_script: "Τιμή", pronunciation: "tee-MEE", short_description: "We hold ourselves to the highest standard — in our work, our word, and our relationships." },
-    { letter: "E", english_name: "Discipline", greek_name: "Epanorthosis", greek_script: "Επανόρθωση", pronunciation: "eh-pah-NOR-tho-see", short_description: "Consistent effort, structured execution, and relentless focus on getting things right." },
-    { letter: "K", english_name: "Innovation", greek_name: "Kainotomía", greek_script: "Καινοτομία", pronunciation: "keh-no-to-MEE-ah", short_description: "We push boundaries, turning the impossible into reality through creative tech solutions." },
+    { letter: "T", english_name: "Honor", greek_name: "Timē", greek_script: "τιμή", pronunciation: "tee-MAY", short_description: "We hold ourselves to the highest standard — in our work, our word, and our relationships." },
+    { letter: "E", english_name: "Discipline", greek_name: "Enkrateia", greek_script: "ἐγκράτεια", pronunciation: "en-KRAH-tay-ah", short_description: "Consistent effort, structured execution, and relentless focus on getting things right." },
+    { letter: "K", english_name: "Innovation", greek_name: "Kainotomia", greek_script: "καινοτομία", pronunciation: "kai-no-toe-MEE-ah", short_description: "We push boundaries, turning the impossible into reality through creative tech solutions." },
   ]
   const valList = values.length > 0 ? values : defaultValues
 
@@ -130,9 +130,9 @@ export default async function AboutPage() {
       <section className="py-20 bg-zinc-900/50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           {[
-            { letter: "T", title: honorTitle, body: honorBody, greek: "Τιμή" },
-            { letter: "E", title: disciplineTitle, body: disciplineBody, greek: "Επανόρθωση" },
-            { letter: "K", title: innovationTitle, body: innovationBody, greek: "Καινοτομία" },
+            { letter: "T", title: honorTitle, body: honorBody, greek: "τιμή" },
+            { letter: "E", title: disciplineTitle, body: disciplineBody, greek: "ἐγκράτεια" },
+            { letter: "K", title: innovationTitle, body: innovationBody, greek: "καινοτομία" },
           ].map((val) => (
             <div key={val.letter} className="max-w-3xl mx-auto cyber-border rounded-sm bg-black/50 overflow-hidden">
               <div className="flex">
