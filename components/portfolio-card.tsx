@@ -34,8 +34,9 @@ export function PortfolioCard({ item }: { item: PortfolioItem }) {
             src={item.image_url}
             alt={item.title}
             fill
-            className="object-cover"
+            className="object-cover blur-[3px] group-hover:blur-[2px] transition-all duration-500 scale-105"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/80 to-transparent" />
         </div>
       )}
 
