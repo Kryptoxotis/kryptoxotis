@@ -1,36 +1,36 @@
-# Portfolio Detail Pages + Image Support
+# Universal Image Upload for Admin Panel
 
-## Tasks
+## TODO
 
-- [x] 1. Add `getPortfolioItemBySlug()` to `lib/cms.ts`
-- [x] 2. Add `content` and `images` fields to admin panel (`app/admin/portfolio-items/page.tsx`)
-- [x] 3. Run Supabase migration to add `content` and `images` columns to `portfolio_items` table
-- [x] 4. Create `/portfolio/[slug]/page.tsx` — detail page
-- [x] 5. Make portfolio cards clickable (update `portfolio-card.tsx` and `portfolio-grid.tsx`)
-- [x] 6. Create `public/portfolio/` directory for screenshot storage
-- [x] 7. Verify `npm run build` passes
+- [x] 1. Create Supabase Storage bucket (`images`, public)
+- [x] 2. Create upload API route (`app/api/admin/upload/route.ts`)
+- [x] 3. Add `"image"` and `"images"` field types to `ItemFormDialog`
+- [x] 4. Update admin pages to use new field types
+- [x] 5. Add Supabase storage hostname to `next.config.mjs`
+- [x] 6. Build & verify
 
 ## Review
 
-### Files Modified (4)
-
-**`lib/cms.ts`** — Added `getPortfolioItemBySlug(slug)` function, follows the existing `getServiceBySlug` pattern.
-
-**`app/admin/portfolio-items/page.tsx`** — Added two new fields to the admin form: `images` (textarea, comma-separated URLs) and `content` (textarea, detail page long-form text). Relabeled `image_url` to "Image URL (thumbnail)".
-
-**`components/portfolio-card.tsx`** — Added `slug` to the interface. Wrapped the card in a `<Link>` to `/portfolio/[slug]` when a slug exists. Cards without a slug remain non-clickable.
-
-**`components/portfolio-grid.tsx`** — Added `slug` and `image_url` to the PortfolioItem interface so they pass through to the card component.
+### Supabase Storage
+Created a public `images` bucket with read and upload policies.
 
 ### Files Created (1)
+**`app/api/admin/upload/route.ts`** — POST endpoint that accepts FormData with a `file` field, uploads to the `images` bucket using the service role client, and returns the public CDN URL.
 
-**`app/portfolio/[slug]/page.tsx`** — Server component detail page with: back link, hero (title, category badge, featured badge, client name, tags), main image, content (falls back to description), additional images gallery in a 2-column grid, and a CTA section linking to `/contact`.
+### Files Modified (5)
 
-### Database Migration
+**`components/admin/item-form-dialog.tsx`** — Added `"image"` and `"images"` to the `FieldDef.type` union. Added two new components:
+- `ImageUploadField` — drag-and-drop zone + file picker for a single image, shows thumbnail preview with remove button
+- `MultiImageUploadField` — same but accepts multiple files, stores comma-separated URLs, shows all thumbnails with individual remove buttons
 
-Added `content` (text) and `images` (text) columns to `portfolio_items` table via Supabase migration.
+**`app/admin/portfolio-items/page.tsx`** — Changed `image_url` from `type: "text"` to `type: "image"`, and `images` from `type: "textarea"` to `type: "images"`.
+
+**`app/admin/site-sections/page.tsx`** — Changed `image_url` from `type: "text"` to `type: "image"`.
+
+**`app/admin/testimonials/page.tsx`** — Changed `avatar_url` from `type: "text"` to `type: "image"`.
+
+**`next.config.mjs`** — Added `oclfheqitoiuphsvorce.supabase.co` to `images.remotePatterns`.
 
 ### Build
-
 - `npm run build` passes cleanly — 0 errors
-- `/portfolio/[slug]` route registered at 197 B / 99.3 kB
+- Upload route registered at `/api/admin/upload`

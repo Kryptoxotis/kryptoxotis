@@ -1,11 +1,11 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef, useCallback } from "react"
 
 export interface FieldDef {
   key: string
   label: string
-  type: "text" | "textarea" | "number" | "checkbox"
+  type: "text" | "textarea" | "number" | "checkbox" | "image" | "images"
   defaultValue?: any
 }
 
@@ -16,6 +16,164 @@ interface ItemFormDialogProps {
   fields: FieldDef[]
   initialData?: Record<string, any> | null
   title: string
+}
+
+function ImageUploadField({
+  value,
+  onChange,
+}: {
+  value: string
+  onChange: (url: string) => void
+}) {
+  const [uploading, setUploading] = useState(false)
+  const [dragOver, setDragOver] = useState(false)
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  const upload = useCallback(async (file: File) => {
+    setUploading(true)
+    try {
+      const fd = new FormData()
+      fd.append("file", file)
+      const res = await fetch("/api/admin/upload", { method: "POST", body: fd })
+      const json = await res.json()
+      if (json.url) onChange(json.url)
+    } finally {
+      setUploading(false)
+    }
+  }, [onChange])
+
+  const handleDrop = useCallback((e: React.DragEvent) => {
+    e.preventDefault()
+    setDragOver(false)
+    const file = e.dataTransfer.files[0]
+    if (file) upload(file)
+  }, [upload])
+
+  return (
+    <div>
+      <div
+        onDragOver={(e) => { e.preventDefault(); setDragOver(true) }}
+        onDragLeave={() => setDragOver(false)}
+        onDrop={handleDrop}
+        onClick={() => inputRef.current?.click()}
+        className={`border-2 border-dashed rounded p-4 text-center cursor-pointer transition-colors ${
+          dragOver ? "border-emerald-400 bg-emerald-500/10" : "border-emerald-500/30 hover:border-emerald-500/60"
+        }`}
+      >
+        {uploading ? (
+          <p className="text-emerald-400 text-sm">Uploading...</p>
+        ) : (
+          <p className="text-zinc-400 text-sm">Drop an image here or click to browse</p>
+        )}
+        <input
+          ref={inputRef}
+          type="file"
+          accept="image/*"
+          className="hidden"
+          onChange={(e) => { const f = e.target.files?.[0]; if (f) upload(f) }}
+        />
+      </div>
+      {value && (
+        <div className="mt-2 relative inline-block">
+          <img src={value} alt="Preview" className="h-20 rounded border border-emerald-500/30 object-cover" />
+          <button
+            type="button"
+            onClick={() => onChange("")}
+            className="absolute -top-2 -right-2 w-5 h-5 bg-red-600 text-white rounded-full text-xs flex items-center justify-center hover:bg-red-700"
+          >
+            x
+          </button>
+        </div>
+      )}
+    </div>
+  )
+}
+
+function MultiImageUploadField({
+  value,
+  onChange,
+}: {
+  value: string
+  onChange: (urls: string) => void
+}) {
+  const [uploading, setUploading] = useState(false)
+  const [dragOver, setDragOver] = useState(false)
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  const urls = value ? value.split(",").map((u) => u.trim()).filter(Boolean) : []
+
+  const upload = useCallback(async (files: FileList) => {
+    setUploading(true)
+    try {
+      const newUrls: string[] = []
+      for (const file of Array.from(files)) {
+        const fd = new FormData()
+        fd.append("file", file)
+        const res = await fetch("/api/admin/upload", { method: "POST", body: fd })
+        const json = await res.json()
+        if (json.url) newUrls.push(json.url)
+      }
+      const all = [...urls, ...newUrls]
+      onChange(all.join(","))
+    } finally {
+      setUploading(false)
+    }
+  }, [urls, onChange])
+
+  const handleDrop = useCallback((e: React.DragEvent) => {
+    e.preventDefault()
+    setDragOver(false)
+    if (e.dataTransfer.files.length) upload(e.dataTransfer.files)
+  }, [upload])
+
+  const remove = (index: number) => {
+    const updated = urls.filter((_, i) => i !== index)
+    onChange(updated.join(","))
+  }
+
+  return (
+    <div>
+      <div
+        onDragOver={(e) => { e.preventDefault(); setDragOver(true) }}
+        onDragLeave={() => setDragOver(false)}
+        onDrop={handleDrop}
+        onClick={() => inputRef.current?.click()}
+        className={`border-2 border-dashed rounded p-4 text-center cursor-pointer transition-colors ${
+          dragOver ? "border-emerald-400 bg-emerald-500/10" : "border-emerald-500/30 hover:border-emerald-500/60"
+        }`}
+      >
+        {uploading ? (
+          <p className="text-emerald-400 text-sm">Uploading...</p>
+        ) : (
+          <p className="text-zinc-400 text-sm">Drop images here or click to browse (multiple allowed)</p>
+        )}
+        <input
+          ref={inputRef}
+          type="file"
+          accept="image/*"
+          multiple
+          className="hidden"
+          onChange={(e) => { if (e.target.files?.length) upload(e.target.files) }}
+        />
+      </div>
+      {urls.length > 0 && (
+        <div className="mt-2 flex flex-wrap gap-2">
+          {urls.map((url, i) => (
+            <div key={i} className="relative inline-block">
+              <img src={url} alt={`Image ${i + 1}`} className="h-20 rounded border border-emerald-500/30 object-cover" />
+              <button
+                type="button"
+                onClick={() => remove(i)}
+                className="absolute -top-2 -right-2 w-5 h-5 bg-red-600 text-white rounded-full text-xs flex items-center justify-center hover:bg-red-700"
+              >
+                x
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  )
 }
 
 export function ItemFormDialog({ open, onClose, onSubmit, fields, initialData, title }: ItemFormDialogProps) {
@@ -53,7 +211,17 @@ export function ItemFormDialog({ open, onClose, onSubmit, fields, initialData, t
           {fields.map((field) => (
             <div key={field.key}>
               <label className="block text-sm text-zinc-400 mb-1">{field.label}</label>
-              {field.type === "textarea" ? (
+              {field.type === "image" ? (
+                <ImageUploadField
+                  value={formData[field.key] ?? ""}
+                  onChange={(url) => setFormData({ ...formData, [field.key]: url })}
+                />
+              ) : field.type === "images" ? (
+                <MultiImageUploadField
+                  value={formData[field.key] ?? ""}
+                  onChange={(urls) => setFormData({ ...formData, [field.key]: urls })}
+                />
+              ) : field.type === "textarea" ? (
                 <textarea
                   value={formData[field.key] ?? ""}
                   onChange={(e) => setFormData({ ...formData, [field.key]: e.target.value })}

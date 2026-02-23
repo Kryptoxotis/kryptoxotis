@@ -21,7 +21,7 @@ const fields: FieldDef[] = [
   { key: "body", label: "Body", type: "textarea" },
   { key: "button_text", label: "Button Text", type: "text" },
   { key: "button_link", label: "Button Link", type: "text" },
-  { key: "image_url", label: "Image URL", type: "text" },
+  { key: "image_url", label: "Image", type: "image" },
   { key: "sort_order", label: "Sort Order", type: "number", defaultValue: 0 },
 ]
 

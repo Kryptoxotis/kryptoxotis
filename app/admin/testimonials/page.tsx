@@ -18,7 +18,7 @@ const fields: FieldDef[] = [
   { key: "quote", label: "Quote", type: "textarea" },
   { key: "author", label: "Author", type: "text" },
   { key: "role", label: "Role", type: "text" },
-  { key: "avatar_url", label: "Avatar URL", type: "text" },
+  { key: "avatar_url", label: "Avatar", type: "image" },
   { key: "visible", label: "Visible", type: "checkbox", defaultValue: true },
 ]
 
