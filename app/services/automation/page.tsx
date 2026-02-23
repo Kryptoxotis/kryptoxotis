@@ -3,14 +3,19 @@ import Image from "next/image"
 import { SectionTitle } from "@/components/ui/section-title"
 import { CyberButton } from "@/components/ui/cyber-button"
 import { Check, ArrowRight, Cog, Zap, RefreshCw } from "lucide-react"
-import { ProjectsSection } from "@/components/projects-section"
-import { getSection } from "@/lib/cms"
+import { getSection, getPortfolioItems } from "@/lib/cms"
+import { PortfolioCard } from "@/components/portfolio-card"
 
 export default async function AutomationServicePage() {
-  const [hero, cta] = await Promise.all([
+  const [hero, cta, allItems] = await Promise.all([
     getSection("service-automation", "hero").catch(() => null),
     getSection("service-automation", "cta").catch(() => null),
+    getPortfolioItems().catch(() => []),
   ])
+
+  const portfolioItems = allItems.filter((item: any) =>
+    item.tags?.some((t: string) => t.toLowerCase().includes("automation"))
+  )
 
   const heroHeading = hero?.heading ?? "Business Automation & Workflow Optimization"
   const heroSub = hero?.subheading ?? "Eliminate Repetitive Tasks. Scale What Matters."
@@ -227,7 +232,18 @@ export default async function AutomationServicePage() {
       </section>
 
       {/* Portfolio Section */}
-      <ProjectsSection category="automation" title="Automation Projects" />
+      {portfolioItems.length > 0 && (
+        <section className="py-20 bg-zinc-900/50">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <SectionTitle title="Automation Projects" centered />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+              {portfolioItems.map((item: any) => (
+                <PortfolioCard key={item.id} item={item} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* CTA Section */}
       <section className="py-20 bg-zinc-900/50">

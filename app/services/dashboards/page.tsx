@@ -3,14 +3,20 @@ import Image from "next/image"
 import { SectionTitle } from "@/components/ui/section-title"
 import { CyberButton } from "@/components/ui/cyber-button"
 import { Check, ArrowRight, BarChart, Database, Shield, Cog } from "lucide-react"
-import { ProjectsSection } from "@/components/projects-section"
-import { getSection } from "@/lib/cms"
+import { getSection, getPortfolioItems } from "@/lib/cms"
+import { PortfolioCard } from "@/components/portfolio-card"
 
 export default async function DashboardsServicePage() {
-  const [hero, cta] = await Promise.all([
+  const [hero, cta, allItems] = await Promise.all([
     getSection("service-dashboards", "hero").catch(() => null),
     getSection("service-dashboards", "cta").catch(() => null),
+    getPortfolioItems().catch(() => []),
   ])
+
+  const portfolioItems = allItems.filter((item: any) =>
+    item.tags?.some((t: string) => t.toLowerCase().includes("dashboard")) ||
+    item.category === "Client System"
+  )
 
   const heroHeading = hero?.heading ?? "Custom Dashboards & Data Visualization"
   const heroSub = hero?.subheading ?? "Transform Raw Data into Actionable Intelligence."
@@ -272,7 +278,18 @@ export default async function DashboardsServicePage() {
       </section>
 
       {/* Portfolio Section */}
-      <ProjectsSection category="dashboards" title="Dashboard Projects" />
+      {portfolioItems.length > 0 && (
+        <section className="py-20 bg-zinc-900/50">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <SectionTitle title="Dashboard Projects" centered />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+              {portfolioItems.map((item: any) => (
+                <PortfolioCard key={item.id} item={item} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* CTA Section */}
       <section className="py-20 bg-zinc-900/50">

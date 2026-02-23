@@ -323,11 +323,12 @@ export default function ContactPage() {
                     } rounded-sm text-white focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-300 appearance-none`}
                   >
                     <option value="">What can we help you with?</option>
-                    <option value="Business Database Inquiry">Business Database Management & Automation</option>
-                    <option value="Web Design Quote">Web Design & Development</option>
-                    <option value="3D Printing Order">3D Printing Services</option>
+                    <option value="Custom Dashboards">Custom Dashboards</option>
+                    <option value="Business Automation">Business Automation</option>
+                    <option value="Web Applications">Web Applications</option>
                     <option value="General Inquiry">General Information</option>
                     <option value="Partnership Opportunity">Partnership Opportunity</option>
+                    <option value="Other">Other</option>
                   </select>
                   <div className="absolute right-10 mt-3 pointer-events-none text-emerald-500">
                     <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -441,27 +442,6 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Client Logos Section */}
-      <section className="py-12 bg-black">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h3 className="text-center text-zinc-400 text-sm uppercase tracking-wider mb-8">Trusted By</h3>
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
-            {/* These would be replaced with actual client logos */}
-            <div className="w-24 h-12 bg-zinc-900 rounded-sm flex items-center justify-center cyber-border">
-              <span className="metallic-silver-text">Client 1</span>
-            </div>
-            <div className="w-24 h-12 bg-zinc-900 rounded-sm flex items-center justify-center cyber-border">
-              <span className="metallic-silver-text">Client 2</span>
-            </div>
-            <div className="w-24 h-12 bg-zinc-900 rounded-sm flex items-center justify-center cyber-border">
-              <span className="metallic-silver-text">Client 3</span>
-            </div>
-            <div className="w-24 h-12 bg-zinc-900 rounded-sm flex items-center justify-center cyber-border">
-              <span className="metallic-silver-text">Client 4</span>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   )
 }

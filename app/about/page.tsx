@@ -1,6 +1,5 @@
 import { SectionTitle } from "@/components/ui/section-title"
 import Image from "next/image"
-import { TestimonialsSection } from "@/components/testimonials-section"
 import { FAQsSection } from "@/components/faqs-section"
 import { getSection, getValues } from "@/lib/cms"
 
@@ -161,9 +160,6 @@ export default async function AboutPage() {
           </div>
         </div>
       </section>
-
-      {/* Testimonials Section */}
-      <TestimonialsSection />
 
       {/* FAQ Section */}
       <FAQsSection />
