@@ -4,10 +4,6 @@ import { supabaseAdmin } from "@/lib/supabase"
 const tables = [
   { name: "testimonials", label: "Testimonials", href: "/admin/testimonials" },
   { name: "faq", label: "FAQ", href: "/admin/faq" },
-  { name: "projects_database", label: "Database Projects", href: "/admin/projects-database" },
-  { name: "projects_web", label: "Web Projects", href: "/admin/projects-web" },
-  { name: "projects_3d", label: "3D Projects", href: "/admin/projects-3d" },
-  { name: "printing_materials_3d", label: "3D Printing Materials", href: "/admin/printing-materials-3d" },
   { name: "blog_posts", label: "Blog Posts", href: "/admin/blog-posts" },
   { name: "contact_submissions", label: "Contact Submissions", href: "/admin/contact-submissions" },
   { name: "site_sections", label: "Site Sections", href: "/admin/site-sections" },
