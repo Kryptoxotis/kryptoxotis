@@ -49,7 +49,9 @@ export default async function ServicesPage() {
       button_link: "/services/web-apps",
     },
   ]
-  const svcList = services.length > 0 ? services : defaultServices
+  const validSlugs = ["dashboards", "automation", "web-apps"]
+  const filtered = services.filter((s: any) => validSlugs.includes(s.slug))
+  const svcList = filtered.length > 0 ? filtered : defaultServices
 
   return (
     <div className="flex flex-col">

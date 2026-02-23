@@ -13,10 +13,10 @@ export default async function DashboardsServicePage() {
     getPortfolioItems().catch(() => []),
   ])
 
-  const portfolioItems = allItems.filter((item: any) =>
-    item.tags?.some((t: string) => t.toLowerCase().includes("dashboard")) ||
-    item.category === "Client System"
-  )
+  const portfolioItems = allItems.filter((item: any) => {
+    const tags = Array.isArray(item.tags) ? item.tags : typeof item.tags === "string" ? item.tags.split(",") : []
+    return tags.some((t: string) => t.toLowerCase().includes("dashboard")) || item.category === "Client System"
+  })
 
   const heroHeading = hero?.heading ?? "Custom Dashboards & Data Visualization"
   const heroSub = hero?.subheading ?? "Transform Raw Data into Actionable Intelligence."

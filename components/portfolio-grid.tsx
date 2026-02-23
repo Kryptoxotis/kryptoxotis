@@ -7,10 +7,10 @@ interface PortfolioItem {
   id: string
   title: string
   description: string | null
-  category: string
-  tags: string[] | null
+  category: string | null
+  tags: string[] | string | null
   client_name: string | null
-  featured: boolean
+  featured: boolean | null
 }
 
 const tabs = ["All", "Client System", "Personal Project", "Website"] as const

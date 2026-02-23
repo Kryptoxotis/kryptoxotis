@@ -10,14 +10,19 @@ interface PortfolioItem {
   id: string
   title: string
   description: string | null
-  category: string
-  tags: string[] | null
+  category: string | null
+  tags: string[] | string | null
   client_name: string | null
-  featured: boolean
+  featured: boolean | null
 }
 
 export function PortfolioCard({ item }: { item: PortfolioItem }) {
-  const Icon = categoryIcons[item.category] ?? Globe
+  const Icon = categoryIcons[item.category ?? ""] ?? Globe
+  const tags = Array.isArray(item.tags)
+    ? item.tags
+    : typeof item.tags === "string"
+      ? item.tags.split(",").map((t) => t.trim()).filter(Boolean)
+      : []
 
   return (
     <div className="bg-zinc-900 rounded-sm cyber-border p-6 hover:bg-zinc-800 transition-all duration-300 hover:translate-y-[-3px] group">
@@ -44,9 +49,9 @@ export function PortfolioCard({ item }: { item: PortfolioItem }) {
         <p className="text-zinc-300 text-sm mb-4 line-clamp-3">{item.description}</p>
       )}
 
-      {item.tags && item.tags.length > 0 && (
+      {tags.length > 0 && (
         <div className="flex flex-wrap gap-1.5">
-          {item.tags.map((tag) => (
+          {tags.map((tag) => (
             <span
               key={tag}
               className="bg-zinc-800 text-zinc-300 px-2 py-0.5 rounded-sm text-xs"

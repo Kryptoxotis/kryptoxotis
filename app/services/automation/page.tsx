@@ -13,9 +13,10 @@ export default async function AutomationServicePage() {
     getPortfolioItems().catch(() => []),
   ])
 
-  const portfolioItems = allItems.filter((item: any) =>
-    item.tags?.some((t: string) => t.toLowerCase().includes("automation"))
-  )
+  const portfolioItems = allItems.filter((item: any) => {
+    const tags = Array.isArray(item.tags) ? item.tags : typeof item.tags === "string" ? item.tags.split(",") : []
+    return tags.some((t: string) => t.toLowerCase().includes("automation"))
+  })
 
   const heroHeading = hero?.heading ?? "Business Automation & Workflow Optimization"
   const heroSub = hero?.subheading ?? "Eliminate Repetitive Tasks. Scale What Matters."

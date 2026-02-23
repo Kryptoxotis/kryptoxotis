@@ -7,7 +7,7 @@ export const metadata = {
 }
 
 export default async function PortfolioPage() {
-  const items = await getPortfolioItems()
+  const items = await getPortfolioItems().catch(() => [])
 
   return (
     <div className="flex flex-col">

@@ -13,10 +13,10 @@ export default async function WebAppsServicePage() {
     getPortfolioItems().catch(() => []),
   ])
 
-  const portfolioItems = allItems.filter((item: any) =>
-    item.category === "Website" ||
-    item.tags?.some((t: string) => t.toLowerCase().includes("web"))
-  )
+  const portfolioItems = allItems.filter((item: any) => {
+    const tags = Array.isArray(item.tags) ? item.tags : typeof item.tags === "string" ? item.tags.split(",") : []
+    return item.category === "Website" || tags.some((t: string) => t.toLowerCase().includes("web"))
+  })
 
   const heroHeading = hero?.heading ?? "Web Application Development"
   const heroSub = hero?.subheading ?? "Custom Web Apps Built to Solve Real Business Problems."

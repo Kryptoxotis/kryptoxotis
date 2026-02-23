@@ -80,10 +80,11 @@ export default async function ServicePage({ params }: ServicePageProps) {
     serviceData[service as keyof typeof serviceData]
 
   const allItems = await getPortfolioItems().catch(() => [])
-  const portfolioItems = allItems.filter((item: any) =>
-    item.tags?.some((t: string) => t.toLowerCase().includes(category.replace("-", ""))) ||
-    (category === "web-apps" && item.category === "Website")
-  )
+  const portfolioItems = allItems.filter((item: any) => {
+    const tags = Array.isArray(item.tags) ? item.tags : typeof item.tags === "string" ? item.tags.split(",") : []
+    return tags.some((t: string) => t.toLowerCase().includes(category.replace("-", ""))) ||
+      (category === "web-apps" && item.category === "Website")
+  })
 
   return (
     <div className="flex flex-col">

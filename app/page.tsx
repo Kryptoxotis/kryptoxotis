@@ -30,7 +30,9 @@ export default async function Home() {
     { title: "Business Automation", short_description: "Eliminate repetitive tasks and streamline operations with intelligent automation.", icon: "Cog", button_text: "Discover How It Works", button_link: "/services/automation" },
     { title: "Web Applications", short_description: "Custom-built web apps designed to solve real problems and scale with your business.", icon: "Globe", button_text: "See It in Action", button_link: "/services/web-apps" },
   ]
-  const svcList = services.length > 0 ? services : defaultServices
+  const validSlugs = ["dashboards", "automation", "web-apps"]
+  const filtered = services.filter((s: any) => validSlugs.includes(s.slug))
+  const svcList = filtered.length > 0 ? filtered : defaultServices
 
   const defaultValues = [
     { letter: "T", english_name: "Honor", short_description: "We hold ourselves to the highest standard — in our work, our word, and our relationships." },
