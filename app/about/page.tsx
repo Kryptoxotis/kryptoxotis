@@ -128,29 +128,36 @@ export default async function AboutPage() {
 
       {/* Value Breakdown Sections */}
       <section className="py-20 bg-zinc-900/50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-          {/* Honor */}
-          <div className="max-w-3xl mx-auto">
-            <h3 className="metallic-text text-2xl font-bold mb-4">{honorTitle}</h3>
-            <p className="text-white">{honorBody}</p>
-          </div>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+          {[
+            { letter: "T", title: honorTitle, body: honorBody, greek: "Τιμή" },
+            { letter: "E", title: disciplineTitle, body: disciplineBody, greek: "Επανόρθωση" },
+            { letter: "K", title: innovationTitle, body: innovationBody, greek: "Καινοτομία" },
+          ].map((val) => (
+            <div key={val.letter} className="max-w-3xl mx-auto cyber-border rounded-sm bg-black/50 overflow-hidden">
+              <div className="flex">
+                {/* Left accent bar + letter */}
+                <div className="w-20 shrink-0 bg-gradient-to-b from-emerald-600 to-emerald-900 flex flex-col items-center justify-center">
+                  <span className="text-4xl font-extrabold text-white">{val.letter}</span>
+                  <span className="text-[10px] text-emerald-200/70 mt-1">{val.greek}</span>
+                </div>
+                {/* Content */}
+                <div className="p-6">
+                  <h3 className="metallic-text text-xl font-bold mb-2">{val.title}</h3>
+                  <p className="text-zinc-300 leading-relaxed">{val.body}</p>
+                </div>
+              </div>
+            </div>
+          ))}
 
-          {/* Discipline */}
-          <div className="max-w-3xl mx-auto">
-            <h3 className="metallic-text text-2xl font-bold mb-4">{disciplineTitle}</h3>
-            <p className="text-white">{disciplineBody}</p>
-          </div>
-
-          {/* Innovation */}
-          <div className="max-w-3xl mx-auto">
-            <h3 className="metallic-text text-2xl font-bold mb-4">{innovationTitle}</h3>
-            <p className="text-white">{innovationBody}</p>
-          </div>
-
-          {/* Telos */}
-          <div className="max-w-3xl mx-auto text-center pt-8 border-t border-emerald-500/20">
-            <h3 className="metallic-text text-2xl font-bold mb-4">{telosTitle}</h3>
-            <p className="text-white text-lg">{telosBody}</p>
+          {/* Telos — callout block */}
+          <div className="max-w-2xl mx-auto mt-12 text-center">
+            <div className="cyber-border rounded-sm bg-black/60 p-8 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent pointer-events-none" />
+              <p className="text-emerald-400 text-sm font-semibold tracking-widest uppercase mb-3">τέλος</p>
+              <h3 className="metallic-text text-2xl font-bold mb-4">{telosTitle}</h3>
+              <p className="text-zinc-300 text-lg leading-relaxed">{telosBody}</p>
+            </div>
           </div>
         </div>
       </section>

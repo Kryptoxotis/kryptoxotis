@@ -2,10 +2,10 @@ import Link from "next/link"
 import Image from "next/image"
 import { SectionTitle } from "@/components/ui/section-title"
 import { CyberButton } from "@/components/ui/cyber-button"
-import { Check, BarChart, Cog, Globe } from "lucide-react"
+import { Check, BarChart, Cog, Globe, LayoutDashboard, Workflow } from "lucide-react"
 import { getSection, getServices } from "@/lib/cms"
 
-const iconMap: Record<string, any> = { BarChart, Cog, Globe }
+const iconMap: Record<string, any> = { BarChart, Cog, Globe, LayoutDashboard, Workflow }
 
 export default async function ServicesPage() {
   const [hero, cta, services] = await Promise.all([
@@ -25,7 +25,7 @@ export default async function ServicesPage() {
       title: "Custom Dashboards",
       slug: "dashboards",
       short_description: "Transform raw data into clear, actionable insights with tailored dashboard solutions.",
-      icon: "BarChart",
+      icon: "LayoutDashboard",
       features: "Real-time data visualization,KPI tracking and monitoring,Interactive filtering and drill-downs,Automated reporting,Multi-source data integration",
       button_text: "Explore Dashboards",
       button_link: "/services/dashboards",
@@ -34,7 +34,7 @@ export default async function ServicesPage() {
       title: "Business Automation",
       slug: "automation",
       short_description: "Eliminate repetitive tasks and streamline operations with intelligent automation.",
-      icon: "Cog",
+      icon: "Workflow",
       features: "Workflow automation design,System integration and API orchestration,Automated data processing,Event-driven triggers and scheduling,Error handling and monitoring",
       button_text: "Explore Automation",
       button_link: "/services/automation",
@@ -72,83 +72,46 @@ export default async function ServicesPage() {
           ? svc.features.split(",").map((f: string) => f.trim()).filter(Boolean)
           : []
         const isEven = index % 2 === 0
-        const bgClass = isEven ? "" : "bg-zinc-900/50"
 
         return (
-          <section key={svc.slug || svc.title} className={`py-20 ${bgClass}`}>
+          <section key={svc.slug || svc.title} className={`py-20 ${isEven ? "" : "bg-zinc-900/50"}`}>
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div className={isEven ? "" : "order-2 lg:order-1"}>
-                  {!isEven && (
-                    <div className="relative">
-                      <div className="cyber-border rounded-sm p-1 bg-black">
-                        <div className="flex items-center justify-center aspect-square bg-zinc-900/80">
-                          <IconComp className="h-32 w-32 text-emerald-500 opacity-30" />
-                        </div>
-                      </div>
-                      <div className="absolute -bottom-4 -left-4 h-24 w-24 bg-gradient-to-bl from-red-500/20 to-transparent"></div>
-                    </div>
-                  )}
-                  {isEven && (
+                {/* Text side */}
+                <div className={isEven ? "order-1" : "order-2 lg:order-2"}>
+                  <SectionTitle title={svc.title} />
+                  <p className="text-white text-xl mb-6">{svc.short_description}</p>
+
+                  {features.length > 0 && (
                     <>
-                      <SectionTitle title={svc.title} />
-                      <p className="text-white text-xl mb-6">{svc.short_description}</p>
-
-                      {features.length > 0 && (
-                        <>
-                          <h3 className="text-emerald-500 font-bold text-lg mb-4">What We Deliver:</h3>
-                          <ul className="space-y-3 mb-6">
-                            {features.map((feat: string) => (
-                              <li key={feat} className="flex items-start">
-                                <span className="text-emerald-500 mr-2 mt-1"><Check size={16} /></span>
-                                <span className="text-white">{feat}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </>
-                      )}
-
-                      <Link href={svc.button_link || `/services/${svc.slug}`}>
-                        <CyberButton>{svc.button_text || "Learn More"}</CyberButton>
-                      </Link>
+                      <h3 className="text-emerald-500 font-bold text-lg mb-4">What We Deliver:</h3>
+                      <ul className="space-y-3 mb-6">
+                        {features.map((feat: string) => (
+                          <li key={feat} className="flex items-start">
+                            <span className="text-emerald-500 mr-2 mt-1"><Check size={16} /></span>
+                            <span className="text-white">{feat}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </>
                   )}
+
+                  <Link href={svc.button_link || `/services/${svc.slug}`}>
+                    <CyberButton>{svc.button_text || "Learn More"}</CyberButton>
+                  </Link>
                 </div>
-                <div className={isEven ? "" : "order-1 lg:order-2"}>
-                  {isEven && (
-                    <div className="relative">
-                      <div className="cyber-border rounded-sm p-1 bg-black">
-                        <div className="flex items-center justify-center aspect-square bg-zinc-900/80">
-                          <IconComp className="h-32 w-32 text-emerald-500 opacity-30" />
-                        </div>
+
+                {/* Visual side */}
+                <div className={isEven ? "order-2" : "order-1 lg:order-1"}>
+                  <div className="relative">
+                    <div className="cyber-border rounded-sm p-1 bg-black">
+                      <div className="flex items-center justify-center aspect-[4/3] bg-zinc-900/80 relative overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent" />
+                        <IconComp className="h-24 w-24 text-emerald-500/30" />
                       </div>
-                      <div className="absolute -bottom-4 -right-4 h-24 w-24 bg-gradient-to-br from-emerald-500/20 to-transparent"></div>
                     </div>
-                  )}
-                  {!isEven && (
-                    <>
-                      <SectionTitle title={svc.title} />
-                      <p className="text-white text-xl mb-6">{svc.short_description}</p>
-
-                      {features.length > 0 && (
-                        <>
-                          <h3 className="text-emerald-500 font-bold text-lg mb-4">What We Deliver:</h3>
-                          <ul className="space-y-3 mb-6">
-                            {features.map((feat: string) => (
-                              <li key={feat} className="flex items-start">
-                                <span className="text-emerald-500 mr-2 mt-1"><Check size={16} /></span>
-                                <span className="text-white">{feat}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </>
-                      )}
-
-                      <Link href={svc.button_link || `/services/${svc.slug}`}>
-                        <CyberButton>{svc.button_text || "Learn More"}</CyberButton>
-                      </Link>
-                    </>
-                  )}
+                    <div className={`absolute -bottom-4 h-24 w-24 bg-gradient-to-br ${isEven ? "-right-4 from-emerald-500/20" : "-left-4 from-red-500/20"} to-transparent`}></div>
+                  </div>
                 </div>
               </div>
             </div>

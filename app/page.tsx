@@ -3,10 +3,10 @@ import Image from "next/image"
 import { CyberButton } from "@/components/ui/cyber-button"
 import { SectionTitle } from "@/components/ui/section-title"
 import { ServiceCard } from "@/components/ui/service-card"
-import { BarChart, Cog, Globe } from "lucide-react"
+import { BarChart, Cog, Globe, LayoutDashboard, Workflow } from "lucide-react"
 import { getSection, getServices, getValues } from "@/lib/cms"
 
-const iconMap: Record<string, any> = { BarChart, Cog, Globe }
+const iconMap: Record<string, any> = { BarChart, Cog, Globe, LayoutDashboard, Workflow }
 
 export default async function Home() {
   const [hero, cta, services, values] = await Promise.all([
