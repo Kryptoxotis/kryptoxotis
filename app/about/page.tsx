@@ -18,11 +18,11 @@ export default async function AboutPage() {
   ])
 
   const heroHeading = hero?.heading ?? "Who We Are: The Kryptoxotis Story"
-  const missionTitle = mission?.heading ?? "Empowering Businesses with Smart Technology & Innovation"
-  const missionBody = mission?.body ?? "At Kryptoxotis, we don't just build solutions — we create revolutions. Our mission is to transform bold ideas into reality with custom dashboards, intelligent automation, and powerful web applications. Through innovation and efficiency, we help businesses streamline operations, enhance their digital footprint, and scale effortlessly."
+  const missionTitle = mission?.heading ?? "Our Mission"
+  const missionBody = mission?.body ?? "To free people from what traps them — the repetitive tasks, the broken workflows, the manual processes that drain time and energy — so they can invest in what truly matters. We build custom dashboards, intelligent automation, and purpose-built web applications that give business owners their time back. Every system we create is designed to replace chaos with clarity, turning hours of manual work into minutes of automated precision. We believe technology should serve people, not the other way around. When your operations run themselves, you are free to focus on growth, your team, your family, and the vision that made you start in the first place."
 
   const visionTitle = vision?.heading ?? "Our Vision"
-  const visionBody = vision?.body ?? "To be the engineering partner that businesses trust to turn complexity into clarity — building systems that are as disciplined and precise as the values we stand on."
+  const visionBody = vision?.body ?? "A world where business owners are no longer slaves to broken systems, endless busywork, or purposeless repetition — but free to live with intention, invest in their families, and build legacies rooted in faith and integrity. We envision a future where every small business has access to the same powerful technology that drives the largest companies, leveling the playing field through smart engineering and genuine partnership. Our north star is a generation of entrepreneurs who spend less time firefighting and more time building something that lasts."
 
   const valuesOverviewTitle = valuesOverview?.heading ?? "The TEK Framework"
   const valuesOverviewBody = valuesOverview?.body ?? "Our name comes from the Greek word Τεχνίτης (Technitís) — meaning craftsman or artisan. The letters T, E, and K don't just spell our identity — they define how we operate."
