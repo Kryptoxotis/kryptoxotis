@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowLeft, Tag } from "lucide-react"
+import { ArrowLeft, Tag, ExternalLink } from "lucide-react"
 import { CyberButton } from "@/components/ui/cyber-button"
 import { getPortfolioItemBySlug } from "@/lib/cms"
 
@@ -107,6 +107,37 @@ export default async function PortfolioDetailPage({ params }: Props) {
           </div>
         </div>
       </section>
+
+      {/* Live Site Preview */}
+      {item.external_url && (
+        <section className="pb-12">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-4xl mx-auto">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="metallic-text text-2xl font-bold">Live Preview</h2>
+                <a
+                  href={item.external_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center text-emerald-500 hover:text-emerald-400 transition-colors text-sm"
+                >
+                  Open in new tab
+                  <ExternalLink className="w-3 h-3 ml-1" />
+                </a>
+              </div>
+              <div className="rounded-sm overflow-hidden cyber-border bg-white">
+                <iframe
+                  src={item.external_url}
+                  title={`${item.title} live preview`}
+                  className="w-full h-[600px] border-0"
+                  loading="lazy"
+                  sandbox="allow-scripts allow-same-origin"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Additional Images Gallery */}
       {additionalImages.length > 0 && (
