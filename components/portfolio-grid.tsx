@@ -11,6 +11,8 @@ interface PortfolioItem {
   tags: string[] | string | null
   client_name: string | null
   featured: boolean | null
+  slug?: string | null
+  image_url?: string | null
 }
 
 const tabs = ["All", "Client System", "Personal Project", "Website"] as const

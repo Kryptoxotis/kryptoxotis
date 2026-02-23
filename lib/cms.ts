@@ -71,6 +71,15 @@ export async function getAllSettings() {
   return data ?? []
 }
 
+export async function getPortfolioItemBySlug(slug: string) {
+  const { data } = await supabaseAdmin
+    .from("portfolio_items")
+    .select("*")
+    .eq("slug", slug)
+    .single()
+  return data
+}
+
 export async function getPortfolioItems(category?: string) {
   let query = supabaseAdmin
     .from("portfolio_items")

@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 import { Building2, Lightbulb, Globe } from "lucide-react"
 
 const categoryIcons: Record<string, React.ElementType> = {
@@ -16,6 +17,7 @@ interface PortfolioItem {
   client_name: string | null
   featured: boolean | null
   image_url?: string | null
+  slug?: string | null
 }
 
 export function PortfolioCard({ item }: { item: PortfolioItem }) {
@@ -26,8 +28,8 @@ export function PortfolioCard({ item }: { item: PortfolioItem }) {
       ? item.tags.split(",").map((t) => t.trim()).filter(Boolean)
       : []
 
-  return (
-    <div className="bg-zinc-900 rounded-sm cyber-border overflow-hidden hover:bg-zinc-800 transition-all duration-300 hover:translate-y-[-3px] group">
+  const card = (
+    <div className="bg-zinc-900 rounded-sm cyber-border overflow-hidden hover:bg-zinc-800 transition-all duration-300 hover:translate-y-[-3px] group h-full">
       {item.image_url && (
         <div className="relative aspect-video overflow-hidden bg-black">
           <Image
@@ -79,4 +81,10 @@ export function PortfolioCard({ item }: { item: PortfolioItem }) {
       </div>
     </div>
   )
+
+  if (item.slug) {
+    return <Link href={`/portfolio/${item.slug}`}>{card}</Link>
+  }
+
+  return card
 }
