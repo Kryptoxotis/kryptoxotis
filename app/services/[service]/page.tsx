@@ -3,7 +3,8 @@ import Image from "next/image"
 import { notFound } from "next/navigation"
 import { SectionTitle } from "@/components/ui/section-title"
 import { CyberButton } from "@/components/ui/cyber-button"
-import { ProjectsSection } from "@/components/projects-section"
+import { PortfolioCard } from "@/components/portfolio-card"
+import { getPortfolioItems } from "@/lib/cms"
 
 interface ServicePageProps {
   params: {
@@ -68,7 +69,7 @@ const serviceData = {
   },
 }
 
-export default function ServicePage({ params }: ServicePageProps) {
+export default async function ServicePage({ params }: ServicePageProps) {
   const service = params.service
 
   if (!serviceData[service as keyof typeof serviceData]) {
@@ -77,6 +78,12 @@ export default function ServicePage({ params }: ServicePageProps) {
 
   const { title, description, content, features, category, image, cta } =
     serviceData[service as keyof typeof serviceData]
+
+  const allItems = await getPortfolioItems().catch(() => [])
+  const portfolioItems = allItems.filter((item: any) =>
+    item.tags?.some((t: string) => t.toLowerCase().includes(category.replace("-", ""))) ||
+    (category === "web-apps" && item.category === "Website")
+  )
 
   return (
     <div className="flex flex-col">
@@ -125,7 +132,18 @@ export default function ServicePage({ params }: ServicePageProps) {
       </section>
 
       {/* Portfolio Section */}
-      <ProjectsSection category={category} title="Portfolio" />
+      {portfolioItems.length > 0 && (
+        <section className="py-20 bg-zinc-900/50">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <SectionTitle title="Portfolio" centered />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+              {portfolioItems.map((item: any) => (
+                <PortfolioCard key={item.id} item={item} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Process Section */}
       <section className="py-20">
