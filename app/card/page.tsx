@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect } from "react"
 import Image from "next/image"
-import { Phone, Mail, Globe, Instagram, Youtube, Twitter, Download, MapPin, DollarSign, Banknote } from "lucide-react"
+import { Phone, Mail, Globe, Instagram, Youtube, Twitter, Download, MapPin, DollarSign, Banknote, Check } from "lucide-react"
 
 const contacts = [
   { icon: Phone, label: "(915) 373-3640", href: "tel:+19153733640", color: "from-emerald-400 to-emerald-600" },
@@ -42,9 +42,18 @@ export default function CardPage() {
   const [tilt, setTilt] = useState({ x: 0, y: 0 })
   const [mounted, setMounted] = useState(false)
   const [glarePos, setGlarePos] = useState({ x: 50, y: 50 })
+  const [zelleCopied, setZelleCopied] = useState(false)
 
   useEffect(() => {
     setMounted(true)
+    const header = document.querySelector("header")
+    const footer = document.querySelector("footer")
+    if (header) header.style.display = "none"
+    if (footer) footer.style.display = "none"
+    return () => {
+      if (header) header.style.display = ""
+      if (footer) footer.style.display = ""
+    }
   }, [])
 
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -62,7 +71,7 @@ export default function CardPage() {
   }
 
   return (
-    <div className="min-h-[calc(100vh-5rem)] flex items-center justify-center px-4 py-12 relative overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center px-4 py-12 relative overflow-hidden">
       {/* Animated circuit background */}
       <div className="absolute inset-0 opacity-20">
         <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
@@ -193,13 +202,23 @@ export default function CardPage() {
                 <DollarSign className="h-5 w-5 text-green-400 group-hover:scale-110 transition-transform" />
                 <span className="text-zinc-300 group-hover:text-white text-sm font-medium">Cash App</span>
               </a>
-              <a
-                href="tel:+19153733640"
+              <button
+                onClick={() => {
+                  navigator.clipboard.writeText("9153733640")
+                  setZelleCopied(true)
+                  setTimeout(() => setZelleCopied(false), 2000)
+                }}
                 className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:border-purple-500/30 hover:bg-purple-500/[0.05] transition-all duration-300 group"
               >
-                <Banknote className="h-5 w-5 text-purple-400 group-hover:scale-110 transition-transform" />
-                <span className="text-zinc-300 group-hover:text-white text-sm font-medium">Zelle</span>
-              </a>
+                {zelleCopied ? (
+                  <Check className="h-5 w-5 text-purple-400" />
+                ) : (
+                  <Banknote className="h-5 w-5 text-purple-400 group-hover:scale-110 transition-transform" />
+                )}
+                <span className="text-zinc-300 group-hover:text-white text-sm font-medium">
+                  {zelleCopied ? "# Copied!" : "Zelle"}
+                </span>
+              </button>
             </div>
 
             {/* Save Contact button */}
