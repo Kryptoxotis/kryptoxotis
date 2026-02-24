@@ -27,6 +27,15 @@ export default async function PortfolioDetailPage({ params }: Props) {
     ? item.images.split(",").map((url: string) => url.trim()).filter(Boolean)
     : []
 
+  const isValidExternalUrl = (url: string) => {
+    try {
+      const u = new URL(url)
+      return u.protocol === "https:" || u.protocol === "http:"
+    } catch {
+      return false
+    }
+  }
+
   return (
     <div className="flex flex-col">
       {/* Back Navigation */}
@@ -89,6 +98,7 @@ export default async function PortfolioDetailPage({ params }: Props) {
                   src={item.image_url}
                   alt={item.title}
                   fill
+                  sizes="(max-width: 768px) 100vw, 896px"
                   className="object-cover"
                 />
               </div>
@@ -109,7 +119,7 @@ export default async function PortfolioDetailPage({ params }: Props) {
       </section>
 
       {/* Live Site Preview */}
-      {item.external_url && (
+      {item.external_url && isValidExternalUrl(item.external_url) && (
         <section className="pb-12">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
@@ -131,9 +141,10 @@ export default async function PortfolioDetailPage({ params }: Props) {
                   title={`${item.title} live preview`}
                   className="w-full h-[600px] border-0"
                   loading="lazy"
-                  sandbox="allow-scripts allow-same-origin"
+                  sandbox="allow-scripts"
                 />
               </div>
+              <p className="text-zinc-500 text-sm mt-2">Some websites may block previews. Use the &ldquo;Open in new tab&rdquo; link above if the preview doesn&apos;t load.</p>
             </div>
           </div>
         </section>
@@ -152,6 +163,7 @@ export default async function PortfolioDetailPage({ params }: Props) {
                       src={url}
                       alt={`${item.title} screenshot ${i + 1}`}
                       fill
+                      sizes="(max-width: 768px) 100vw, 448px"
                       className="object-cover"
                     />
                   </div>

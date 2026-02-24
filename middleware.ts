@@ -14,6 +14,9 @@ export function middleware(request: NextRequest) {
     } else if (path === "/api/contact") {
       // Contact form submissions should never be cached
       response.headers.set("Cache-Control", "no-store")
+    } else if (path.startsWith("/api/admin")) {
+      // Admin routes should never be cached
+      response.headers.set("Cache-Control", "no-store")
     } else {
       // Default: short cache for other API routes
       response.headers.set("Cache-Control", "public, s-maxage=30, stale-while-revalidate=60")
