@@ -1,7 +1,7 @@
-import { supabaseAdmin } from "@/lib/supabase"
+import { supabase } from "@/lib/supabase"
 
 export async function getSection(page: string, sectionKey: string) {
-  const { data } = await supabaseAdmin
+  const { data } = await supabase
     .from("site_sections")
     .select("*")
     .eq("page", page)
@@ -11,7 +11,7 @@ export async function getSection(page: string, sectionKey: string) {
 }
 
 export async function getSections(page: string) {
-  const { data } = await supabaseAdmin
+  const { data } = await supabase
     .from("site_sections")
     .select("*")
     .eq("page", page)
@@ -20,7 +20,7 @@ export async function getSections(page: string) {
 }
 
 export async function getServices() {
-  const { data } = await supabaseAdmin
+  const { data } = await supabase
     .from("services")
     .select("*")
     .eq("visible", true)
@@ -29,7 +29,7 @@ export async function getServices() {
 }
 
 export async function getServiceBySlug(slug: string) {
-  const { data } = await supabaseAdmin
+  const { data } = await supabase
     .from("services")
     .select("*")
     .eq("slug", slug)
@@ -38,7 +38,7 @@ export async function getServiceBySlug(slug: string) {
 }
 
 export async function getValues() {
-  const { data } = await supabaseAdmin
+  const { data } = await supabase
     .from("values")
     .select("*")
     .order("sort_order")
@@ -46,7 +46,7 @@ export async function getValues() {
 }
 
 export async function getNavItems() {
-  const { data } = await supabaseAdmin
+  const { data } = await supabase
     .from("navigation")
     .select("*")
     .eq("visible", true)
@@ -55,7 +55,7 @@ export async function getNavItems() {
 }
 
 export async function getSetting(key: string) {
-  const { data } = await supabaseAdmin
+  const { data } = await supabase
     .from("site_settings")
     .select("setting_value")
     .eq("setting_key", key)
@@ -64,7 +64,7 @@ export async function getSetting(key: string) {
 }
 
 export async function getAllSettings() {
-  const { data } = await supabaseAdmin
+  const { data } = await supabase
     .from("site_settings")
     .select("*")
     .order("setting_key")
@@ -72,16 +72,17 @@ export async function getAllSettings() {
 }
 
 export async function getPortfolioItemBySlug(slug: string) {
-  const { data } = await supabaseAdmin
+  const { data } = await supabase
     .from("portfolio_items")
     .select("*")
     .eq("slug", slug)
+    .eq("visible", true)
     .single()
   return data
 }
 
 export async function getPortfolioItems(category?: string) {
-  let query = supabaseAdmin
+  let query = supabase
     .from("portfolio_items")
     .select("*")
     .eq("visible", true)

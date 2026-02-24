@@ -30,14 +30,15 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Invalid file type. Allowed: JPEG, PNG, WebP, GIF" }, { status: 400 })
   }
 
-  const fileName = `${Date.now()}-${crypto.randomUUID().slice(0, 8)}.${ext}`
+  const fileName = `${crypto.randomUUID()}.${ext}`
 
   const { error } = await supabaseAdmin.storage
     .from("images")
     .upload(fileName, file, { contentType: file.type, upsert: false })
 
   if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
+    console.error("Upload error:", error)
+    return NextResponse.json({ error: "Upload failed. Please try again." }, { status: 500 })
   }
 
   const { data: urlData } = supabaseAdmin.storage

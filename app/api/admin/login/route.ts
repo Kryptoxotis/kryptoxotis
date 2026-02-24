@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { getExpectedToken } from "@/lib/admin-helpers";
 
 export async function POST(request: Request) {
   try {
@@ -8,8 +9,13 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Invalid password" }, { status: 401 });
     }
 
+    const token = getExpectedToken();
+    if (!token) {
+      return NextResponse.json({ error: "Server misconfiguration" }, { status: 500 });
+    }
+
     const response = NextResponse.json({ success: true });
-    response.cookies.set("admin_token", password, {
+    response.cookies.set("admin_token", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "strict",

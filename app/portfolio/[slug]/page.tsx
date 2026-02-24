@@ -141,7 +141,7 @@ export default async function PortfolioDetailPage({ params }: Props) {
                   title={`${item.title} live preview`}
                   className="w-full h-[600px] border-0"
                   loading="lazy"
-                  sandbox="allow-scripts"
+                  sandbox="allow-scripts allow-same-origin allow-popups"
                 />
               </div>
               <p className="text-zinc-500 text-sm mt-2">Some websites may block previews. Use the &ldquo;Open in new tab&rdquo; link above if the preview doesn&apos;t load.</p>
@@ -158,7 +158,7 @@ export default async function PortfolioDetailPage({ params }: Props) {
               <h2 className="metallic-text text-2xl font-bold mb-6">Screenshots</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {additionalImages.map((url: string, i: number) => (
-                  <div key={i} className="relative aspect-video rounded-sm overflow-hidden cyber-border">
+                  <div key={url} className="relative aspect-video rounded-sm overflow-hidden cyber-border">
                     <Image
                       src={url}
                       alt={`${item.title} screenshot ${i + 1}`}

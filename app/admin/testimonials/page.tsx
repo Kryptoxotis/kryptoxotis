@@ -29,23 +29,24 @@ export default function AdminPage() {
 
   const load = useCallback(async () => {
     const res = await fetch(API)
-    if (res.ok) setRows(await res.json())
+    if (!res.ok) { if (res.status === 401) window.location.href = "/admin"; return }
+    setRows(await res.json())
   }, [])
 
   useEffect(() => { load() }, [load])
 
   const handleSubmit = async (data: Record<string, any>) => {
-    if (editing) {
-      await fetch(`${API}/${editing.id}`, { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) })
-    } else {
-      await fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) })
-    }
+    const res = editing
+      ? await fetch(`${API}/${editing.id}`, { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) })
+      : await fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) })
+    if (!res.ok) { const j = await res.json().catch(() => ({})); throw new Error(j.error || "Save failed") }
     load()
   }
 
   const handleDelete = async (id: string) => {
     if (!confirm("Delete this item?")) return
-    await fetch(`${API}/${id}`, { method: "DELETE" })
+    const res = await fetch(`${API}/${id}`, { method: "DELETE" })
+    if (!res.ok) { alert("Delete failed. Please try again."); return }
     load()
   }
 

@@ -8,14 +8,14 @@ export function middleware(request: NextRequest) {
     // Different caching strategies per endpoint
     const path = request.nextUrl.pathname
     
-    if (path === "/api/blog") {
+    if (path.startsWith("/api/admin")) {
+      // Admin routes should never be cached
+      response.headers.set("Cache-Control", "no-store")
+    } else if (path === "/api/blog") {
       // Blog posts can be cached for 60 seconds, revalidate in background
       response.headers.set("Cache-Control", "public, s-maxage=60, stale-while-revalidate=300")
     } else if (path === "/api/contact") {
       // Contact form submissions should never be cached
-      response.headers.set("Cache-Control", "no-store")
-    } else if (path.startsWith("/api/admin")) {
-      // Admin routes should never be cached
       response.headers.set("Cache-Control", "no-store")
     } else {
       // Default: short cache for other API routes

@@ -186,12 +186,36 @@ export function ItemFormDialog({ open, onClose, onSubmit, fields, initialData, t
     }
   }, [open, initialData, fields])
 
+  useEffect(() => {
+    if (!open) return
+    const dialog = dialogRef.current
+    if (!dialog) return
+    const handleTab = (e: KeyboardEvent) => {
+      if (e.key !== "Tab") return
+      const focusable = dialog.querySelectorAll<HTMLElement>(
+        'button:not([disabled]), input:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      )
+      if (focusable.length === 0) return
+      const first = focusable[0]
+      const last = focusable[focusable.length - 1]
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault(); last.focus()
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault(); first.focus()
+      }
+    }
+    dialog.addEventListener("keydown", handleTab)
+    return () => dialog.removeEventListener("keydown", handleTab)
+  }, [open])
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
     try {
       await onSubmit(formData)
       onClose()
+    } catch (err) {
+      alert(err instanceof Error ? err.message : "Save failed. Please try again.")
     } finally {
       setLoading(false)
     }
@@ -214,7 +238,7 @@ export function ItemFormDialog({ open, onClose, onSubmit, fields, initialData, t
         <form onSubmit={handleSubmit} className="space-y-4">
           {fields.map((field) => (
             <div key={field.key}>
-              <label className="block text-sm text-zinc-400 mb-1">{field.label}</label>
+              <label htmlFor={field.key} className="block text-sm text-zinc-400 mb-1">{field.label}</label>
               {field.type === "image" ? (
                 <ImageUploadField
                   value={formData[field.key] ?? ""}
@@ -229,13 +253,15 @@ export function ItemFormDialog({ open, onClose, onSubmit, fields, initialData, t
                 />
               ) : field.type === "textarea" ? (
                 <textarea
+                  id={field.key}
                   value={formData[field.key] ?? ""}
                   onChange={(e) => setFormData({ ...formData, [field.key]: e.target.value })}
                   className="w-full px-3 py-2 bg-black border border-emerald-500/30 rounded text-white min-h-[100px] focus:outline-none focus:border-emerald-500"
                 />
               ) : field.type === "checkbox" ? (
-                <label className="flex items-center gap-2">
+                <label htmlFor={`${field.key}-cb`} className="flex items-center gap-2">
                   <input
+                    id={`${field.key}-cb`}
                     type="checkbox"
                     checked={!!formData[field.key]}
                     onChange={(e) => setFormData({ ...formData, [field.key]: e.target.checked })}
@@ -245,6 +271,7 @@ export function ItemFormDialog({ open, onClose, onSubmit, fields, initialData, t
                 </label>
               ) : (
                 <input
+                  id={field.key}
                   type={field.type}
                   value={formData[field.key] ?? ""}
                   onChange={(e) => setFormData({ ...formData, [field.key]: field.type === "number" ? Number(e.target.value) : e.target.value })}

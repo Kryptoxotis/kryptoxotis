@@ -6,8 +6,10 @@ export async function PUT(request: Request, { params }: { params: Promise<{ id: 
   const denied = await requireAdmin(request)
   if (denied) return denied
   const { id } = await params
+  const ALLOWED = ['page','section_key','heading','subheading','body','button_text','button_link','image_url','sort_order']
   const body = await request.json()
-  const { data, error } = await supabaseAdmin.from("site_sections").update(body).eq("id", id).select().single()
+  const safe = Object.fromEntries(Object.entries(body).filter(([k]) => ALLOWED.includes(k)))
+  const { data, error } = await supabaseAdmin.from("site_sections").update(safe).eq("id", id).select().single()
   if (error) return NextResponse.json({ error: error.message }, { status: 500 })
   return NextResponse.json(data)
 }

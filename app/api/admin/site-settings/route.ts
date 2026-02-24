@@ -13,8 +13,10 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   const denied = await requireAdmin(request)
   if (denied) return denied
+  const ALLOWED = ["setting_key", "setting_value"]
   const body = await request.json()
-  const { data, error } = await supabaseAdmin.from("site_settings").insert(body).select().single()
+  const safe = Object.fromEntries(Object.entries(body).filter(([k]) => ALLOWED.includes(k)))
+  const { data, error } = await supabaseAdmin.from("site_settings").insert(safe).select().single()
   if (error) return NextResponse.json({ error: error.message }, { status: 500 })
   return NextResponse.json(data)
 }
