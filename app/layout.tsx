@@ -18,6 +18,9 @@ const playfair = Playfair_Display({
 export const metadata = {
   title: "Kryptoxotis - Futuristic Business Solutions",
   description: "Custom Dashboards, Business Automation, and Web Application Development",
+  other: {
+    'facebook-domain-verification': 'fbhr8vaghb3usa2yrpgij4zea2p763',
+  },
 }
 
 // Force dynamic rendering and disable caching
