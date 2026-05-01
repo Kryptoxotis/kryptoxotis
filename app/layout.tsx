@@ -40,7 +40,6 @@ export default async function RootLayout({
 
         {/* Add Google site verification meta tag */}
         <meta name="google-site-verification" content="googlefd6bd9e9a032b480" />
-        <meta name="facebook-domain-verification" content="fbhr8vaghb3usa2yrpgij4zea2p763" />
 
         {/* Add Sans Forgetica font */}
         <style
