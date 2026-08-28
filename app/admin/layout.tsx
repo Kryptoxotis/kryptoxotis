@@ -1,6 +1,7 @@
 import { cookies } from "next/headers"
 import { LoginForm } from "./login-form"
 import Link from "next/link"
+import { getExpectedToken } from "@/lib/admin-helpers"
 
 const navItems = [
   { href: "/admin", label: "Dashboard" },
@@ -19,8 +20,9 @@ const navItems = [
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   const cookieStore = await cookies()
   const token = cookieStore.get("admin_token")?.value
+  const expected = getExpectedToken()
 
-  if (token !== process.env.ADMIN_PASSWORD) {
+  if (!expected || token !== expected) {
     return <LoginForm />
   }
 

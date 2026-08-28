@@ -1,0 +1,871 @@
+{
+  "communities": {
+    "0": [
+      "app_admin_page",
+      "app_admin_page_admindashboard",
+      "app_admin_page_getcount",
+      "app_admin_page_tables",
+      "app_api_admin_blog_posts_id_route",
+      "app_api_admin_blog_posts_id_route_delete",
+      "app_api_admin_blog_posts_id_route_put",
+      "app_api_admin_blog_posts_route",
+      "app_api_admin_blog_posts_route_get",
+      "app_api_admin_blog_posts_route_post",
+      "app_api_admin_contact_submissions_id_route",
+      "app_api_admin_contact_submissions_id_route_delete",
+      "app_api_admin_contact_submissions_id_route_put",
+      "app_api_admin_contact_submissions_route",
+      "app_api_admin_contact_submissions_route_get",
+      "app_api_admin_faq_id_route",
+      "app_api_admin_faq_id_route_delete",
+      "app_api_admin_faq_id_route_put",
+      "app_api_admin_faq_route",
+      "app_api_admin_faq_route_get",
+      "app_api_admin_faq_route_post",
+      "app_api_admin_navigation_id_route",
+      "app_api_admin_navigation_id_route_delete",
+      "app_api_admin_navigation_id_route_put",
+      "app_api_admin_navigation_route",
+      "app_api_admin_navigation_route_get",
+      "app_api_admin_navigation_route_post",
+      "app_api_admin_portfolio_items_id_route",
+      "app_api_admin_portfolio_items_id_route_delete",
+      "app_api_admin_portfolio_items_id_route_put",
+      "app_api_admin_portfolio_items_route",
+      "app_api_admin_portfolio_items_route_get",
+      "app_api_admin_portfolio_items_route_post",
+      "app_api_admin_services_id_route",
+      "app_api_admin_services_id_route_delete",
+      "app_api_admin_services_id_route_put",
+      "app_api_admin_services_route",
+      "app_api_admin_services_route_get",
+      "app_api_admin_services_route_post",
+      "app_api_admin_site_sections_id_route",
+      "app_api_admin_site_sections_id_route_delete",
+      "app_api_admin_site_sections_id_route_put",
+      "app_api_admin_site_sections_route",
+      "app_api_admin_site_sections_route_get",
+      "app_api_admin_site_sections_route_post",
+      "app_api_admin_site_settings_id_route",
+      "app_api_admin_site_settings_id_route_delete",
+      "app_api_admin_site_settings_id_route_put",
+      "app_api_admin_site_settings_route",
+      "app_api_admin_site_settings_route_get",
+      "app_api_admin_site_settings_route_post",
+      "app_api_admin_testimonials_id_route",
+      "app_api_admin_testimonials_id_route_delete",
+      "app_api_admin_testimonials_id_route_put",
+      "app_api_admin_testimonials_route",
+      "app_api_admin_testimonials_route_get",
+      "app_api_admin_testimonials_route_post",
+      "app_api_admin_upload_route",
+      "app_api_admin_upload_route_allowed_types",
+      "app_api_admin_upload_route_post",
+      "app_api_admin_values_id_route",
+      "app_api_admin_values_id_route_delete",
+      "app_api_admin_values_id_route_put",
+      "app_api_admin_values_route",
+      "app_api_admin_values_route_get",
+      "app_api_admin_values_route_post",
+      "lib_admin_helpers",
+      "lib_admin_helpers_requireadmin",
+      "lib_supabase",
+      "lib_supabase_supabaseadmin"
+    ],
+    "1": [
+      "app_admin_blog_posts_page",
+      "app_admin_blog_posts_page_adminpage",
+      "app_admin_blog_posts_page_columns",
+      "app_admin_blog_posts_page_fields",
+      "app_admin_contact_submissions_page",
+      "app_admin_contact_submissions_page_adminpage",
+      "app_admin_contact_submissions_page_columns",
+      "app_admin_faq_page",
+      "app_admin_faq_page_adminpage",
+      "app_admin_faq_page_columns",
+      "app_admin_faq_page_fields",
+      "app_admin_navigation_page",
+      "app_admin_navigation_page_adminpage",
+      "app_admin_navigation_page_columns",
+      "app_admin_navigation_page_fields",
+      "app_admin_portfolio_items_page",
+      "app_admin_portfolio_items_page_adminpage",
+      "app_admin_portfolio_items_page_columns",
+      "app_admin_portfolio_items_page_fields",
+      "app_admin_services_page",
+      "app_admin_services_page_adminpage",
+      "app_admin_services_page_columns",
+      "app_admin_services_page_fields",
+      "app_admin_site_sections_page",
+      "app_admin_site_sections_page_adminpage",
+      "app_admin_site_sections_page_columns",
+      "app_admin_site_sections_page_fields",
+      "app_admin_site_settings_page",
+      "app_admin_site_settings_page_adminpage",
+      "app_admin_site_settings_page_columns",
+      "app_admin_site_settings_page_fields",
+      "app_admin_testimonials_page",
+      "app_admin_testimonials_page_adminpage",
+      "app_admin_testimonials_page_columns",
+      "app_admin_testimonials_page_fields",
+      "app_admin_values_page",
+      "app_admin_values_page_adminpage",
+      "app_admin_values_page_columns",
+      "app_admin_values_page_fields",
+      "components_admin_data_table",
+      "components_admin_data_table_column",
+      "components_admin_data_table_datatable",
+      "components_admin_data_table_datatableprops",
+      "components_admin_item_form_dialog",
+      "components_admin_item_form_dialog_fielddef",
+      "components_admin_item_form_dialog_imageuploadfield",
+      "components_admin_item_form_dialog_itemformdialog",
+      "components_admin_item_form_dialog_itemformdialogprops",
+      "components_admin_item_form_dialog_multiimageuploadfield"
+    ],
+    "2": [
+      "app_api_blog_route",
+      "app_api_blog_route_get",
+      "app_api_contact_route",
+      "app_api_contact_route_contactschema",
+      "app_api_contact_route_post",
+      "app_api_contact_route_runtime",
+      "app_api_faqs_route",
+      "app_api_faqs_route_get",
+      "app_api_faqs_route_runtime",
+      "app_api_spectre_validate_route",
+      "app_api_spectre_validate_route_post",
+      "app_api_testimonials_route",
+      "app_api_testimonials_route_get",
+      "app_api_testimonials_route_runtime",
+      "lib_constants",
+      "lib_constants_api_config",
+      "lib_constants_cache_config",
+      "lib_constants_defaults",
+      "lib_constants_no_cache_headers",
+      "lib_constants_sanitize_config",
+      "lib_constants_validation_limits",
+      "lib_rate_limit",
+      "lib_rate_limit_checkratelimit",
+      "lib_rate_limit_cleanupoldentries",
+      "lib_rate_limit_getclientip",
+      "lib_rate_limit_getratelimitheaders",
+      "lib_rate_limit_rate_limit_config",
+      "lib_rate_limit_ratelimitentry",
+      "lib_rate_limit_ratelimitresult",
+      "lib_rate_limit_ratelimitstore",
+      "lib_rate_limit_ratelimittype",
+      "lib_supabase_supabase"
+    ],
+    "3": [
+      "package",
+      "package_devdependencies",
+      "package_devdependencies_postcss",
+      "package_devdependencies_tailwindcss",
+      "package_devdependencies_types_dompurify",
+      "package_devdependencies_types_node",
+      "package_devdependencies_types_react",
+      "package_devdependencies_types_react_dom",
+      "package_devdependencies_types_sanitize_html",
+      "package_devdependencies_types_three",
+      "package_devdependencies_typescript",
+      "package_name",
+      "package_private",
+      "package_scripts",
+      "package_scripts_build",
+      "package_scripts_dev",
+      "package_scripts_lint",
+      "package_scripts_start",
+      "package_version",
+      "postcss",
+      "tailwindcss",
+      "types_dompurify",
+      "types_node",
+      "types_react",
+      "types_react_dom",
+      "types_sanitize_html",
+      "types_three",
+      "typescript"
+    ],
+    "4": [
+      "ref_dom",
+      "ref_dom_iterable",
+      "ref_esnext",
+      "ref_next_env_d_ts",
+      "ref_next_types_ts",
+      "ref_node_modules",
+      "ref_ts",
+      "ref_tsx",
+      "tsconfig",
+      "tsconfig_compileroptions",
+      "tsconfig_compileroptions_allowjs",
+      "tsconfig_compileroptions_esmoduleinterop",
+      "tsconfig_compileroptions_incremental",
+      "tsconfig_compileroptions_isolatedmodules",
+      "tsconfig_compileroptions_jsx",
+      "tsconfig_compileroptions_lib",
+      "tsconfig_compileroptions_module",
+      "tsconfig_compileroptions_moduleresolution",
+      "tsconfig_compileroptions_noemit",
+      "tsconfig_compileroptions_paths",
+      "tsconfig_compileroptions_plugins",
+      "tsconfig_compileroptions_resolvejsonmodule",
+      "tsconfig_compileroptions_skiplibcheck",
+      "tsconfig_compileroptions_strict",
+      "tsconfig_compileroptions_target",
+      "tsconfig_exclude",
+      "tsconfig_include"
+    ],
+    "5": [
+      "app_card_card_client",
+      "app_card_card_client_buildvcf",
+      "app_card_card_client_cardclient",
+      "app_card_card_client_cardprops",
+      "app_card_page",
+      "app_card_page_cardpage",
+      "app_layout",
+      "app_layout_dynamic",
+      "app_layout_inter",
+      "app_layout_metadata",
+      "app_layout_playfair",
+      "app_layout_revalidate",
+      "app_layout_rootlayout",
+      "components_footer",
+      "components_footer_footer",
+      "components_header",
+      "components_header_defaultnavitems",
+      "components_header_header",
+      "components_theme_provider",
+      "components_theme_provider_themeprovider",
+      "lib_cms_getnavitems",
+      "lib_cms_getsetting"
+    ],
+    "6": [
+      "app_portfolio_page",
+      "app_portfolio_page_metadata",
+      "app_portfolio_page_portfoliopage",
+      "app_services_automation_page",
+      "app_services_automation_page_automationservicepage",
+      "app_services_dashboards_page",
+      "app_services_dashboards_page_dashboardsservicepage",
+      "app_services_service_page",
+      "app_services_service_page_servicedata",
+      "app_services_service_page_servicepage",
+      "app_services_service_page_servicepageprops",
+      "components_portfolio_card",
+      "components_portfolio_card_categoryicons",
+      "components_portfolio_card_portfoliocard",
+      "components_portfolio_card_portfolioitem",
+      "components_portfolio_grid",
+      "components_portfolio_grid_portfoliogrid",
+      "components_portfolio_grid_portfolioitem",
+      "components_portfolio_grid_tabs",
+      "lib_cms_getportfolioitems"
+    ],
+    "7": [
+      "app_about_error",
+      "app_about_error_error",
+      "app_about_error_errorprops",
+      "app_error",
+      "app_error_error",
+      "app_not_found",
+      "app_not_found_notfound",
+      "app_portfolio_slug_page",
+      "app_portfolio_slug_page_portfoliodetailpage",
+      "app_portfolio_slug_page_props",
+      "app_services_service_error",
+      "app_services_service_error_error",
+      "app_services_service_error_errorprops",
+      "app_spectre_page",
+      "app_spectre_page_spectrepage",
+      "components_ui_cyber_button",
+      "components_ui_cyber_button_cyberbutton",
+      "components_ui_cyber_button_cyberbuttonprops",
+      "lib_cms_getportfolioitembyslug"
+    ],
+    "8": [
+      "components_faqs_section",
+      "components_ui_button",
+      "components_ui_button_button",
+      "components_ui_button_buttonprops",
+      "components_ui_button_buttonvariants",
+      "components_ui_faq_item",
+      "components_ui_faq_item_faqitem",
+      "components_ui_faq_item_faqitemprops",
+      "components_ui_section_title",
+      "components_ui_section_title_sectiontitle",
+      "components_ui_section_title_sectiontitleprops",
+      "components_ui_service_card",
+      "components_ui_service_card_servicecard",
+      "components_ui_service_card_servicecardprops",
+      "components_ui_testimonial_card",
+      "components_ui_testimonial_card_testimonialcard",
+      "components_ui_testimonial_card_testimonialcardprops",
+      "lib_utils",
+      "lib_utils_cn"
+    ],
+    "9": [
+      "app_about_page",
+      "app_about_page_aboutpage",
+      "app_page",
+      "app_page_home",
+      "app_page_iconmap",
+      "app_services_page",
+      "app_services_page_iconmap",
+      "app_services_page_servicespage",
+      "app_services_web_apps_page",
+      "app_services_web_apps_page_webappsservicepage",
+      "components_faqs_section_faqssection",
+      "lib_cms",
+      "lib_cms_getallsettings",
+      "lib_cms_getsection",
+      "lib_cms_getsections",
+      "lib_cms_getservicebyslug",
+      "lib_cms_getservices",
+      "lib_cms_getvalues"
+    ],
+    "10": [
+      "components",
+      "components_aliases",
+      "components_aliases_components",
+      "components_aliases_hooks",
+      "components_aliases_lib",
+      "components_aliases_ui",
+      "components_aliases_utils",
+      "components_iconlibrary",
+      "components_rsc",
+      "components_schema",
+      "components_style",
+      "components_tailwind",
+      "components_tailwind_basecolor",
+      "components_tailwind_config",
+      "components_tailwind_css",
+      "components_tailwind_cssvariables",
+      "components_tailwind_prefix",
+      "components_tsx"
+    ],
+    "11": [
+      "autoprefixer",
+      "clsx",
+      "geist",
+      "package_dependencies",
+      "package_dependencies_autoprefixer",
+      "package_dependencies_clsx",
+      "package_dependencies_geist",
+      "package_dependencies_radix_ui_react_accordion",
+      "package_dependencies_radix_ui_react_alert_dialog",
+      "package_dependencies_radix_ui_react_context_menu",
+      "package_dependencies_three",
+      "radix_ui_react_accordion",
+      "radix_ui_react_alert_dialog",
+      "radix_ui_react_context_menu",
+      "three"
+    ],
+    "12": [
+      "app_blog_page",
+      "app_blog_page_blogpage",
+      "app_blog_page_blogpost",
+      "app_contact_page",
+      "app_contact_page_contactpage",
+      "app_contact_page_formvalidation",
+      "app_contact_page_validationstate",
+      "components_ui_blog_card",
+      "components_ui_blog_card_blogcard",
+      "components_ui_blog_card_blogcardprops",
+      "components_ui_loading_spinner",
+      "components_ui_loading_spinner_loadingspinner",
+      "lib_notion_submitcontactform"
+    ],
+    "13": [
+      "app_admin_layout",
+      "app_admin_layout_adminlayout",
+      "app_admin_layout_navitems",
+      "app_admin_login_form",
+      "app_admin_login_form_loginform",
+      "app_api_admin_login_route",
+      "app_api_admin_login_route_post",
+      "lib_admin_helpers_derivetoken",
+      "lib_admin_helpers_getexpectedtoken"
+    ],
+    "14": [
+      "app_blog_date_page",
+      "app_blog_date_page_blogpostpage",
+      "app_blog_date_page_blogpostpageprops",
+      "app_blog_date_page_getblogpostbydate",
+      "lib_notion",
+      "lib_notion_blogpost",
+      "lib_notion_contactsubmission",
+      "lib_notion_faq",
+      "lib_notion_getblogposts"
+    ],
+    "15": [
+      "app_card_layout",
+      "app_card_layout_cardlayout",
+      "app_card_layout_metadata"
+    ],
+    "16": [
+      "app_spectre_layout",
+      "app_spectre_layout_metadata",
+      "app_spectre_layout_spectrelayout"
+    ],
+    "17": [
+      "middleware",
+      "middleware_config",
+      "middleware_middleware"
+    ],
+    "18": [
+      "postcss_config",
+      "postcss_config_config",
+      "postcss_load_config"
+    ],
+    "19": [
+      "types_global_d",
+      "types_global_d_intrinsicelements",
+      "types_global_d_jsx"
+    ],
+    "20": [
+      "app_about_loading",
+      "app_about_loading_loading"
+    ],
+    "21": [
+      "app_blog_loading",
+      "app_blog_loading_loading"
+    ],
+    "22": [
+      "app_global_error",
+      "app_global_error_globalerror"
+    ],
+    "23": [
+      "app_robots",
+      "app_robots_robots"
+    ],
+    "24": [
+      "app_sitemap",
+      "app_sitemap_sitemap"
+    ],
+    "25": [
+      "class_variance_authority",
+      "package_dependencies_class_variance_authority"
+    ],
+    "26": [
+      "cmdk",
+      "package_dependencies_cmdk"
+    ],
+    "27": [
+      "components_visual_floatingorb",
+      "components_visual_floatingorb_floatingorb"
+    ],
+    "28": [
+      "date_fns",
+      "package_dependencies_date_fns"
+    ],
+    "29": [
+      "dompurify",
+      "package_dependencies_dompurify"
+    ],
+    "30": [
+      "embla_carousel_react",
+      "package_dependencies_embla_carousel_react"
+    ],
+    "31": [
+      "emotion_is_prop_valid",
+      "package_dependencies_emotion_is_prop_valid"
+    ],
+    "32": [
+      "framer_motion",
+      "package_dependencies_framer_motion"
+    ],
+    "33": [
+      "hookform_resolvers",
+      "package_dependencies_hookform_resolvers"
+    ],
+    "34": [
+      "input_otp",
+      "package_dependencies_input_otp"
+    ],
+    "35": [
+      "isomorphic_dompurify",
+      "package_dependencies_isomorphic_dompurify"
+    ],
+    "36": [
+      "lucide_react",
+      "package_dependencies_lucide_react"
+    ],
+    "37": [
+      "next_config",
+      "next_config_nextconfig"
+    ],
+    "38": [
+      "next_themes",
+      "package_dependencies_next_themes"
+    ],
+    "39": [
+      "package_dependencies_next",
+      "package_json_next"
+    ],
+    "40": [
+      "package_dependencies_radix_ui_react_aspect_ratio",
+      "radix_ui_react_aspect_ratio"
+    ],
+    "41": [
+      "package_dependencies_radix_ui_react_avatar",
+      "radix_ui_react_avatar"
+    ],
+    "42": [
+      "package_dependencies_radix_ui_react_checkbox",
+      "radix_ui_react_checkbox"
+    ],
+    "43": [
+      "package_dependencies_radix_ui_react_collapsible",
+      "radix_ui_react_collapsible"
+    ],
+    "44": [
+      "package_dependencies_radix_ui_react_dialog",
+      "radix_ui_react_dialog"
+    ],
+    "45": [
+      "package_dependencies_radix_ui_react_dropdown_menu",
+      "radix_ui_react_dropdown_menu"
+    ],
+    "46": [
+      "package_dependencies_radix_ui_react_hover_card",
+      "radix_ui_react_hover_card"
+    ],
+    "47": [
+      "package_dependencies_radix_ui_react_label",
+      "radix_ui_react_label"
+    ],
+    "48": [
+      "package_dependencies_radix_ui_react_menubar",
+      "radix_ui_react_menubar"
+    ],
+    "49": [
+      "package_dependencies_radix_ui_react_navigation_menu",
+      "radix_ui_react_navigation_menu"
+    ],
+    "50": [
+      "package_dependencies_radix_ui_react_popover",
+      "radix_ui_react_popover"
+    ],
+    "51": [
+      "package_dependencies_radix_ui_react_progress",
+      "radix_ui_react_progress"
+    ],
+    "52": [
+      "package_dependencies_radix_ui_react_radio_group",
+      "radix_ui_react_radio_group"
+    ],
+    "53": [
+      "package_dependencies_radix_ui_react_scroll_area",
+      "radix_ui_react_scroll_area"
+    ],
+    "54": [
+      "package_dependencies_radix_ui_react_select",
+      "radix_ui_react_select"
+    ],
+    "55": [
+      "package_dependencies_radix_ui_react_separator",
+      "radix_ui_react_separator"
+    ],
+    "56": [
+      "package_dependencies_radix_ui_react_slider",
+      "radix_ui_react_slider"
+    ],
+    "57": [
+      "package_dependencies_radix_ui_react_slot",
+      "radix_ui_react_slot"
+    ],
+    "58": [
+      "package_dependencies_radix_ui_react_switch",
+      "radix_ui_react_switch"
+    ],
+    "59": [
+      "package_dependencies_radix_ui_react_tabs",
+      "radix_ui_react_tabs"
+    ],
+    "60": [
+      "package_dependencies_radix_ui_react_toast",
+      "radix_ui_react_toast"
+    ],
+    "61": [
+      "package_dependencies_radix_ui_react_toggle",
+      "radix_ui_react_toggle"
+    ],
+    "62": [
+      "package_dependencies_radix_ui_react_toggle_group",
+      "radix_ui_react_toggle_group"
+    ],
+    "63": [
+      "package_dependencies_radix_ui_react_tooltip",
+      "radix_ui_react_tooltip"
+    ],
+    "64": [
+      "package_dependencies_react",
+      "react"
+    ],
+    "65": [
+      "package_dependencies_react_day_picker",
+      "react_day_picker"
+    ],
+    "66": [
+      "package_dependencies_react_dom",
+      "react_dom"
+    ],
+    "67": [
+      "package_dependencies_react_hook_form",
+      "react_hook_form"
+    ],
+    "68": [
+      "package_dependencies_react_resizable_panels",
+      "react_resizable_panels"
+    ],
+    "69": [
+      "package_dependencies_react_three_drei",
+      "react_three_drei"
+    ],
+    "70": [
+      "package_dependencies_react_three_fiber",
+      "react_three_fiber"
+    ],
+    "71": [
+      "package_dependencies_recharts",
+      "recharts"
+    ],
+    "72": [
+      "package_dependencies_sanitize_html",
+      "sanitize_html"
+    ],
+    "73": [
+      "package_dependencies_sonner",
+      "sonner"
+    ],
+    "74": [
+      "package_dependencies_supabase_supabase_js",
+      "supabase_supabase_js"
+    ],
+    "75": [
+      "package_dependencies_tailwind_merge",
+      "tailwind_merge"
+    ],
+    "76": [
+      "package_dependencies_tailwindcss_animate",
+      "tailwindcss_animate"
+    ],
+    "77": [
+      "package_dependencies_vaul",
+      "vaul"
+    ],
+    "78": [
+      "package_dependencies_vercel_analytics",
+      "vercel_analytics"
+    ],
+    "79": [
+      "package_dependencies_zod",
+      "zod"
+    ],
+    "80": [
+      "tailwind_config",
+      "tailwind_config_config"
+    ],
+    "81": [
+      "next_next"
+    ]
+  },
+  "cohesion": {
+    "0": 0.07163561076604555,
+    "1": 0.07142857142857142,
+    "2": 0.09879032258064516,
+    "3": 0.07142857142857142,
+    "4": 0.07407407407407407,
+    "5": 0.1341991341991342,
+    "6": 0.1631578947368421,
+    "7": 0.14619883040935672,
+    "8": 0.1871345029239766,
+    "9": 0.21568627450980393,
+    "10": 0.1111111111111111,
+    "11": 0.13333333333333333,
+    "12": 0.20512820512820512,
+    "13": 0.3055555555555556,
+    "14": 0.3055555555555556,
+    "15": 0.6666666666666666,
+    "16": 0.6666666666666666,
+    "17": 0.6666666666666666,
+    "18": 0.6666666666666666,
+    "19": 0.6666666666666666,
+    "20": 1.0,
+    "21": 1.0,
+    "22": 1.0,
+    "23": 1.0,
+    "24": 1.0,
+    "25": 1.0,
+    "26": 1.0,
+    "27": 1.0,
+    "28": 1.0,
+    "29": 1.0,
+    "30": 1.0,
+    "31": 1.0,
+    "32": 1.0,
+    "33": 1.0,
+    "34": 1.0,
+    "35": 1.0,
+    "36": 1.0,
+    "37": 1.0,
+    "38": 1.0,
+    "39": 1.0,
+    "40": 1.0,
+    "41": 1.0,
+    "42": 1.0,
+    "43": 1.0,
+    "44": 1.0,
+    "45": 1.0,
+    "46": 1.0,
+    "47": 1.0,
+    "48": 1.0,
+    "49": 1.0,
+    "50": 1.0,
+    "51": 1.0,
+    "52": 1.0,
+    "53": 1.0,
+    "54": 1.0,
+    "55": 1.0,
+    "56": 1.0,
+    "57": 1.0,
+    "58": 1.0,
+    "59": 1.0,
+    "60": 1.0,
+    "61": 1.0,
+    "62": 1.0,
+    "63": 1.0,
+    "64": 1.0,
+    "65": 1.0,
+    "66": 1.0,
+    "67": 1.0,
+    "68": 1.0,
+    "69": 1.0,
+    "70": 1.0,
+    "71": 1.0,
+    "72": 1.0,
+    "73": 1.0,
+    "74": 1.0,
+    "75": 1.0,
+    "76": 1.0,
+    "77": 1.0,
+    "78": 1.0,
+    "79": 1.0,
+    "80": 1.0,
+    "81": 1.0
+  },
+  "gods": [
+    {
+      "id": "lib_admin_helpers_requireadmin",
+      "label": "requireAdmin()",
+      "degree": 63
+    },
+    {
+      "id": "lib_supabase_supabaseadmin",
+      "label": "supabaseAdmin",
+      "degree": 23
+    },
+    {
+      "id": "components_ui_cyber_button_cyberbutton",
+      "label": "CyberButton",
+      "degree": 17
+    },
+    {
+      "id": "tsconfig_compileroptions",
+      "label": "compilerOptions",
+      "degree": 16
+    },
+    {
+      "id": "lib_utils_cn",
+      "label": "cn()",
+      "degree": 15
+    },
+    {
+      "id": "lib_cms_getsection",
+      "label": "getSection()",
+      "degree": 13
+    },
+    {
+      "id": "components_ui_section_title_sectiontitle",
+      "label": "SectionTitle()",
+      "degree": 12
+    },
+    {
+      "id": "components_admin_data_table_datatable",
+      "label": "DataTable()",
+      "degree": 11
+    },
+    {
+      "id": "lib_cms_getportfolioitems",
+      "label": "getPortfolioItems()",
+      "degree": 11
+    },
+    {
+      "id": "components_admin_item_form_dialog_fielddef",
+      "label": "FieldDef",
+      "degree": 10
+    }
+  ],
+  "surprises": [
+    {
+      "source": "AdminLayout()",
+      "target": "getExpectedToken()",
+      "source_files": [
+        "app/admin/layout.tsx",
+        "lib/admin-helpers.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; peripheral node `AdminLayout()` unexpectedly reaches hub `getExpectedToken()`"
+    },
+    {
+      "source": "PUT()",
+      "target": "requireAdmin()",
+      "source_files": [
+        "app/api/admin/blog-posts/[id]/route.ts",
+        "lib/admin-helpers.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; peripheral node `PUT()` unexpectedly reaches hub `requireAdmin()`"
+    },
+    {
+      "source": "DELETE()",
+      "target": "requireAdmin()",
+      "source_files": [
+        "app/api/admin/blog-posts/[id]/route.ts",
+        "lib/admin-helpers.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; peripheral node `DELETE()` unexpectedly reaches hub `requireAdmin()`"
+    },
+    {
+      "source": "GET()",
+      "target": "requireAdmin()",
+      "source_files": [
+        "app/api/admin/blog-posts/route.ts",
+        "lib/admin-helpers.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; peripheral node `GET()` unexpectedly reaches hub `requireAdmin()`"
+    },
+    {
+      "source": "POST()",
+      "target": "requireAdmin()",
+      "source_files": [
+        "app/api/admin/blog-posts/route.ts",
+        "lib/admin-helpers.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; peripheral node `POST()` unexpectedly reaches hub `requireAdmin()`"
+    }
+  ],
+  "tokens": {
+    "input": 0,
+    "output": 0
+  }
+}
