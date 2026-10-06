@@ -22,7 +22,11 @@
 *{box-sizing:border-box}
 html{background:var(--ink);scroll-behavior:smooth;scroll-padding-top:76px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{margin:0;background:var(--ink);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+body{margin:0;background:
+    radial-gradient(900px 500px at 15% 0%,rgba(31,174,118,.10),transparent 60%),
+    radial-gradient(700px 500px at 100% 15%,rgba(238,69,54,.06),transparent 55%),
+    var(--ink);
+  background-attachment:fixed;color:var(--text);font-family:var(--font);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
 a{color:var(--coral);text-decoration:none}
 a:hover{color:var(--coral-hi)}
 :focus-visible{outline:2px solid var(--green-hi);outline-offset:3px;border-radius:4px}
@@ -53,7 +57,7 @@ a:hover{color:var(--coral-hi)}
 
 /* hero */
 .hero{max-width:1200px;margin:0 auto;padding:72px 28px 40px 34px;display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:48px;align-items:center}
-.name{margin:0;font-size:clamp(48px,6.2vw,92px);line-height:.88;font-weight:800;letter-spacing:-1px;text-transform:uppercase}
+.name{margin:0;font-size:clamp(48px,6.2vw,92px);line-height:.88;font-weight:800;letter-spacing:-1px;text-transform:uppercase;filter:drop-shadow(0 0 28px rgba(111,216,174,.35)) drop-shadow(0 0 70px rgba(47,196,136,.22))}
 .name span{display:block}
 .role{margin:22px 0 0;font-size:20px;color:var(--soft);line-height:1.45}
 .role i{font-style:normal;color:var(--dim);padding:0 8px}
@@ -151,7 +155,8 @@ a:hover{color:var(--coral-hi)}
 .frame{border-radius:12px;overflow:hidden;border:1px solid transparent;background:linear-gradient(var(--panel),var(--panel)) padding-box,var(--g-chrome) border-box;box-shadow:0 18px 40px rgba(0,0,0,.5)}
 .chrome{display:flex;align-items:center;gap:10px;height:36px;padding:0 12px;background:var(--brushed);border-bottom:1px solid var(--rule);font:12.5px var(--mono);color:var(--muted)}
 .chrome .addr{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:3px 10px;border-radius:6px;background:#0C0D0D}
-.view{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--panel)}
+.view{position:relative;aspect-ratio:16/10;overflow:hidden;background:radial-gradient(120% 140% at 50% -10%,#1C2524,var(--panel) 60%)}
+.view::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06),inset 0 40px 60px -40px rgba(111,216,174,.18);pointer-events:none}
 .view img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center}
 .fallback{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--dim);font-size:14px;text-align:center;padding:16px}
 .fallback b{color:var(--soft);font-size:18px}
@@ -207,6 +212,8 @@ dialog::backdrop{background:rgba(0,0,0,.8);backdrop-filter:blur(4px)}
 .contact p{margin:8px 0 0;color:var(--soft)}
 .contact .cta{display:flex;flex-wrap:wrap;gap:10px}
 footer{max-width:1200px;margin:0 auto;padding:22px 28px 40px 34px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;color:var(--dim);font-size:14px;border-top:1px solid var(--rule)}
+footer a{color:var(--muted)}
+footer a:hover{color:var(--text)}
 
 .print-sites,.print-only{display:none}
 
@@ -454,7 +461,7 @@ const SITES = [
   { name: "Kryptoxotis",  what: "Business site and automation consultancy, Next.js and Supabase", url: "https://kryptoxotis.com",
     stack: ["Next.js","Supabase","Cloudflare"], images: ["img/kryptoxotis_01.webp"] },
   { name: "REGOS",        what: "Real estate operations dashboard, self-hosted (Node, Notion API)", url: "https://regos.kryptoxotis.com",
-    stack: ["Node.js","Express","Notion API","Docker"], images: ["img/regos_01.webp"] },
+    stack: ["Node.js","Express","Notion API","Docker"], images: ["img/regos_pipeline.webp","img/regos_inventory.webp","img/regos_01.webp"] },
   { name: "PGI Dashboard", what: "Crash report and lead enrichment pipeline, Next.js", url: "https://pgi.kryptoxotis.com",
     stack: ["Next.js","n8n","Spokeo API","Docker"], images: ["img/pgi_01.webp"] },
   { name: "Logos",        what: "Greek interlinear study tool, React and Supabase", url: "https://logos.kryptoxotis.com",
