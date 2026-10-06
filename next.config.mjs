@@ -1,5 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'standalone',
+  async rewrites() {
+    return [
+      { source: '/resume', destination: '/resume/index.html' },
+    ]
+  },
   eslint: {
     ignoreDuringBuilds: false,
   },

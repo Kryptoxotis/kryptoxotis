@@ -1,0 +1,661 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Omar Gaystardo | Data Center Technician</title>
+<meta name="description" content="Omar Gaystardo, data center technician, Linux infrastructure, founder of Kryptoxotis.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230C0C0C'/%3E%3Cpath d='M16 5 L25 25 L16 20 L7 25 Z' fill='%233A9C78'/%3E%3C/svg%3E">
+<style>
+:root{
+  --ink:#0C0C0C; --ink-2:#111213; --panel:#141516; --rule:#26282A;
+  --text:#D6D6D6; --soft:#B9B9B9; --muted:#9C9C9C; --dim:#6E6E6E;
+  --green:#2FC488; --green-hi:#4BE3A1; --coral:#FF5A4A; --coral-hi:#FF8074;
+  --font:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  --mono:"SF Mono",ui-monospace,Menlo,Consolas,monospace;
+  /* metals */
+  --g-green:linear-gradient(115deg,#1FAE76 0%,#36D693 30%,#86F2C2 50%,#36D693 70%,#1FAE76 100%);
+  --g-copper:linear-gradient(115deg,#EE4536 0%,#FF6455 30%,#FF9F93 50%,#FF6455 70%,#EE4536 100%);
+  --g-chrome:linear-gradient(115deg,#2A2C2E 0%,#44484C 40%,#6C7175 50%,#44484C 60%,#2A2C2E 100%);
+  --brushed:repeating-linear-gradient(90deg,rgba(255,255,255,.018) 0 1px,transparent 1px 3px),linear-gradient(180deg,#17181A,#101112);
+}
+*{box-sizing:border-box}
+html{background:var(--ink);scroll-behavior:smooth;scroll-padding-top:76px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--ink);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--coral);text-decoration:none}
+a:hover{color:var(--coral-hi)}
+:focus-visible{outline:2px solid var(--green-hi);outline-offset:3px;border-radius:4px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+.metal{background:var(--g-green);background-size:180% 100%;background-position:var(--mx,40%) 50%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.metal.copper{background-image:var(--g-copper)}
+.rail{position:fixed;left:0;top:0;bottom:0;width:6px;background:linear-gradient(180deg,#1FAE76,#36D693 40%,#86F2C2 50%,#36D693 60%,#1FAE76);z-index:20}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:15;background:rgba(12,12,12,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--rule)}
+.nav-in{max-width:1200px;margin:0 auto;padding:0 28px 0 34px;display:flex;align-items:center;gap:20px;min-height:60px}
+.nav .mark{font-weight:800;letter-spacing:1px;text-transform:uppercase;font-size:15px;white-space:nowrap}
+.nav ul{display:flex;gap:2px;list-style:none;margin:0 0 0 auto;padding:0;overflow-x:auto;scrollbar-width:none}
+.nav ul a{position:relative;display:flex;align-items:center;min-height:44px;padding:0 12px;color:var(--muted);font-size:14px;white-space:nowrap}
+.nav ul a:hover{color:var(--text)}
+.nav ul a.on{color:var(--text)}
+.nav ul a.on::after{content:"";position:absolute;left:12px;right:12px;bottom:6px;height:2px;border-radius:2px;background:var(--g-green);background-size:200% 100%}
+
+/* buttons */
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:9px;font:600 15px/1 var(--font);cursor:pointer;border:0;text-decoration:none;overflow:hidden;isolation:isolate}
+.btn.green{background:var(--g-green);background-size:220% 100%;background-position:30% 50%;color:#06251A;text-shadow:0 1px 0 rgba(255,255,255,.35);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset 0 -1px 0 rgba(0,0,0,.35)}
+.btn.copper{background:var(--g-copper);background-size:220% 100%;background-position:30% 50%;color:#2A0805;text-shadow:0 1px 0 rgba(255,255,255,.3);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset 0 -1px 0 rgba(0,0,0,.35)}
+.btn.ghost{color:var(--text);border:1px solid transparent;background:linear-gradient(var(--ink-2),var(--ink-2)) padding-box,var(--g-chrome) border-box}
+.btn.green:hover,.btn.copper:hover{color:#000;background-position:70% 50%}
+.btn.ghost:hover{color:#fff}
+@media (prefers-reduced-motion:no-preference){.btn{transition:background-position .6s ease,color .2s}}
+
+/* hero */
+.hero{max-width:1200px;margin:0 auto;padding:72px 28px 40px 34px;display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:48px;align-items:center}
+.name{margin:0;font-size:clamp(48px,6.2vw,92px);line-height:.88;font-weight:800;letter-spacing:-1px;text-transform:uppercase}
+.name span{display:block}
+.role{margin:22px 0 0;font-size:20px;color:var(--soft);line-height:1.45}
+.role i{font-style:normal;color:var(--dim);padding:0 8px}
+.loc{margin:8px 0 0;color:var(--muted);font-size:15px}
+.hero .cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+@media (prefers-reduced-motion:no-preference){
+  .name{animation:sheen 1.8s cubic-bezier(.2,.7,.2,1) .15s both}
+  @keyframes sheen{from{background-position:100% 50%}to{background-position:40% 50%}}
+}
+
+/* terminal */
+.term{border-radius:12px;border:1px solid transparent;background:linear-gradient(#0E0F10,#0E0F10) padding-box,var(--g-chrome) border-box;box-shadow:0 24px 60px rgba(0,0,0,.55);overflow:hidden;font-family:var(--mono);font-size:13.5px}
+.term-bar{display:flex;align-items:center;gap:10px;padding:0 14px;height:38px;background:var(--brushed);border-bottom:1px solid var(--rule);color:var(--muted);font-size:12.5px}
+.led{width:9px;height:9px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#C8FFE6,#3A9C78 55%,#14523C);box-shadow:0 0 8px rgba(111,216,174,.7)}
+.term-out{height:300px;overflow-y:auto;padding:14px 16px 4px;line-height:1.6;color:var(--text);scrollbar-width:thin;scrollbar-color:#333 transparent}
+.term-out p{margin:0;white-space:pre-wrap;word-break:break-word}
+.term-out .cmd{color:var(--text)}
+.term-out .ps{color:var(--green-hi)}
+.term-out .k{color:var(--green-hi)}
+.term-out .m{color:var(--muted)}
+.term-out a{color:var(--coral)}
+.term-in{display:flex;align-items:center;gap:8px;padding:6px 16px 12px}
+.term-in .ps{color:var(--green-hi);white-space:nowrap}
+.term-in input{flex:1;min-width:0;min-height:36px;background:transparent;border:0;color:var(--text);font:inherit;caret-color:var(--green-hi)}
+.term-in input:focus{outline:none}
+.term:focus-within{box-shadow:0 0 0 1px rgba(111,216,174,.5),0 24px 60px rgba(0,0,0,.55)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;padding:10px 14px 14px;border-top:1px solid var(--rule);background:#0B0C0C}
+.chip{min-height:34px;padding:0 12px;border-radius:7px;border:1px solid #2E3133;background:#151718;color:var(--soft);font:12.5px var(--mono);cursor:pointer}
+.chip:hover{color:#fff;border-color:var(--green)}
+
+/* sections */
+.page{max-width:1200px;margin:0 auto;padding:0 28px 64px 34px;display:flex;flex-direction:column;gap:88px}
+.sec-h{display:flex;align-items:center;gap:18px;margin:0 0 28px}
+.sec-h h2{margin:0;font-size:24px;font-weight:800;letter-spacing:1px;text-transform:uppercase;white-space:nowrap}
+.sec-h::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,#3A3D40,rgba(58,61,64,0))}
+.lede{margin:0;font-size:clamp(19px,2.1vw,24px);line-height:1.55;color:var(--text);max-width:62ch;text-wrap:pretty}
+.lede b{color:#fff;font-weight:600}
+
+/* experience */
+.timeline{list-style:none;margin:0;padding:0 0 0 34px;position:relative;display:flex;flex-direction:column;gap:22px}
+.timeline::before{content:"";position:absolute;left:8px;top:14px;bottom:14px;width:2px;background:linear-gradient(180deg,#4BE3A1,#2FC488 35%,#26282A)}
+.job{position:relative;padding:24px 26px;border-radius:12px;background:var(--brushed);border:1px solid var(--rule)}
+.job::before{content:"";position:absolute;left:-34px;top:28px;width:18px;height:18px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#E9FFF5,#6FD8AE 30%,#2F9270 60%,#14523C);box-shadow:0 0 0 4px var(--ink)}
+.job.now::before{box-shadow:0 0 0 4px var(--ink),0 0 16px rgba(111,216,174,.7)}
+.job-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 16px}
+.job h3{margin:0;font-size:21px;font-weight:700;color:var(--green-hi)}
+.when{font:13px var(--mono);color:var(--muted);white-space:nowrap}
+.tag{display:inline-block;margin-left:8px;padding:2px 8px;border-radius:999px;font:600 11.5px var(--font);color:#06251A;background:var(--g-green);background-size:200% 100%;vertical-align:3px}
+.where{font-style:italic;color:var(--muted);font-size:15px;margin:2px 0 12px}
+.job ul{margin:0;padding-left:20px;max-width:80ch}
+.job li{margin:0 0 7px}
+.job li::marker{color:var(--green)}
+
+/* skills as a server rack: the rack units are real structure, one per skill group */
+.rack{position:relative;padding:14px 46px;border-radius:12px;background:#0A0A0B;border:1px solid transparent;background:linear-gradient(#0A0A0B,#0A0A0B) padding-box,var(--g-chrome) border-box}
+.rack::before,.rack::after{content:"";position:absolute;top:10px;bottom:10px;width:30px;border-radius:4px;background:repeating-linear-gradient(180deg,transparent 0 10px,#0A0A0B 10px 14px,transparent 14px 22px),var(--g-chrome)}
+.rack::before{left:8px}.rack::after{right:8px}
+.unit{border-bottom:1px solid #1C1E20}
+.unit:last-child{border-bottom:0}
+.unit-btn{width:100%;display:grid;grid-template-columns:28px 1fr auto 18px;align-items:center;gap:14px;min-height:58px;padding:0 16px;background:var(--brushed);border:0;border-radius:6px;color:var(--text);font:inherit;text-align:left;cursor:pointer;margin:4px 0}
+.unit-btn:hover{background:repeating-linear-gradient(90deg,rgba(255,255,255,.03) 0 1px,transparent 1px 3px),linear-gradient(180deg,#1C1E20,#141516)}
+.u-num{font:12px var(--mono);color:var(--dim)}
+.u-name{font-weight:700;font-size:16px}
+.u-leds{display:flex;gap:6px;align-items:center}
+.u-leds i{width:7px;height:7px;border-radius:50%;background:#1E2a25}
+.u-leds i.on{background:radial-gradient(circle at 35% 35%,#E0FFF0,#6FD8AE 45%,#2F9270);box-shadow:0 0 6px rgba(111,216,174,.8)}
+.u-leds .cnt{font:12px var(--mono);color:var(--muted);margin-left:6px}
+.chev{width:18px;height:18px;color:var(--muted)}
+@media (prefers-reduced-motion:no-preference){
+  .chev{transition:transform .25s}
+  .u-leds i.on{animation:blink 2.6s infinite}
+  .u-leds i.on:nth-child(2){animation-delay:.7s}.u-leds i.on:nth-child(3){animation-delay:1.3s}
+  @keyframes blink{0%,86%,100%{opacity:1}90%{opacity:.25}}
+  .unit-body{transition:grid-template-rows .3s ease}
+}
+.unit-btn[aria-expanded="true"] .chev{transform:rotate(180deg)}
+.unit-body{display:grid;grid-template-rows:0fr}
+.unit-btn[aria-expanded="true"]+.unit-body{grid-template-rows:1fr}
+.unit-body>div{overflow:hidden}
+.items{display:flex;flex-wrap:wrap;gap:8px;padding:6px 16px 18px 58px;margin:0;list-style:none}
+.items li{padding:6px 11px;border-radius:7px;font-size:14px;color:var(--text);border:1px solid #2C2F31;background:#121314}
+
+/* projects */
+.projects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.proj{--x:50%;--y:0%;position:relative;padding:26px 26px 28px;border-radius:12px;border:1px solid transparent;background:linear-gradient(#111213,#111213) padding-box,radial-gradient(420px circle at var(--x) var(--y),#4BE3A1,#2FC488 22%,#26282A 48%) border-box;display:flex;flex-direction:column;gap:6px}
+.proj h3{margin:0;font-size:19px;color:var(--green-hi)}
+.stack{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 6px;padding:0;list-style:none}
+.stack li{font:12px var(--mono);color:var(--soft);padding:3px 8px;border-radius:6px;background:#1A1C1D;border:1px solid #2A2D2F}
+.proj p{margin:0;font-size:15.5px;line-height:1.6;text-wrap:pretty}
+
+/* portfolio */
+.port-intro{margin:-10px 0 26px;color:var(--soft);max-width:64ch}
+.sites{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(440px,100%),1fr));gap:30px}
+.site{margin:0;display:flex;flex-direction:column;gap:14px}
+.frame{border-radius:12px;overflow:hidden;border:1px solid transparent;background:linear-gradient(var(--panel),var(--panel)) padding-box,var(--g-chrome) border-box;box-shadow:0 18px 40px rgba(0,0,0,.5)}
+.chrome{display:flex;align-items:center;gap:10px;height:36px;padding:0 12px;background:var(--brushed);border-bottom:1px solid var(--rule);font:12.5px var(--mono);color:var(--muted)}
+.chrome .addr{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:3px 10px;border-radius:6px;background:#0C0D0D}
+.view{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--panel)}
+.view img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center}
+.fallback{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--dim);font-size:14px;text-align:center;padding:16px}
+.fallback b{color:var(--soft);font-size:18px}
+.shots{position:absolute;right:10px;bottom:10px;padding:3px 9px;border-radius:999px;background:rgba(12,13,13,.75);border:1px solid #2C2F31;font:12px var(--mono);color:var(--soft)}
+.open{position:absolute;inset:0;width:100%;border:0;background:transparent;cursor:zoom-in;padding:0}
+.open:focus-visible{outline-offset:-4px}
+@media (prefers-reduced-motion:no-preference){.view img{transition:transform .5s ease}.open:hover~img,.open:focus-visible~img{transform:scale(1.04)}}
+.site figcaption{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.site h3{margin:0;font-size:18px;color:var(--green-hi)}
+.what{font-style:italic;font-size:14px;color:var(--muted)}
+
+/* mobile apps - phone frame gallery */
+.phones{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr));gap:34px;margin-top:8px}
+.phone-card{display:flex;flex-direction:column;align-items:center;gap:14px}
+.phone{position:relative;width:230px;aspect-ratio:9/19.5;border-radius:34px;padding:10px;background:linear-gradient(#1b1d1e,#0c0d0d) padding-box,var(--g-chrome) border-box;border:1px solid transparent;box-shadow:0 20px 50px rgba(0,0,0,.55)}
+.phone-screen{position:relative;width:100%;height:100%;border-radius:24px;overflow:hidden;background:#0a0a0b;cursor:zoom-in}
+.phone-screen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center}
+.phone-notch{position:absolute;top:10px;left:50%;translate:-50% 0;width:34%;height:18px;border-radius:10px;background:#0c0d0d;z-index:2}
+.phone-card h3{margin:0;font-size:17px;color:var(--green-hi);text-align:center}
+.phone-card .what{text-align:center}
+.phone-card .shots{position:static;align-self:center;margin-top:-6px}
+
+/* infrastructure diagram */
+.infra{display:flex;flex-direction:column;gap:22px}
+.infra-row{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;position:relative}
+.infra-row::before{content:"";position:absolute;left:4%;right:4%;top:-11px;height:1px;background:linear-gradient(90deg,transparent,#3A3D40,transparent)}
+.infra-row:first-child::before{display:none}
+.node{padding:14px 20px;border-radius:10px;background:var(--brushed);border:1px solid var(--rule);font:600 14px var(--font);color:var(--text);text-align:center;min-width:120px}
+.node.edge{border-color:#2F9270;box-shadow:0 0 0 1px rgba(111,216,174,.25) inset}
+.node small{display:block;font:400 11.5px var(--mono);color:var(--muted);margin-top:3px}
+
+dialog{width:min(1280px,94vw);height:min(860px,90vh);padding:0;border-radius:14px;border:1px solid transparent;background:linear-gradient(var(--panel),var(--panel)) padding-box,var(--g-chrome) border-box;color:var(--text);overflow:hidden}
+dialog::backdrop{background:rgba(0,0,0,.8);backdrop-filter:blur(4px)}
+.dlg{display:flex;flex-direction:column;height:100%}
+.dlg-bar{display:flex;align-items:center;gap:10px;padding:8px 10px 8px 16px;border-bottom:1px solid var(--rule);background:var(--brushed)}
+.dlg-bar .t{flex:1;min-width:0;font-weight:700;color:var(--green-hi);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dlg-body{flex:1;position:relative;display:flex;align-items:center;justify-content:center;background:#050505;overflow:hidden}
+.dlg-body img{max-width:100%;max-height:100%;object-fit:contain}
+.dlg-nav{position:absolute;top:0;bottom:0;width:72px;border:0;background:linear-gradient(90deg,rgba(0,0,0,.35),transparent);color:#fff;font-size:28px;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:.55}
+.dlg-nav:hover{opacity:1}
+.dlg-nav.next{right:0;left:auto;background:linear-gradient(270deg,rgba(0,0,0,.35),transparent)}
+.dlg-count{position:absolute;left:50%;bottom:10px;translate:-50% 0;padding:3px 10px;border-radius:999px;background:rgba(0,0,0,.55);font:12px var(--mono);color:var(--soft)}
+.x{min-width:44px;min-height:44px;border-radius:9px;border:1px solid #33363A;background:transparent;color:var(--text);cursor:pointer;font-size:22px;line-height:1}
+.x:hover{border-color:var(--coral);color:var(--coral)}
+
+/* education + contact */
+.edu{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.edu>div{padding:22px 24px;border-radius:12px;background:var(--brushed);border:1px solid var(--rule)}
+.edu h3{margin:0 0 4px;font-size:18px;color:var(--green-hi)}
+.edu p{margin:0;font-style:italic;color:var(--muted)}
+.contact{padding:44px 40px;border-radius:16px;border:1px solid transparent;background:linear-gradient(#0F1011,#0F1011) padding-box,var(--g-green) border-box;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px}
+.contact h2{margin:0;font-size:clamp(30px,4vw,46px);line-height:1.05;font-weight:800;text-transform:uppercase}
+.contact p{margin:8px 0 0;color:var(--soft)}
+.contact .cta{display:flex;flex-wrap:wrap;gap:10px}
+footer{max-width:1200px;margin:0 auto;padding:22px 28px 40px 34px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;color:var(--dim);font-size:14px;border-top:1px solid var(--rule)}
+
+.print-sites,.print-only{display:none}
+
+@media screen and (max-width:900px){
+  .hero{grid-template-columns:minmax(0,1fr);padding-top:44px;gap:36px}
+  .projects,.edu{grid-template-columns:minmax(0,1fr)}
+  .rack{padding:10px 38px}
+  .rack::before,.rack::after{width:22px}
+  .items{padding-left:16px}
+  .nav .mark{display:none}
+  .nav ul{margin-left:0}
+  .contact{padding:30px 24px}
+}
+
+@media print{
+  @page{size:letter;margin:0}
+  html,body{background:var(--ink);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{font-size:10pt;line-height:1.42}
+  .nav,.term,.cta,.chips,.port-intro,.sites,.phones,.infra,.contact,dialog,.chev,.u-leds{display:none!important}
+  .rail{position:fixed}
+  .print-wrap{padding:.45in .6in .4in .7in;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+  .hero{display:block;padding:0;max-width:none;margin-bottom:16px}
+  .name{font-size:32pt;animation:none;letter-spacing:0}
+  .name span{display:inline}
+  .role{margin-top:8px;font-size:11pt}
+  .loc{font-size:9.5pt}
+  .print-only{display:flex;flex-wrap:wrap;gap:0 16px;font-size:9.5pt;margin-top:4px}
+  .page{padding:0;max-width:none;gap:16px}
+  .sec-h{margin-bottom:10px;break-after:avoid}
+  .sec-h h2{font-size:12pt}
+  .lede{font-size:10.5pt;max-width:none}
+  .timeline{gap:10px}
+  .job{padding:10px 14px;break-inside:avoid}
+  .job h3{font-size:12pt}
+  .where{font-size:9pt;margin-bottom:6px}
+  .when{font-size:8.5pt}
+  .job li{margin-bottom:2px}
+  .job ul{max-width:none}
+  .rack{padding:6px 10px;background:none;border:1px solid var(--rule)}
+  .rack::before,.rack::after{display:none}
+  .unit-btn{min-height:0;padding:4px 0;margin:0;background:none;grid-template-columns:22px 1fr}
+  .u-name{font-size:10pt;color:var(--green-hi)}
+  .unit-body{grid-template-rows:1fr!important}
+  .items{padding:0 0 6px 36px;gap:4px}
+  .items li{padding:1px 6px;font-size:8.5pt}
+  .projects{gap:10px 20px}
+  .proj{padding:10px 12px;break-inside:avoid;background:#111213;border:1px solid var(--rule)}
+  .proj h3{font-size:10.5pt}
+  .proj p{font-size:9pt}
+  .stack li{font-size:7.5pt;padding:1px 5px}
+  .print-sites{display:grid;grid-template-columns:1fr 1fr;gap:6px 24px;margin:0;padding:0;list-style:none;font-size:9.5pt}
+  .print-sites b{color:var(--green-hi)}
+  .print-sites span{color:var(--muted);font-style:italic}
+  #portfolio,#education{break-inside:avoid}
+  .edu{gap:12px}
+  .edu>div{padding:10px 14px}
+  .edu h3{font-size:10.5pt}
+  .edu p{font-size:9pt}
+  footer{padding:10px 0 0;font-size:8.5pt;max-width:none}
+}
+</style>
+</head>
+<body>
+<div class="rail" aria-hidden="true"></div>
+
+<nav class="nav" aria-label="Sections">
+  <div class="nav-in">
+    <a class="mark metal" href="#top">Omar Gaystardo</a>
+    <ul>
+      <li><a href="#summary">Summary</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#infra">Infra</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="btn copper" type="button" onclick="window.print()">Save PDF</button>
+  </div>
+</nav>
+
+<div class="print-wrap">
+<header class="hero" id="top">
+  <div>
+    <h1 class="name metal" id="name"><span>Omar</span> <span>Gaystardo</span></h1>
+    <p class="role">Data Center Technician<i>|</i>Linux Infrastructure<i>|</i>Founder, Kryptoxotis</p>
+    <p class="loc">El Paso, TX  ·  English and Spanish</p>
+    <div class="print-only"><a href="tel:+19153733640">915-373-3640</a><a href="mailto:ogaystardo@gmail.com">ogaystardo@gmail.com</a><a href="https://kryptoxotis.io">kryptoxotis.io</a><a href="https://github.com/Kryptoxotis">github.com/Kryptoxotis</a></div>
+    <div class="cta">
+      <a class="btn green" href="mailto:ogaystardo@gmail.com">Email me</a>
+      <a class="btn copper" href="tel:+19153733640">Call 915-373-3640</a>
+      <a class="btn ghost" href="https://github.com/Kryptoxotis" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+
+  <div class="term" aria-label="Interactive terminal">
+    <div class="term-bar"><span class="led" aria-hidden="true"></span><span>omar@kryptoxotis: ~</span></div>
+    <div class="term-out" id="out" role="log" aria-live="polite"></div>
+    <form class="term-in" id="tform" autocomplete="off">
+      <label class="sr" for="tin">Type a command</label>
+      <span class="ps" aria-hidden="true">$</span>
+      <input id="tin" type="text" spellcheck="false" placeholder="type help, or tap a command below">
+    </form>
+    <div class="chips" aria-label="Commands">
+      <button class="chip" type="button" data-cmd="whoami">whoami</button>
+      <button class="chip" type="button" data-cmd="experience">experience</button>
+      <button class="chip" type="button" data-cmd="uptime">uptime</button>
+      <button class="chip" type="button" data-cmd="stack">stack</button>
+      <button class="chip" type="button" data-cmd="contact">contact</button>
+      <button class="chip" type="button" data-cmd="clear">clear</button>
+    </div>
+  </div>
+</header>
+
+<div class="page">
+  <section id="summary" aria-labelledby="sum-h">
+    <div class="sec-h"><h2 class="metal" id="sum-h">Professional Summary</h2></div>
+    <p class="lede">Data center hardware technician with break/fix, diagnostics, and functional test experience in two environments: a <b>high-volume server manufacturing and test facility</b> serving hyperscale customers (Wiwynn), and a <b>live high-density compute site</b> where I deployed, cabled, and powered racks during build-out (Marathon Digital). Founder of Kryptoxotis, where I have run always-on Linux infrastructure for 3+ years and act as the technical point of contact for non-technical business owners. Bilingual, English and Spanish. Experienced with 12-hour rotating shifts including nights, weekends, and holidays.</p>
+  </section>
+
+  <section id="experience" aria-labelledby="exp-h">
+    <div class="sec-h"><h2 class="metal" id="exp-h">Professional Experience</h2></div>
+    <ol class="timeline">
+      <li class="job now">
+        <div class="job-head"><h3>Repair / Test Technician<span class="tag">Current</span></h3><span class="when">Jul 2026 - Present</span></div>
+        <div class="where">Wiwynn (via Balance Staffing) | Socorro, TX</div>
+        <ul>
+          <li>Perform break/fix repair, component replacement, diagnostics, and functional test on server hardware (L10 system and L11 rack-level integration) in a high-volume facility building infrastructure for hyperscale data center customers</li>
+          <li>Diagnose and troubleshoot hardware, firmware, and OS-level faults across multiple test stages (PoT, MFG, MDaaS, BSL) using MIC, TechTool, RAC Monitor, and ProFit</li>
+          <li>Execute repairs and preventative maintenance to written SOPs and work instructions; document failures and escalate repeating defects in support of failure analysis</li>
+          <li>Train new hires on diagnostic tools and repair procedures and support bay leads on night shift; regularly the go-to for peers troubleshooting on the floor</li>
+          <li>Work 12-hour rotating shifts (days/nights, weekends, holidays); routinely lift and move 50+ lb server equipment while following ESD, PPE, and site safety requirements</li>
+        </ul>
+      </li>
+      <li class="job">
+        <div class="job-head"><h3>Data Center Technician</h3><span class="when">Mar 2024 - Jul 2024</span></div>
+        <div class="where">Marathon Digital Holdings | Nebraska</div>
+        <ul>
+          <li>Performed break/fix repair on ASIC compute hardware (fans, PSUs, hashboards, control boards) in a live high-density facility, using diagnostic and monitoring tools to isolate faults and return units to service</li>
+          <li>Deployed, cabled, and powered up high-density rack equipment during site build-out; managed cabling and power distribution and tested racks before they went into production</li>
+          <li>Maintained cooling efficiency through airflow optimization and HVAC-adjacent system support</li>
+        </ul>
+      </li>
+      <li class="job now">
+        <div class="job-head"><h3>Founder and Systems Operator<span class="tag">Current</span></h3><span class="when">2022 - Present</span></div>
+        <div class="where">Kryptoxotis (AI Automation and Software) | El Paso, TX</div>
+        <ul>
+          <li>Design, deploy, and maintain always-on production Linux infrastructure: 20+ Docker services, DNS, reverse tunnels, self-hosted mail (SMTP/IMAP across 3 domains), monitoring, and backups</li>
+          <li>Administer a multi-node environment (x86 server plus Raspberry Pi nodes) over Tailscale/WireGuard with Cloudflare Tunnels, Workers, and PostgreSQL; resolve network, storage, and service failures end to end and document the fixes</li>
+          <li>Build and maintain production n8n workflows for lead enrichment, CRM sync, webhook-driven data processing, and automated notifications running 24/7</li>
+          <li>Deliver client websites, dashboards, and web applications (Next.js, React, Supabase) for businesses in insurance, real estate, auto detailing, and food service; own scoping, building, deploying, and first-line support</li>
+          <li>Technical liaison for non-technical business owners; explain technical issues in plain language in English and Spanish</li>
+        </ul>
+      </li>
+    </ol>
+  </section>
+
+  <section id="skills" aria-labelledby="sk-h">
+    <div class="sec-h"><h2 class="metal" id="sk-h">Technical Skills</h2></div>
+    <div class="rack" id="rack"></div>
+  </section>
+
+  <section id="projects" aria-labelledby="pr-h">
+    <div class="sec-h"><h2 class="metal" id="pr-h">Key Projects</h2></div>
+    <div class="projects" id="projs"></div>
+  </section>
+
+  <section id="portfolio" aria-labelledby="po-h">
+    <div class="sec-h"><h2 class="metal" id="po-h">Portfolio</h2></div>
+    <p class="port-intro">Real apps, real screenshots. Click any screen to open the full gallery.</p>
+    <div class="sites" id="sites"></div>
+    <ul class="print-sites" id="print-sites"></ul>
+
+    <div class="sec-h" style="margin-top:12px"><h2 class="metal" id="po-h2">Mobile</h2></div>
+    <p class="port-intro">Apps built mobile-first, captured on device.</p>
+    <div class="phones" id="phones"></div>
+  </section>
+
+  <section id="infra" aria-labelledby="in-h">
+    <div class="sec-h"><h2 class="metal" id="in-h">Infrastructure</h2></div>
+    <p class="lede" style="font-size:17px;max-width:70ch">Everything above runs on hardware I own and maintain myself, not a cloud platform.</p>
+    <div class="infra">
+      <div class="infra-row">
+        <div class="node edge">Cloudflare Tunnel<small>DNS + TLS, ~30 routes</small></div>
+      </div>
+      <div class="infra-row">
+        <div class="node">x86 server<small>Windows + Docker, ~30 containers</small></div>
+        <div class="node">Raspberry Pi nodes<small>Tailscale mesh</small></div>
+        <div class="node">ROG Ally<small>Odysseus host</small></div>
+      </div>
+      <div class="infra-row">
+        <div class="node">Self-hosted Supabase<small>Postgres, Auth, Storage</small></div>
+        <div class="node">n8n<small>automation, webhooks</small></div>
+        <div class="node">Self-hosted mail<small>SMTP/IMAP, 3 domains</small></div>
+        <div class="node">Home Assistant<small>home automation</small></div>
+        <div class="node">Jellyfin<small>media server</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education" aria-labelledby="ed-h">
+    <div class="sec-h"><h2 class="metal" id="ed-h">Education</h2></div>
+    <div class="edu">
+      <div><h3>Associate of Arts, Multidisciplinary Studies</h3><p>El Paso Community College | 2021</p></div>
+      <div><h3>Coursework toward Computer Engineering</h3><p>The University of Texas at El Paso | Digital Systems Design I with lab, Calculus II, Discrete Mathematics</p></div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact" aria-labelledby="ct-h">
+    <div>
+      <h2 class="metal" id="ct-h">Let's talk</h2>
+      <p>ogaystardo@gmail.com  |  915-373-3640</p>
+    </div>
+    <div class="cta">
+      <a class="btn green" href="mailto:ogaystardo@gmail.com">Email me</a>
+      <a class="btn copper" href="tel:+19153733640">Call</a>
+      <a class="btn ghost" href="https://kryptoxotis.io" target="_blank" rel="noopener">kryptoxotis.io</a>
+    </div>
+  </section>
+</div>
+
+<footer><span>Kryptoxotis | kryptoxotis.io</span><a href="mailto:ogaystardo@gmail.com">ogaystardo@gmail.com</a></footer>
+</div>
+
+<dialog id="dlg" aria-labelledby="dlg-t">
+  <div class="dlg">
+    <div class="dlg-bar">
+      <span class="t" id="dlg-t"></span>
+      <a class="btn copper" id="dlg-open" href="#" target="_blank" rel="noopener">Open site</a>
+      <button class="x" type="button" id="dlg-x" aria-label="Close preview">&times;</button>
+    </div>
+    <div class="dlg-body">
+      <button class="dlg-nav prev" type="button" id="dlg-prev" aria-label="Previous screen">&#8249;</button>
+      <img id="dlg-img" alt="">
+      <button class="dlg-nav next" type="button" id="dlg-next" aria-label="Next screen">&#8250;</button>
+      <span class="dlg-count" id="dlg-count"></span>
+    </div>
+  </div>
+</dialog>
+
+<script>
+/* ====== EDIT HERE ======
+   To add a site: fill in its url and images (webp files in ./img/). */
+const SITES = [
+  { name: "Kryptoxotis",  what: "Business site and automation consultancy, Next.js and Supabase", url: "https://kryptoxotis.com",
+    stack: ["Next.js","Supabase","Cloudflare"], images: ["img/kryptoxotis_01.webp"] },
+  { name: "REGOS",        what: "Real estate operations dashboard, self-hosted (Node, Notion API)", url: "https://regos.kryptoxotis.com",
+    stack: ["Node.js","Express","Notion API","Docker"], images: ["img/regos_01.webp"] },
+  { name: "PGI Dashboard", what: "Crash report and lead enrichment pipeline, Next.js", url: "https://pgi.kryptoxotis.com",
+    stack: ["Next.js","n8n","Spokeo API","Docker"], images: ["img/pgi_01.webp"] },
+  { name: "Logos",        what: "Greek interlinear study tool, React and Supabase", url: "https://logos.kryptoxotis.com",
+    stack: ["React","Vite","Supabase"], images: ["img/logos_01.webp"] },
+  { name: "Stream915",    what: "Live local marketplace for El Paso vendors, Next.js", url: "https://stream915.shop",
+    stack: ["Next.js","Owncast","Docker"], images: ["img/stream915_web_02_home.webp","img/stream915_web_03_vendors.webp","img/stream915_web_01_signin.webp"] },
+  { name: "Kratos",       what: "Calorie and macro tracker, React and Supabase", url: "https://kratos.kryptoxotis.com",
+    stack: ["React","Vite","Supabase","Whoop API"], images: ["img/kratos_01.webp"] }
+];
+
+const MOBILE = [
+  { name: "Odysseus", what: "System monitor and remote control for my gaming handheld server", pkg: "io.kryptoxotis.odyssey",
+    stack: ["Kotlin","Jetpack Compose"], images: ["img/odyssey_phone_01.webp","img/odyssey_phone_02.webp","img/odyssey_phone_03.webp"] },
+  { name: "Nexus", what: "NFC business card app, share your info with a tap, no app needed on the receiving phone", pkg: "com.kryptoxotis.nexus",
+    stack: ["Kotlin","Jetpack Compose","Android HCE"], images: ["img/nexus_re_01_home.webp","img/nexus_re_03_card_detail.webp"] },
+  { name: "Stream915", what: "Companion app for the live marketplace channels", pkg: "shop.stream915.app",
+    stack: ["React Native"], images: ["img/stream915_phone_02.webp","img/stream915_phone_03.webp"] }
+];
+
+const SKILLS = [
+  ["Hardware", ["Server break/fix (L10/L11)","Component replacement","ASIC repair: PSUs, hashboards, control boards, fans","Rack deployment and integration","Structured cabling","Power distribution (PDUs)","Hardware diagnostics","ESD handling","Preventative maintenance","Airflow and cooling"]],
+  ["Diagnostics and Test", ["MIC","TechTool","RAC Monitor","ProFit","PoT, MFG, MDaaS, BSL test flows","Failure documentation","Escalation to failure analysis"]],
+  ["Infrastructure", ["Linux (Ubuntu/Debian) CLI and admin","Docker","x86 and Raspberry Pi servers","Tailscale/WireGuard","Cloudflare Workers and Tunnels","Vercel","Monitoring and backups"]],
+  ["Networking", ["TCP/IP","DNS","DHCP","VPN","SMTP/IMAP","HTTP/TLS"]],
+  ["Automation and Backend", ["n8n","Python","Node.js","TypeScript","Bash","Supabase (PostgreSQL, Auth, RLS)","REST APIs"]],
+  ["Frontend and Mobile", ["Next.js","React","Tailwind CSS","Kotlin","Jetpack Compose","Android HCE/NFC"]],
+  ["Tools", ["Git/GitHub","SSH","Claude Code","VS Code","Cursor","Notion","Obsidian"]],
+  ["Languages", ["English (native)","Spanish (native/bilingual)"]]
+];
+
+const PROJECTS = [
+  ["Production Server Infrastructure", ["Raspberry Pi 5","x86","Docker","Tailscale","n8n","Supabase","Home Assistant"], "A 24/7 production environment running Docker containers for n8n automation, Supabase, Home Assistant, Obsidian LiveSync, self-hosted mail, and client dashboards. Remote access over Tailscale; handles real client workloads."],
+  ["Crash Report and Lead Enrichment (PGI)", ["n8n","Supabase","Spokeo API","Next.js","Docker"], "Automated pipeline that ingests insurance crash reports, extracts data, enriches leads through third-party APIs, scores prospects, and pushes qualified leads into a custom dashboard. Turned a multi-hour daily manual process into an overnight workflow."],
+  ["Real Estate Dashboard (Edwards Homes)", ["Next.js","Supabase","Notion API","Vercel"], "Custom real estate operating system with drag-and-drop pipeline views, team management, calendar integration, and Notion sync, built to replace scattered spreadsheets. Sole developer, architect, and client contact."],
+  ["Cloudflare Workers MCP Server", ["Cloudflare Workers","JavaScript","OAuth"], "Model Context Protocol server that brings GitHub, Notion, n8n, Vercel, and ElevenLabs into a single endpoint, handling OAuth, API routing, and tool definitions. Used daily."],
+  ["Nexus NFC Card and Membership App", ["Kotlin","Jetpack Compose","Supabase","Android HCE"], "Android app for sharing business cards over NFC with no app needed on the receiving phone, plus a CRM module for membership businesses. QR fallback for iOS; tested on OnePlus, Samsung, and iPhone."],
+  ["Kratos Calorie and Macro Tracker", ["React","Vite","Supabase","Open Food Facts","USDA API"], "Nutrition tracker with barcode scanning, a meal builder that splits portions between household users, weight trends and streaks, and a goal-adherence calendar. Live and in daily use."]
+];
+/* ====== END EDIT ====== */
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
+const host = u => u.replace(/^https?:\/\//, "").replace(/\/$/, "");
+const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* light follows the cursor across the metal name */
+const nameEl = document.getElementById("name");
+if (!calm) {
+  document.querySelector(".hero").addEventListener("pointermove", e => {
+    const r = nameEl.getBoundingClientRect();
+    const p = Math.max(0, Math.min(1, (e.clientX - r.left) / r.width));
+    nameEl.style.animation = "none";
+    nameEl.style.setProperty("--mx", (15 + p * 70) + "%");
+  });
+}
+
+/* rack */
+const rack = document.getElementById("rack");
+SKILLS.forEach(([name, items], i) => {
+  const id = "u" + i;
+  const leds = Math.min(3, Math.ceil(items.length / 3));
+  const unit = document.createElement("div");
+  unit.className = "unit";
+  unit.innerHTML =
+    '<button class="unit-btn" type="button" aria-expanded="' + (i < 2) + '" aria-controls="' + id + '">' +
+      '<span class="u-num">U' + String(i + 1).padStart(2, "0") + '</span>' +
+      '<span class="u-name">' + esc(name) + '</span>' +
+      '<span class="u-leds" aria-hidden="true">' + [0,1,2].map(n => '<i class="' + (n < leds ? "on" : "") + '"></i>').join("") + '<span class="cnt">' + items.length + '</span></span>' +
+      '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>' +
+    '</button>' +
+    '<div class="unit-body" id="' + id + '"><div><ul class="items">' + items.map(t => "<li>" + esc(t) + "</li>").join("") + '</ul></div></div>';
+  const b = unit.querySelector("button");
+  b.addEventListener("click", () => b.setAttribute("aria-expanded", b.getAttribute("aria-expanded") !== "true"));
+  rack.appendChild(unit);
+});
+addEventListener("beforeprint", () => rack.querySelectorAll(".unit-btn").forEach(b => b.setAttribute("aria-expanded", "true")));
+
+/* projects with a metal edge that tracks the cursor */
+const projs = document.getElementById("projs");
+PROJECTS.forEach(([t, stack, d]) => {
+  const a = document.createElement("article");
+  a.className = "proj";
+  a.innerHTML = "<h3>" + esc(t) + '</h3><ul class="stack">' + stack.map(s => "<li>" + esc(s) + "</li>").join("") + "</ul><p>" + esc(d) + "</p>";
+  a.addEventListener("pointermove", e => {
+    const r = a.getBoundingClientRect();
+    a.style.setProperty("--x", (e.clientX - r.left) + "px");
+    a.style.setProperty("--y", (e.clientY - r.top) + "px");
+  });
+  projs.appendChild(a);
+});
+
+/* portfolio - web */
+const grid = document.getElementById("sites");
+const plist = document.getElementById("print-sites");
+SITES.forEach(s => {
+  const fig = document.createElement("figure");
+  fig.className = "site";
+  fig.innerHTML =
+    '<div class="frame"><div class="chrome"><span class="led" aria-hidden="true"></span><span class="addr">' + esc(host(s.url)) + '</span></div>' +
+    '<div class="view">' +
+    '<button class="open" type="button" aria-label="Open full-size screens of ' + esc(s.name) + '"></button>' +
+    '<img src="' + esc(s.images[0]) + '" alt="' + esc(s.name) + ' screenshot" loading="lazy">' +
+    (s.images.length > 1 ? '<span class="shots">' + s.images.length + ' screens</span>' : '') +
+    '</div></div>' +
+    '<figcaption><div><h3>' + esc(s.name) + '</h3><div class="what">' + esc(s.what) + '</div>' +
+    '<ul class="stack">' + s.stack.map(t => "<li>" + esc(t) + "</li>").join("") + '</ul></div>' +
+    '<a class="btn ghost" href="' + esc(s.url) + '" target="_blank" rel="noopener">Visit</a></figcaption>';
+  fig.querySelector(".open").addEventListener("click", () => openGallery(s.name, s.images, s.url));
+  grid.appendChild(fig);
+  const li = document.createElement("li");
+  li.innerHTML = "<b>" + esc(s.name) + "</b> <span>" + esc(s.what) + '</span><br><a href="' + esc(s.url) + '">' + esc(host(s.url)) + "</a>";
+  plist.appendChild(li);
+});
+
+/* portfolio - mobile */
+const phonesGrid = document.getElementById("phones");
+MOBILE.forEach(m => {
+  const card = document.createElement("div");
+  card.className = "phone-card";
+  card.innerHTML =
+    '<div class="phone"><div class="phone-notch" aria-hidden="true"></div><button class="phone-screen" type="button" aria-label="Open full-size screens of ' + esc(m.name) + '">' +
+    '<img src="' + esc(m.images[0]) + '" alt="' + esc(m.name) + ' app screenshot" loading="lazy"></button></div>' +
+    '<h3>' + esc(m.name) + '</h3><div class="what">' + esc(m.what) + '</div>' +
+    '<ul class="stack">' + m.stack.map(t => "<li>" + esc(t) + "</li>").join("") + '</ul>' +
+    (m.images.length > 1 ? '<span class="shots">' + m.images.length + ' screens</span>' : '');
+  card.querySelector(".phone-screen").addEventListener("click", () => openGallery(m.name, m.images));
+  phonesGrid.appendChild(card);
+});
+
+/* lightbox gallery, shared by web + mobile */
+const dlg = document.getElementById("dlg"), dlgImg = document.getElementById("dlg-img");
+const dlgCount = document.getElementById("dlg-count"), dlgOpen = document.getElementById("dlg-open");
+let galleryImages = [], galleryIdx = 0;
+function renderGallery() {
+  dlgImg.src = galleryImages[galleryIdx];
+  dlgCount.textContent = (galleryIdx + 1) + " / " + galleryImages.length;
+}
+function openGallery(name, images, url) {
+  galleryImages = images; galleryIdx = 0;
+  document.getElementById("dlg-t").textContent = name;
+  document.getElementById("dlg-prev").style.display = images.length > 1 ? "" : "none";
+  document.getElementById("dlg-next").style.display = images.length > 1 ? "" : "none";
+  dlgOpen.style.display = url ? "" : "none";
+  if (url) dlgOpen.href = url;
+  renderGallery();
+  dlg.showModal();
+}
+document.getElementById("dlg-prev").addEventListener("click", () => { galleryIdx = (galleryIdx - 1 + galleryImages.length) % galleryImages.length; renderGallery(); });
+document.getElementById("dlg-next").addEventListener("click", () => { galleryIdx = (galleryIdx + 1) % galleryImages.length; renderGallery(); });
+document.getElementById("dlg-x").addEventListener("click", () => dlg.close());
+dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
+dlg.addEventListener("keydown", e => {
+  if (e.key === "ArrowRight") document.getElementById("dlg-next").click();
+  if (e.key === "ArrowLeft") document.getElementById("dlg-prev").click();
+});
+
+/* section highlight in nav */
+const links = [...document.querySelectorAll(".nav ul a")];
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) links.forEach(l => l.classList.toggle("on", l.getAttribute("href") === "#" + e.target.id));
+}), { rootMargin: "-45% 0px -50% 0px" });
+document.querySelectorAll("section[id]").forEach(s => io.observe(s));
+
+/* terminal */
+const out = document.getElementById("out"), tin = document.getElementById("tin");
+const line = (html, cls) => { const p = document.createElement("p"); if (cls) p.className = cls; p.innerHTML = html; out.appendChild(p); out.scrollTop = out.scrollHeight; };
+const CMDS = {
+  help: () => line('<span class="m">commands:</span> <span class="k">whoami</span>  <span class="k">experience</span>  <span class="k">uptime</span>  <span class="k">stack</span>  <span class="k">skills</span>  <span class="k">projects</span>  <span class="k">portfolio</span>  <span class="k">contact</span>  <span class="k">clear</span>'),
+  whoami: () => line("Omar Gaystardo. Data center technician by day (and night shift).\nBreak/fix, diagnostics, and functional test on hyperscale server hardware.\nFounder of Kryptoxotis. Bilingual, English and Spanish."),
+  experience: () => line('<span class="k">2026-now</span>  Repair / Test Technician, Wiwynn (Socorro, TX)\n<span class="k">2024</span>      Data Center Technician, Marathon Digital (Nebraska)\n<span class="k">2022-now</span>  Founder and Systems Operator, Kryptoxotis'),
+  uptime: () => line("Kryptoxotis infrastructure: always on for 3+ years\n20+ Docker services | self-hosted mail on 3 domains | x86 + Raspberry Pi over Tailscale"),
+  stack: () => line('<span class="m">hardware</span>  L10/L11 servers, ASIC, racks, cabling, PDUs\n<span class="m">test</span>      MIC, TechTool, RAC Monitor, ProFit\n<span class="m">infra</span>     Linux, Docker, Tailscale, Cloudflare, PostgreSQL\n<span class="m">build</span>     n8n, Python, Node.js, Next.js, React, Kotlin'),
+  skills: () => { go("skills"); line('<span class="m">jumped to Technical Skills</span>'); },
+  projects: () => { go("projects"); line('<span class="m">jumped to Key Projects</span>'); },
+  portfolio: () => { go("portfolio"); line('<span class="m">jumped to Portfolio</span>'); },
+  contact: () => line('email  <a href="mailto:ogaystardo@gmail.com">ogaystardo@gmail.com</a>\nphone  <a href="tel:+19153733640">915-373-3640</a>\nweb    <a href="https://kryptoxotis.io" target="_blank" rel="noopener">kryptoxotis.io</a>\ncode   <a href="https://github.com/Kryptoxotis" target="_blank" rel="noopener">github.com/Kryptoxotis</a>'),
+  clear: () => { out.innerHTML = ""; }
+};
+const go = id => document.getElementById(id).scrollIntoView({ behavior: calm ? "auto" : "smooth" });
+function run(raw) {
+  const c = raw.trim().toLowerCase();
+  if (!c) return;
+  const p = document.createElement("p"); p.className = "cmd";
+  p.innerHTML = '<span class="ps">$ </span>'; p.appendChild(document.createTextNode(raw.trim()));
+  out.appendChild(p);
+  (CMDS[c] || (() => line('<span class="m">command not found: </span>' + esc(c) + '<span class="m">. try </span><span class="k">help</span>')))();
+  out.scrollTop = out.scrollHeight;
+}
+document.getElementById("tform").addEventListener("submit", e => { e.preventDefault(); run(tin.value); tin.value = ""; });
+document.querySelectorAll(".chip").forEach(b => b.addEventListener("click", () => run(b.dataset.cmd)));
+
+/* boot: type whoami once */
+(function boot() {
+  const word = "whoami";
+  if (calm) { run(word); line('<span class="m">type </span><span class="k">help</span><span class="m"> for more</span>'); return; }
+  const p = document.createElement("p"); p.className = "cmd"; p.innerHTML = '<span class="ps">$ </span>'; out.appendChild(p);
+  let i = 0;
+  const t = setInterval(() => {
+    p.appendChild(document.createTextNode(word[i++]));
+    if (i === word.length) { clearInterval(t); setTimeout(() => { CMDS.whoami(); line('<span class="m">type </span><span class="k">help</span><span class="m"> or tap a command</span>'); }, 220); }
+  }, 85);
+})();
+</script>
+</body>
+</html>
